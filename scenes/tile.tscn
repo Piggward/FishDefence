@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://8st3a1p0w0df"]
+
+[ext_resource type="Script" uid="uid://x6xhiow2a62g" path="res://scripts/tile.gd" id="1_3dk36"]
+
+[node name="Tile" type="Area2D"]
+script = ExtResource("1_3dk36")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+visible = false
+color = Color(2.0331757, 2.0331757, 2.0331757, 0.22745098)
+polygon = PackedVector2Array(-0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, 0.5)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

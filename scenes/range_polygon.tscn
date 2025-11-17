@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://dmmebkt3mshgn"]
+
+[node name="RangePolygon" type="Polygon2D"]
+color = Color(1, 1, 0.4627451, 1)
+polygon = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)

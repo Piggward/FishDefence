@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://nekt2j1xfquv"]
+
+[ext_resource type="Script" uid="uid://vhgjeodeuw36" path="res://scenes/projectile.gd" id="1_pk42p"]
+[ext_resource type="Texture2D" uid="uid://dboddwa6w38e2" path="res://art/effects/muzzle_04.png" id="2_31wyk"]
+
+[node name="FishSpit" type="Area2D"]
+script = ExtResource("1_pk42p")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0, 0.5254902, 1, 1)
+texture_filter = 1
+rotation = -1.5707964
+scale = Vector2(0.022132792, 0.022132792)
+texture = ExtResource("2_31wyk")

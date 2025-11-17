@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://uev6q476kg4a"]
+
+[ext_resource type="Script" uid="uid://vhgjeodeuw36" path="res://scenes/projectile.gd" id="1_6cooa"]
+[ext_resource type="Texture2D" uid="uid://ucahp70j50p0" path="res://art/ui/shard.png" id="2_gcxch"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oymv6"]
+size = Vector2(7, 2)
+
+[node name="Spike" type="Area2D"]
+collision_layer = 0
+collision_mask = 32
+script = ExtResource("1_6cooa")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.25565878, 0.25565878, 0.25565878, 1)
+texture_filter = 1
+scale = Vector2(0.49984086, 0.63582397)
+texture = ExtResource("2_gcxch")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_oymv6")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

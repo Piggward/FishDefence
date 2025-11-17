@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://8l3h3qm4afi5"]
+
+[ext_resource type="Script" uid="uid://cjf2bafmegitk" path="res://scenes/placer.gd" id="1_xgmi0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xgmi0"]
+size = Vector2(8, 8)
+
+[node name="Placer" type="Area2D"]
+collision_layer = 4
+collision_mask = 24
+script = ExtResource("1_xgmi0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_xgmi0")

@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://38eeivo1kv68"]
+
+[ext_resource type="PackedScene" uid="uid://cv8o7ubf2m0b1" path="res://scenes/tower.tscn" id="1_2s5kv"]
+[ext_resource type="Texture2D" uid="uid://bygpmutjsg2hd" path="res://art/fish/Crab - Dungeness.png" id="2_jvo4p"]
+[ext_resource type="Script" uid="uid://c24n7i228vnm4" path="res://scenes/crab_tower.gd" id="2_xedrm"]
+[ext_resource type="PackedScene" uid="uid://dq2iwrtbcm1d6" path="res://scenes/attacks/bubble_particles.tscn" id="4_xedrm"]
+
+[node name="Crab" instance=ExtResource("1_2s5kv")]
+script = ExtResource("2_xedrm")
+fish_texture = ExtResource("2_jvo4p")
+
+[node name="GPUParticles2D" parent="." index="0" instance=ExtResource("4_xedrm")]
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_jvo4p")
+
+[node name="CollisionShape2D" parent="." index="2"]
+visible = false
+
+[node name="CollisionShape2D" parent="Range" index="0"]
+visible = false

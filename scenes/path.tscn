@@ -1,0 +1,61 @@
+[gd_scene load_steps=8 format=3 uid="uid://b2gtmx4hy4pjk"]
+
+[ext_resource type="Script" uid="uid://de4u5i21tn51r" path="res://scenes/path.gd" id="1_1dods"]
+[ext_resource type="Shader" uid="uid://cdkw0oe2mffei" path="res://scenes/path.gdshader" id="1_wvrg6"]
+[ext_resource type="Texture2D" uid="uid://c3ftykvg0dqvv" path="res://art/line_arrow.png" id="2_mtoee"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1lpcp"]
+shader = ExtResource("1_wvrg6")
+shader_parameter/color = Color(0, 0.7254902, 0.67058825, 1)
+
+[sub_resource type="Animation" id="Animation_wvrg6"]
+resource_name = "flow_animation"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.83333325, 1.1666666, 1.9666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(0, 0.7254902, 0.67058825, 1), Color(0, 0.7254902, 0.67058825, 0), Color(0, 0.7254902, 0.67058825, 0), Color(0, 0.7254902, 0.67058825, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_mtoee"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0.7254902, 0.67058825, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mtoee"]
+_data = {
+&"RESET": SubResource("Animation_mtoee"),
+&"flow_animation": SubResource("Animation_wvrg6")
+}
+
+[node name="Path" type="Line2D"]
+texture_filter = 1
+texture_repeat = 2
+material = SubResource("ShaderMaterial_1lpcp")
+points = PackedVector2Array(-33, 0, 6, 8, -28, 46, 87, 20, 87, 25, 37, 31, 28, 39)
+texture = ExtResource("2_mtoee")
+texture_mode = 1
+script = ExtResource("1_1dods")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_mtoee")
+}

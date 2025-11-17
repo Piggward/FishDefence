@@ -1,0 +1,170 @@
+[gd_scene load_steps=9 format=3 uid="uid://c6cyknb477bo4"]
+
+[ext_resource type="Script" uid="uid://dgfooxu2uiol4" path="res://scenes/ui/shop_button.gd" id="1_xfvoa"]
+[ext_resource type="Script" uid="uid://dql3mm8l0ka0d" path="res://scenes/ui/shop_container.gd" id="2_1l46r"]
+[ext_resource type="PackedScene" uid="uid://mw2fv76w4sxj" path="res://scenes/shop_item.tscn" id="5_8r1wq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lx5au"]
+bg_color = Color(1, 0.5568628, 0.34509805, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xfvoa"]
+bg_color = Color(0.12941177, 0.21568628, 0.3372549, 1)
+
+[sub_resource type="Animation" id="Animation_1l46r"]
+resource_name = "move_in"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ShopContainer:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(918, 9), Vector2(946, 9), Vector2(1159, 9)]
+}
+
+[sub_resource type="Animation" id="Animation_032fp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ShopContainer:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1157, 21)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2fc2m"]
+_data = {
+&"RESET": SubResource("Animation_032fp"),
+&"move_in": SubResource("Animation_1l46r")
+}
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="ShopButton" type="PanelContainer" parent="."]
+anchors_preset = -1
+anchor_left = 0.95000005
+anchor_top = 0.33
+anchor_right = 1.0
+anchor_bottom = 0.54200006
+offset_left = 10.600098
+offset_top = 137.16005
+offset_right = 90.00012
+offset_bottom = 54.784027
+grow_horizontal = 0
+grow_vertical = 0
+rotation = -1.5700699
+theme_override_styles/panel = SubResource("StyleBoxFlat_lx5au")
+script = ExtResource("1_xfvoa")
+
+[node name="MarginContainer" type="MarginContainer" parent="ShopButton"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = -17
+theme_override_constants/margin_right = 20
+
+[node name="Label" type="Label" parent="ShopButton/MarginContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Shop"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ShopContainer" type="VBoxContainer" parent="."]
+anchors_preset = -1
+anchor_left = 0.79600006
+anchor_top = 0.014
+anchor_right = 1.0
+anchor_bottom = 0.96000004
+offset_left = 240.00793
+offset_top = 11.9279995
+offset_right = 239.0011
+offset_bottom = 63.919983
+mouse_filter = 0
+theme_override_constants/separation = -5
+script = ExtResource("2_1l46r")
+
+[node name="MarginContainer" type="MarginContainer" parent="ShopContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 5
+
+[node name="PanelContainer" type="PanelContainer" parent="ShopContainer/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_lx5au")
+
+[node name="Label" type="Label" parent="ShopContainer/MarginContainer/PanelContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Shop"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="ShopContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(0, 600)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_xfvoa")
+
+[node name="MarginContainer2" type="MarginContainer" parent="ShopContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 12
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ShopContainer/PanelContainer/MarginContainer2"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 9
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ShopContainer/PanelContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 0
+
+[node name="MarginContainer2" parent="ShopContainer/PanelContainer/MarginContainer2/VBoxContainer/HBoxContainer" instance=ExtResource("5_8r1wq")]
+layout_mode = 2
+
+[node name="MarginContainer3" parent="ShopContainer/PanelContainer/MarginContainer2/VBoxContainer/HBoxContainer" instance=ExtResource("5_8r1wq")]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="ShopContainer/PanelContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 0
+
+[node name="MarginContainer2" parent="ShopContainer/PanelContainer/MarginContainer2/VBoxContainer/HBoxContainer2" instance=ExtResource("5_8r1wq")]
+layout_mode = 2
+
+[node name="MarginContainer3" parent="ShopContainer/PanelContainer/MarginContainer2/VBoxContainer/HBoxContainer2" instance=ExtResource("5_8r1wq")]
+layout_mode = 2
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="ShopContainer/PanelContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 0
+
+[node name="MarginContainer2" parent="ShopContainer/PanelContainer/MarginContainer2/VBoxContainer/HBoxContainer3" instance=ExtResource("5_8r1wq")]
+layout_mode = 2
+
+[node name="MarginContainer3" parent="ShopContainer/PanelContainer/MarginContainer2/VBoxContainer/HBoxContainer3" instance=ExtResource("5_8r1wq")]
+layout_mode = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_2fc2m")
+}
+
+[connection signal="mouse_entered" from="ShopButton" to="ShopButton" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="ShopContainer" to="ShopContainer" method="_on_mouse_exited"]

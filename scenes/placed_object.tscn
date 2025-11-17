@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://c4cx30cjibsx"]
+
+[ext_resource type="Script" uid="uid://6wphogr4l3wd" path="res://scenes/placed_object.gd" id="1_mv6k7"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_2b8bq"]
+friction = 0.0
+
+[node name="PlacedObject" type="Area2D"]
+collision_layer = 16
+collision_mask = 56
+script = ExtResource("1_mv6k7")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+physics_material_override = SubResource("PhysicsMaterial_2b8bq")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+disabled = true
+
+[node name="PlacedObjectCollision" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-7, -7, 7, -7, 7, 7, -7, 7)
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

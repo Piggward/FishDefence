@@ -1,0 +1,75 @@
+[gd_scene load_steps=12 format=3 uid="uid://f10ule2m3xtb"]
+
+[ext_resource type="Texture2D" uid="uid://bmj1lduug60as" path="res://art/fish/canned_soup.png" id="1_rj1a4"]
+[ext_resource type="Texture2D" uid="uid://me80oqeawbyf" path="res://art/fish/soda_coke.png" id="2_ohh14"]
+[ext_resource type="Texture2D" uid="uid://rotbfsa4mpd8" path="res://art/fish/soda_fanta.png" id="3_kmup7"]
+[ext_resource type="Texture2D" uid="uid://ct3hvr3suw6bd" path="res://art/fish/soda_pepsi.png" id="4_nclq0"]
+[ext_resource type="Texture2D" uid="uid://bgfas7k5jabt8" path="res://art/fish/soda_sprite.png" id="5_851y3"]
+[ext_resource type="Texture2D" uid="uid://qjkoel2faluk" path="res://art/fish/soymilk_match.png" id="6_cvwnh"]
+[ext_resource type="Texture2D" uid="uid://emesrplrnsbr" path="res://art/fish/water_bottled.png" id="7_vebfn"]
+[ext_resource type="Texture2D" uid="uid://pkkn66dbbmnm" path="res://art/fish/yogurt_cup.png" id="8_sh7n0"]
+[ext_resource type="Texture2D" uid="uid://cel1hgp3gsmff" path="res://art/fish/free_spritesheet.png" id="9_bp2rg"]
+[ext_resource type="Texture2D" uid="uid://626io0fn6blk" path="res://art/fish/Grey_Potion_01.png" id="10_n3hbf"]
+[ext_resource type="Texture2D" uid="uid://b8xrp5y0i1hd4" path="res://scenes/test.tres" id="11_ohh14"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_rj1a4")
+
+[node name="Sprite2D4" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(71, 0)
+texture = ExtResource("2_ohh14")
+
+[node name="Sprite2D5" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, 20)
+texture = ExtResource("3_kmup7")
+
+[node name="Sprite2D6" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(22, 20)
+texture = ExtResource("4_nclq0")
+
+[node name="Sprite2D7" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(45, 20)
+texture = ExtResource("5_851y3")
+
+[node name="Sprite2D8" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(71, 20)
+texture = ExtResource("6_cvwnh")
+
+[node name="Sprite2D9" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, 41)
+texture = ExtResource("7_vebfn")
+
+[node name="Sprite2D10" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(22, 40)
+texture = ExtResource("8_sh7n0")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(22, 0)
+texture = ExtResource("9_bp2rg")
+hframes = 6
+vframes = 3
+frame = 1
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+modulate = Color(0.556953, 0.556953, 0.556953, 1)
+texture_filter = 1
+position = Vector2(45, 0)
+texture = ExtResource("10_n3hbf")
+
+[node name="Sprite2D11" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(54, 41)
+texture = ExtResource("11_ohh14")
+hframes = 10
+vframes = 8
