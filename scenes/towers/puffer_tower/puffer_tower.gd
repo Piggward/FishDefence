@@ -7,7 +7,7 @@ const SPIKE = preload("uid://uev6q476kg4a")
 
 func puff():
 	var tween = get_tree().create_tween()
-	tween.tween_property(sprite_2d, "scale", Vector2(2.1, 2.1), 0.1)
+	tween.tween_property(sprite_2d, "scale", Vector2(1.4, 1.4), 0.1)
 	tween.play()
 	#await tween.finished
 	tween.tween_property(sprite_2d, "scale", Vector2(1, 1), 0.2)

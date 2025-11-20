@@ -12,8 +12,11 @@ var _astar: AStarGrid2D
 var finish_position = Vector2i(16, 16)
 var start_tile: Tile
 var enemy_container: Node2D
+var new_enemy_paths = {}
 signal path_updated
+signal show_tiles_requested(value:bool)
 @onready var tile_area = $TileArea/CollisionShape2D
+@onready var tile_poly_container = $TilePolyContainer
 
 func _ready():
 	enemy_container = get_tree().get_first_node_in_group("EnemyContainer")
@@ -30,7 +33,7 @@ func _ready():
 	for i in grid_size.y:
 		var row = []
 		for j in grid_size.x:
-			var tile = TILE.instantiate()
+			var tile: Tile = TILE.instantiate()
 			tile.position = Vector2(j * tile_size, i * tile_size);
 			tile.size = Vector2(tile_size, tile_size);
 			tile.pos = Vector2(int(j), int(i))
@@ -71,7 +74,8 @@ func can_place(o: PlacedObject, tile: Tile) -> bool:
 	_astar.set_point_solid(Vector2i(down.pos), true)
 	_astar.set_point_solid(Vector2i(down_right.pos), true)
 	
-	if start_to_finish_blocked():
+	var start_to_fin = start_to_finish()
+	if start_to_fin.size() == 0:
 		print("WOULD BLOCK START TO FINISH")
 		_astar.set_point_solid(Vector2i(tile.pos), false)
 		_astar.set_point_solid(Vector2i(right.pos), false)
@@ -79,19 +83,52 @@ func can_place(o: PlacedObject, tile: Tile) -> bool:
 		_astar.set_point_solid(Vector2i(down_right.pos), false)
 		return false
 	
-	for enemy: Enemy in enemy_container.get_children():
-		if not enemy.can_find_path():
+	new_enemy_paths.clear()
+	
+	var valid_paths: Array[PackedVector2Array]
+	valid_paths.append(start_to_fin)
+	
+	var enemies = enemy_container.alive_enemies
+	enemies.reverse()
+	for enemy: Enemy in enemies:
+		if not enemy.start_reached:
+			continue
+		var close_tile = get_closest_tile(enemy.global_position)
+		var close_pos = close_tile.pos * close_tile.size
+		var found = false
+		for p in valid_paths:
+			var i = p.find(close_pos)
+			if i == -1:
+				continue
+			if p.has(close_pos):
+				new_enemy_paths[enemy] = p.slice(i)
+				found = true
+				break;
+		if found:
+			continue;
+			
+		# None of the known paths contained the enemy's tile. 
+		# Check the enemy's tile for a valid path
+		
+		var new_path = _astar.get_point_path(Vector2i(close_tile.pos), Vector2i(finish_position)) 
+		if new_path.size() == 0:
 			print("THIS WOULD BLOCK")
 			_astar.set_point_solid(Vector2i(tile.pos), false)
 			_astar.set_point_solid(Vector2i(right.pos), false)
 			_astar.set_point_solid(Vector2i(down.pos), false)
 			_astar.set_point_solid(Vector2i(down_right.pos), false)
 			return false
-			
+		else:
+			new_enemy_paths[enemy] = new_path
+			valid_paths.append(new_path)
 	return true
 	
-func start_to_finish_blocked():
-	return _astar.get_point_path(Vector2i(start_tile.pos), Vector2i(finish_position)).size() == 0
+func can_find_path():
+	var close_tile = get_closest_tile(self.global_position)
+	return _astar.get_point_path(Vector2i(close_tile.pos), Vector2i(finish_position)).size() > 0
+	
+func start_to_finish():
+	return _astar.get_point_path(Vector2i(start_tile.pos), Vector2i(finish_position))
 	
 func get_start_to_finish():
 	return _astar.get_point_path(Vector2i(start_tile.pos), Vector2i(finish_position))
@@ -117,11 +154,8 @@ func place(o: PlacedObject, tile: Tile):
 	set_object_to_tile(o, down)
 	set_object_to_tile(o, down_right)
 	
-	for i in grid_size.y:
-		for j in grid_size.x:
-			var t = grid_array[i][j]
-			t.set_color()
 	path_updated.emit()
+	
 
 func set_object_to_tile(o: PlacedObject, tile: Tile):
 	tile.object = o
@@ -131,19 +165,19 @@ func can_pickup(tile: Tile):
 	return tile.object != null
 	
 func show_tiles(value: bool):
-	for i in grid_size.y:
-		for j in grid_size.x:
-			var tile = grid_array[i][j]
-			tile.polygon_2d.visible = value
+	tile_poly_container.visible = value
 
 func get_closest_tile(point: Vector2) -> Tile:
-	var closest = grid_array[0][0]
-	var closest_dist = abs((grid_array[0][0].global_position - point).length())
-	for i in grid_size.y:
-		for j in grid_size.x:
-			var tile = grid_array[i][j]
-			var dist = abs((tile.global_position - point).length())
-			if dist < closest_dist:
-				closest = tile
-				closest_dist = dist
-	return closest
+	var x: int = clamp(round(point.x) / 8, 0, grid_array[0].size()-1)
+	var y: int = clamp(round(point.y) / 8, 0, grid_array.size()-1)
+	return grid_array[y][x]
+	#var closest = grid_array[0][0]
+	#var closest_dist = abs((grid_array[0][0].global_position - point).length())
+	#for i in grid_size.y:
+		#for j in grid_size.x:
+			#var tile = grid_array[i][j]
+			#var dist = abs((tile.global_position - point).length())
+			#if dist < closest_dist:
+				#closest = tile
+				#closest_dist = dist
+	#return closest

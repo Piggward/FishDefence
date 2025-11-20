@@ -10,6 +10,7 @@ var _velocity = Vector2()
 var path_set = false
 var start_reached  = false
 var start_tile: Tile
+var can_start = false
 
 func _ready() -> void:
 	tile_grid = get_tree().get_first_node_in_group("TileGrid")
@@ -26,8 +27,9 @@ func _ready() -> void:
 	tile_grid.path_updated.connect(_on_path_updated)
 	
 func _on_path_updated():
-	var close_tile = tile_grid.get_closest_tile(self.global_position)
-	find_path(Vector2i(close_tile.pos), Vector2i(tile_grid.finish_position))
+	_path = tile_grid.new_enemy_paths[self]
+	#var close_tile = tile_grid.get_closest_tile(self.global_position)
+	#find_path(Vector2(close_tile.pos), Vector2i(tile_grid.finish_position))
 	
 func find_path(local_start_point, local_end_point):
 	#clear_path()
@@ -49,18 +51,20 @@ func clear_path():
 	if not _path.is_empty():
 		_path.clear()
 		
-func _move_to(local_position):
+func _move_to(local_position, delta):
 	var desired_velocity = (local_position - global_position).normalized() * speed
 	_velocity = desired_velocity
-	global_position += _velocity * get_process_delta_time()
+	#global_position += _velocity * delta
+	velocity = _velocity * delta
 	rotation = _velocity.angle()
-	return global_position.distance_to(local_position) < 5
+	move_and_slide()
+	return global_position.distance_to(local_position) < 2
 
 
 func _physics_process(delta):
-	if not path_set:
+	if not path_set or not can_start:
 		return
-	var arrived_to_next_point = _move_to(_next_point)
+	var arrived_to_next_point = _move_to(_next_point, delta)
 	if arrived_to_next_point:
 		if not start_reached:
 			start_reached = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=4 uid="uid://drkhpej01r8vi"]
+[gd_scene load_steps=58 format=4 uid="uid://drkhpej01r8vi"]
 
 [ext_resource type="Texture2D" uid="uid://ceg6bpkr167xq" path="res://art/Tileset Spring.png" id="1_kncup"]
 [ext_resource type="PackedScene" uid="uid://8l3h3qm4afi5" path="res://scenes/placer.tscn" id="2_ncq2f"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://fgmntyukkajr" path="res://scripts/wave.gd" id="8_s14w7"]
 [ext_resource type="Texture2D" uid="uid://j4ia1x7knvhy" path="res://icon.svg" id="9_s14w7"]
 [ext_resource type="PackedScene" uid="uid://b2gtmx4hy4pjk" path="res://scenes/path.tscn" id="9_tnbrr"]
+[ext_resource type="Script" uid="uid://cnlq3jyx4c1cn" path="res://scripts/batch.gd" id="10_6oa22"]
 [ext_resource type="PackedScene" uid="uid://c6cyknb477bo4" path="res://scenes/shop.tscn" id="10_tnbrr"]
 [ext_resource type="PackedScene" uid="uid://jdasnkkeyv3u" path="res://scenes/towers/puffer_tower/puffer_tower.tscn" id="11_hojx4"]
 [ext_resource type="Script" uid="uid://dwxpta7p43a2f" path="res://scenes/ui/show_enemy_path.gd" id="11_twjon"]
@@ -17,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://6ffjaldxnjy4" path="res://art/ui/icons8-recycle-48(1).png" id="12_pg4dt"]
 [ext_resource type="PackedScene" uid="uid://ru86gcsabmxc" path="res://scenes/towers/anchovy/anchovy_tower.tscn" id="13_vswhx"]
 [ext_resource type="PackedScene" uid="uid://pv46cph2glos" path="res://scenes/towers/clown_fish/clown_tower.tscn" id="14_awp58"]
+[ext_resource type="Texture2D" uid="uid://cvgvqcdvxre3p" path="res://art/ui/lifebar_16x16.png" id="18_8lr2p"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jy3wo"]
 texture = ExtResource("1_kncup")
@@ -446,14 +448,72 @@ shader_parameter/wave_scale = Vector2(0.8, 1)
 size = Vector2(383, 223)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x1jp4"]
-size = Vector2(377, 215)
+size = Vector2(389, 223)
+
+[sub_resource type="Resource" id="Resource_6oa22"]
+script = ExtResource("10_6oa22")
+amount = 2
+time_before_next_batch = 4.0
+metadata/_custom_type_script = "uid://cnlq3jyx4c1cn"
+
+[sub_resource type="Resource" id="Resource_2v2ap"]
+script = ExtResource("10_6oa22")
+amount = 3
+time_before_next_batch = 4.0
+metadata/_custom_type_script = "uid://cnlq3jyx4c1cn"
+
+[sub_resource type="Resource" id="Resource_kghh2"]
+script = ExtResource("10_6oa22")
+amount = 4
+time_before_next_batch = 4.0
+metadata/_custom_type_script = "uid://cnlq3jyx4c1cn"
 
 [sub_resource type="Resource" id="Resource_tnbrr"]
 script = ExtResource("8_s14w7")
-amount = 1
-speed = 20
-health = 500
+speed = 1500
+health = 100
+batches = Array[ExtResource("10_6oa22")]([SubResource("Resource_6oa22"), SubResource("Resource_2v2ap"), SubResource("Resource_kghh2")])
 metadata/_custom_type_script = "uid://fgmntyukkajr"
+
+[sub_resource type="Resource" id="Resource_cyya8"]
+script = ExtResource("10_6oa22")
+amount = 10
+time_before_next_batch = 2.0
+metadata/_custom_type_script = "uid://cnlq3jyx4c1cn"
+
+[sub_resource type="Resource" id="Resource_30gqu"]
+script = ExtResource("10_6oa22")
+amount = 10
+time_before_next_batch = 2.0
+metadata/_custom_type_script = "uid://cnlq3jyx4c1cn"
+
+[sub_resource type="Resource" id="Resource_71er4"]
+script = ExtResource("10_6oa22")
+amount = 10
+time_before_next_batch = 2.0
+metadata/_custom_type_script = "uid://cnlq3jyx4c1cn"
+
+[sub_resource type="Resource" id="Resource_2pyxr"]
+script = ExtResource("10_6oa22")
+amount = 10
+time_before_next_batch = 2.0
+metadata/_custom_type_script = "uid://cnlq3jyx4c1cn"
+
+[sub_resource type="Resource" id="Resource_8dy4o"]
+script = ExtResource("10_6oa22")
+amount = 10
+time_before_next_batch = 2.0
+metadata/_custom_type_script = "uid://cnlq3jyx4c1cn"
+
+[sub_resource type="Resource" id="Resource_n305q"]
+script = ExtResource("8_s14w7")
+speed = 1500
+health = 50
+batches = Array[ExtResource("10_6oa22")]([SubResource("Resource_cyya8"), SubResource("Resource_30gqu"), SubResource("Resource_71er4"), SubResource("Resource_2pyxr"), SubResource("Resource_8dy4o")])
+metadata/_custom_type_script = "uid://fgmntyukkajr"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6oa22"]
+size = Vector2(19, 223)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pg4dt"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -484,7 +544,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("HBoxContainer/MarginContainer2/Control2/Control:rotation")
+tracks/0/path = NodePath("HBoxContainer2/HBoxContainer/MarginContainer2/Control2/Control:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -496,7 +556,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("HBoxContainer/MarginContainer2/Control2/Control:scale")
+tracks/1/path = NodePath("HBoxContainer2/HBoxContainer/MarginContainer2/Control2/Control:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -512,7 +572,7 @@ length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("HBoxContainer/MarginContainer2/Control2/Control:rotation")
+tracks/0/path = NodePath("HBoxContainer2/HBoxContainer/MarginContainer2/Control2/Control:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -524,7 +584,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("HBoxContainer/MarginContainer2/Control2/Control:scale")
+tracks/1/path = NodePath("HBoxContainer2/HBoxContainer/MarginContainer2/Control2/Control:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -540,6 +600,43 @@ _data = {
 &"recycle_animation": SubResource("Animation_ngjjf")
 }
 
+[sub_resource type="Animation" id="Animation_6oa22"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MarginContainer2/Control2/Control:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.07, 1.07)]
+}
+
+[sub_resource type="Animation" id="Animation_8lr2p"]
+resource_name = "health_updated"
+length = 0.65
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MarginContainer2/Control2/Control:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3, 0.48, 0.64),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1.07, 1.07), Vector2(1.5, 1.5), Vector2(1.07, 1.07), Vector2(1.5, 1.5), Vector2(1.07, 1.07)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2v2ap"]
+_data = {
+&"RESET": SubResource("Animation_6oa22"),
+&"health_updated": SubResource("Animation_8lr2p")
+}
+
 [node name="Node2D" type="Node2D"]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
@@ -549,8 +646,8 @@ tile_set = SubResource("TileSet_ncq2f")
 
 [node name="TileMapLayer2" type="TileMapLayer" parent="."]
 texture_filter = 1
-position = Vector2(85, 94)
-tile_map_data = PackedByteArray("AAAOAAIAAAAJAAEAAAAOAAMAAAAJAAIAAAAOAAQAAAAJAAMAAAAOAAUAAAAJAAQAAAAOAAYAAAAJAAUAAAAPAAEAAAAKAAAAAAAPAAIAAAAKAAEAAAAPAAMAAAAKAAIAAAAPAAQAAAAKAAMAAAAPAAUAAAAKAAQAAAAPAAYAAAAKAAUAAAAQAAEAAAALAAAAAAAQAAIAAAALAAEAAAAQAAMAAAALAAIAAAAQAAQAAAALAAMAAAAQAAUAAAALAAQAAAAQAAYAAAALAAUAAAAQAAcAAAALAAYAAAARAAEAAAAMAAAAAAARAAIAAAAMAAEAAAARAAMAAAAMAAIAAAARAAQAAAAMAAMAAAARAAUAAAAMAAQAAAARAAYAAAAMAAUAAAARAAcAAAAMAAYAAAASAAIAAAANAAEAAAASAAMAAAANAAIAAAASAAQAAAANAAMAAAASAAUAAAANAAQAAAASAAYAAAANAAUAAAA=")
+position = Vector2(83, 19)
+tile_map_data = PackedByteArray("AAAOAAIAAAAJAAEAAAAOAAMAAAAJAAIAAAAOAAQAAAAJAAMAAAAOAAUAAAAJAAQAAAAOAAYAAAAJAAUAAAAPAAEAAAAKAAAAAAAPAAIAAAAKAAEAAAAPAAMAAAAKAAIAAAAPAAQAAAAKAAMAAAAPAAUAAAAKAAQAAAAPAAYAAAAKAAUAAAAQAAEAAAALAAAAAAAQAAIAAAALAAEAAAAQAAMAAAALAAIAAAAQAAQAAAALAAMAAAAQAAUAAAALAAQAAAAQAAYAAAALAAUAAAAQAAcAAAALAAYAAAARAAEAAAAMAAAAAAARAAIAAAAMAAEAAAARAAMAAAAMAAIAAAARAAQAAAAMAAMAAAARAAUAAAAMAAQAAAARAAYAAAAMAAUAAAARAAcAAAAMAAYAAAASAAIAAAANAAEAAAASAAMAAAANAAIAAAASAAQAAAANAAMAAAASAAUAAAANAAQAAAASAAYAAAANAAUAAAANAP//AAAJAAUAAAANAAAAAAAJAAUAAAANAAEAAAAJAAUAAAANAAIAAAAJAAUAAAANAAMAAAAJAAUAAAANAAQAAAAJAAUAAAANAAUAAAAJAAUAAAANAAYAAAAJAAUAAAANAAcAAAAJAAUAAAANAAgAAAAJAAUAAAANAAkAAAAJAAUAAAANAAoAAAAJAAUAAAANAAsAAAAJAAUAAAA=")
 tile_set = SubResource("TileSet_tnbrr")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -563,7 +660,7 @@ scale = Vector2(3.5507815, 2.3203125)
 texture = ExtResource("9_s14w7")
 
 [node name="Goal" type="Marker2D" parent="."]
-position = Vector2(361, 186)
+position = Vector2(359, 110)
 
 [node name="GoalArea" type="Area2D" parent="Goal"]
 collision_layer = 512
@@ -573,7 +670,7 @@ collision_mask = 0
 shape = SubResource("RectangleShape2D_s14w7")
 
 [node name="Start" type="Marker2D" parent="."]
-position = Vector2(36, 107)
+position = Vector2(36, 106)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(192, 108)
@@ -592,6 +689,9 @@ visible = false
 position = Vector2(191.5, 111.5)
 shape = SubResource("RectangleShape2D_ncq2f")
 
+[node name="TilePolyContainer" type="Node2D" parent="TileGrid"]
+modulate = Color(1, 1, 1, 0.52156866)
+
 [node name="Placer" parent="." instance=ExtResource("2_ncq2f")]
 
 [node name="Path" parent="." groups=["EnemyPath"] instance=ExtResource("9_tnbrr")]
@@ -602,21 +702,26 @@ collision_layer = 8
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlaceableArea"]
-visible = false
-position = Vector2(192.5, 111.5)
+position = Vector2(191.5, 111.5)
 shape = SubResource("RectangleShape2D_x1jp4")
 
 [node name="PlacedObjects" type="Node2D" parent="." groups=["PlacedObjects"]]
 
 [node name="EnemyContainer" type="Node2D" parent="." node_paths=PackedStringArray("start") groups=["EnemyContainer"]]
-position = Vector2(36, 107)
 script = ExtResource("7_ncq2f")
-waves = Array[ExtResource("8_s14w7")]([SubResource("Resource_tnbrr")])
+waves = Array[ExtResource("8_s14w7")]([SubResource("Resource_tnbrr"), SubResource("Resource_n305q")])
 start = NodePath("../Start")
+
+[node name="EnemySpawnArea" type="Area2D" parent="EnemyContainer"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyContainer/EnemySpawnArea"]
+position = Vector2(11, 111)
+shape = SubResource("RectangleShape2D_6oa22")
 
 [node name="ProjectileContainer" type="Node2D" parent="." groups=["ProjectileContainer"]]
 
 [node name="CanvasLayer" parent="." instance=ExtResource("10_tnbrr")]
+visible = false
 
 [node name="MarginContainer3" parent="CanvasLayer/ShopContainer/PanelContainer/MarginContainer2/VBoxContainer/HBoxContainer" index="1"]
 tower = ExtResource("11_hojx4")
@@ -682,27 +787,31 @@ offset_bottom = 8.015999
 theme_override_styles/panel = SubResource("StyleBoxFlat_ngjjf")
 script = ExtResource("12_ngjjf")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/BucksContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/BucksContainer"]
+layout_mode = 2
+theme_override_constants/separation = -6
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/BucksContainer/HBoxContainer2"]
 layout_mode = 2
 theme_override_constants/separation = -4
 
-[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/BucksContainer/HBoxContainer"]
+[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/BucksContainer/HBoxContainer2/HBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 30
 theme_override_constants/margin_top = 22
 theme_override_constants/margin_right = 35
 
-[node name="Control2" type="Control" parent="CanvasLayer/BucksContainer/HBoxContainer/MarginContainer2"]
+[node name="Control2" type="Control" parent="CanvasLayer/BucksContainer/HBoxContainer2/HBoxContainer/MarginContainer2"]
 layout_mode = 2
 
-[node name="Control" type="Control" parent="CanvasLayer/BucksContainer/HBoxContainer/MarginContainer2/Control2"]
+[node name="Control" type="Control" parent="CanvasLayer/BucksContainer/HBoxContainer2/HBoxContainer/MarginContainer2/Control2"]
 anchors_preset = 0
 offset_left = 3.0
 offset_top = 4.0
 offset_right = 3.0
 offset_bottom = 37.0
 
-[node name="RecycleRect" type="TextureRect" parent="CanvasLayer/BucksContainer/HBoxContainer/MarginContainer2/Control2/Control"]
+[node name="RecycleRect" type="TextureRect" parent="CanvasLayer/BucksContainer/HBoxContainer2/HBoxContainer/MarginContainer2/Control2/Control"]
 texture_filter = 1
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 0
@@ -714,19 +823,69 @@ texture = ExtResource("12_pg4dt")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/BucksContainer/HBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/BucksContainer/HBoxContainer2/HBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_right = 15
 
-[node name="BucksLabel" type="Label" parent="CanvasLayer/BucksContainer/HBoxContainer/MarginContainer"]
+[node name="BucksLabel" type="Label" parent="CanvasLayer/BucksContainer/HBoxContainer2/HBoxContainer/MarginContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.41960785, 0.68235296, 0.21176471, 1)
 theme_override_font_sizes/font_size = 36
 text = "25"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/BucksContainer"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/BucksContainer/HBoxContainer2/HBoxContainer"]
+root_node = NodePath("../../..")
 libraries = {
 &"": SubResource("AnimationLibrary_1uoi6")
+}
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/BucksContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = -4
+
+[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/BucksContainer/HBoxContainer2/HBoxContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 22
+theme_override_constants/margin_right = 35
+
+[node name="Control2" type="Control" parent="CanvasLayer/BucksContainer/HBoxContainer2/HBoxContainer2/MarginContainer2"]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="CanvasLayer/BucksContainer/HBoxContainer2/HBoxContainer2/MarginContainer2/Control2"]
+anchors_preset = 0
+offset_left = 3.0
+offset_top = 4.0
+offset_right = 3.0
+offset_bottom = 37.0
+scale = Vector2(1.07, 1.07)
+
+[node name="HeartRect" type="TextureRect" parent="CanvasLayer/BucksContainer/HBoxContainer2/HBoxContainer2/MarginContainer2/Control2/Control"]
+texture_filter = 1
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 0
+offset_left = -17.0
+offset_top = -21.000002
+offset_right = 38.0
+offset_bottom = 34.0
+scale = Vector2(0.78544676, 0.78544676)
+texture = ExtResource("18_8lr2p")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/BucksContainer/HBoxContainer2/HBoxContainer2"]
+layout_mode = 2
+theme_override_constants/margin_right = 15
+
+[node name="HeartLabel" type="Label" parent="CanvasLayer/BucksContainer/HBoxContainer2/HBoxContainer2/MarginContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85490197, 0.38039216, 0.45882353, 1)
+theme_override_font_sizes/font_size = 36
+text = "100"
+
+[node name="HeartAnimation" type="AnimationPlayer" parent="CanvasLayer/BucksContainer/HBoxContainer2/HBoxContainer2"]
+libraries = {
+&"": SubResource("AnimationLibrary_2v2ap")
 }
 
 [editable path="CanvasLayer"]

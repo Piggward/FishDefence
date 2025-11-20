@@ -1,11 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://cv8o7ubf2m0b1"]
+[gd_scene load_steps=3 format=3 uid="uid://cv8o7ubf2m0b1"]
 
 [ext_resource type="Script" uid="uid://c04lu2rydngfx" path="res://scenes/tower.gd" id="1_ay4al"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vysjg"]
 size = Vector2(16, 16)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_niyxc"]
 
 [node name="Tower" type="Area2D"]
 script = ExtResource("1_ay4al")
@@ -24,10 +22,6 @@ shape = SubResource("RectangleShape2D_vysjg")
 [node name="Range" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 64
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Range"]
-shape = SubResource("CircleShape2D_niyxc")
-debug_color = Color(0.3071683, 0.6274833, 0, 0.41960785)
 
 [connection signal="area_entered" from="Range" to="." method="_on_range_area_entered"]
 [connection signal="area_exited" from="Range" to="." method="_on_range_area_exited"]

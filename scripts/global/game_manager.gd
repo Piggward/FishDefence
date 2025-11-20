@@ -1,8 +1,16 @@
 extends Node
 
 var eco_bucks = 30000
+var health = 100
 
-signal bucks_updated
+signal bucks_updated(value: int)
+signal health_updated(value: int)
+
+func player_damage(damage: int):
+	health -= damage
+	health_updated.emit(health)
+	if health <= 0:
+		print("DEAD")
 
 func transaction_requested(tower: Tower) -> bool:
 	var cost = tower.cost

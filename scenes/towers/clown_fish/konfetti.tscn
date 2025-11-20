@@ -21,6 +21,7 @@ hue_variation_max = -0.23000002
 hue_variation_curve = SubResource("CurveTexture_o0jjq")
 
 [node name="Konfetti" type="GPUParticles2D"]
+top_level = true
 emitting = false
 amount = 16
 one_shot = true

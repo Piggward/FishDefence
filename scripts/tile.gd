@@ -7,6 +7,7 @@ var placed_object: PlacedObject = null
 var object: PlacedObject = null
 var available: bool = false
 var pos := Vector2.ZERO 
+var tile_grid: TileGrid
 @onready var collision_polygon_2d = $CollisionPolygon2D
 @onready var label = $Label
 
@@ -16,6 +17,9 @@ func _ready():
 	collision_polygon_2d.scale = size
 	collision_polygon_2d.position += size/2
 	available = tile_inside_area(self.global_position)
+	tile_grid = get_tree().get_first_node_in_group("TileGrid")
+	tile_grid.path_updated.connect(set_color)
+	polygon_2d.reparent(tile_grid.tile_poly_container)
 	set_color()
 	
 func set_color():

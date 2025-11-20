@@ -53,6 +53,9 @@ func handle_moving():
 	if Input.is_action_just_pressed("left_click") and not cd:
 		input_cd()
 		PlaceManager.try_place()
+	if Input.is_action_just_pressed("r") and not cd:
+		input_cd()
+		PlaceManager.rotate()
 		
 func handle_placing(): 
 	if Input.is_action_pressed("left_click") and not cd:
@@ -68,3 +71,8 @@ func handle_placing():
 	if Input.is_action_just_released("right_click"):
 		input_cd()
 		PlaceManager.end_placing()
+		
+	if Input.is_action_just_pressed("r") and not cd:
+		input_cd()
+		PlaceManager.rotate()
+		

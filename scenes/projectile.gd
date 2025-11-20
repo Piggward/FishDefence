@@ -20,7 +20,7 @@ func _process(delta):
 		look_at(target_position)
 		var dir = (target_position - self.global_position).normalized()
 		self.global_position += speed * dir * delta
-		if abs((self.global_position - target_position).length()) < 4:
+		if abs((self.global_position - target_position).length()) < 15:
 			self.queue_free()
 			return
 		
@@ -32,7 +32,7 @@ func follow_enemy(target, delta):
 	look_at(target.global_position)
 	var dir = (target.global_position - self.global_position).normalized()
 	self.global_position += speed * dir * delta
-	if abs((self.global_position - target.global_position).length()) < 5:
+	if abs((self.global_position - target.global_position).length()) < 15:
 		hit_target(target)
 			
 func hit_target(enemy: Enemy):
@@ -42,6 +42,5 @@ func hit_target(enemy: Enemy):
 func _on_area_entered(area):
 	if (hit_on_collision):
 		if area.name == "EnemyArea":
-			print("spike hit!")
 			hit_target(area.get_parent())
 	pass # Replace with function body.

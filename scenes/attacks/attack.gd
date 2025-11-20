@@ -5,7 +5,6 @@ extends Node2D
 signal hit
 
 func _ready():
-	print("playing attack_3")
 	animation_player.play("attack_3")
 	await animation_player.animation_finished
 	self.queue_free()

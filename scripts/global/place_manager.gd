@@ -25,7 +25,11 @@ func try_pickup():
 	pick_up.emit(hover_tile.object)
 	change_state(State.MOVING)
 	
+func rotate():
+	moving_object.rotate_object()
+	
 func try_place():
+	var start_time := Time.get_ticks_usec()  # Start stopwatch
 	if not tile_grid.can_place(moving_object, hover_tile):
 		return
 	
@@ -37,6 +41,10 @@ func try_place():
 	moving_object = null
 	if state == State.MOVING:
 		change_state(State.IDLE)
+	var end_time := Time.get_ticks_usec()    # End stopwatch
+	var elapsed := end_time - start_time     # Microseconds
+	print("try_place took %s microseconds" % elapsed)
+		
 		
 func end_placing():
 	tile_grid.show_tiles(false)

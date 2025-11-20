@@ -45,14 +45,6 @@ func show_range(value: bool):
 	for r in range_area.get_children():
 		if r is RangeCollision:
 			r.toggle_show(value)
-			
-func tackle(dir):
-	var tween = get_tree().create_tween()
-	tween.tween_property(self, "position", position + dir, 0.15)
-	tween.play()
-	#await tween.finished
-	tween.tween_property(self, "position", Vector2(0, 0), 0.2)
-	tween.play()
 	
 func _process(delta):
 	if targets.size() > 0 and not cd and enabled:

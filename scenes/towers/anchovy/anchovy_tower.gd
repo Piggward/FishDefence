@@ -27,7 +27,6 @@ func attack(target: Enemy):
 
 func _on_attack_area_area_entered(area):
 	if area.name == "EnemyArea" and charging:
-		print("ENTERED")
 		var enemy: Enemy = area.get_parent()
 		if charged_enemies.has(enemy):
 			return
