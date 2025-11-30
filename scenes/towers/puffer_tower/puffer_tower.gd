@@ -2,7 +2,7 @@ class_name PufferTower
 extends Tower
 
 const PUFFER_TOWER = preload("uid://jdasnkkeyv3u")
-const SPIKE = preload("uid://uev6q476kg4a")
+var SPIKE = load("uid://uev6q476kg4a")
 var attacking = false
 var PUFFER_DEMO = load("uid://pd7xpsbcprrs")
 
@@ -31,6 +31,8 @@ func attack(enemy: Enemy):
 		spike.target_position = self.global_position + Vector2(24, 24) * p
 		spike.hit_on_collision = true
 		spike.damage_dealt.connect(_on_hit)
+		if not is_instance_valid(projectile_container):
+			return
 		projectile_container.add_child(spike)
 		spike.global_position = self.global_position + (p * Vector2(2, 2))
 

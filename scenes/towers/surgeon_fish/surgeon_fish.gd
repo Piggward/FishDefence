@@ -2,7 +2,7 @@ class_name SurgeonFish
 extends Tower
 
 @export var range_tiles := 2
-const FISH_SPIT = preload("uid://nekt2j1xfquv")
+var FISH_SPIT = load("uid://nekt2j1xfquv")
 var SURGEON_DEMO = load("uid://dagtsle1vogl3")
 
 func _ready():
@@ -50,9 +50,11 @@ func attack(enemy: Enemy):
 	proj.global_position = self.global_position
 	proj.follows_enemy = true
 	proj.damage = self.damage
-	proj.speed = 200
+	proj.speed = 200 * Engine.time_scale
 	proj.target_enemy = enemy
 	proj.damage_dealt.connect(_on_hit)
+	if not is_instance_valid(projectile_container):
+		return
 	projectile_container.add_child(proj)
 
 

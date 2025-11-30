@@ -12,6 +12,7 @@ damage = 0.0
 attack_speed = 0.1
 cost = 50
 fish_name = "Snail"
+can_rotate = true
 fish_texture = ExtResource("3_xjskp")
 
 [node name="Sprite2D" parent="." index="0"]

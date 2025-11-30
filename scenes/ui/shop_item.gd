@@ -18,6 +18,7 @@ const PUFFER_TOWER = preload("uid://jdasnkkeyv3u")
 const SURGEON_TOWER = preload("uid://c4f6gt4tdgpwo")
 const SNAIL = preload("uid://b4q4obpovd6jh")
 const CRAB_TOWER = preload("uid://38eeivo1kv68")
+@onready var panel_container_2 = $MarginContainer/PanelContainer2
 
 func _ready():
 	var t: Tower = get_tower(tower_type)
@@ -26,6 +27,14 @@ func _ready():
 	name_label.text = t.fish_name
 	cost.text = str(t.cost)
 	tower_card_container = get_tree().get_first_node_in_group("TowerCardContainer")
+	GameManager.bucks_updated.connect(_on_bucks_updated)
+	_on_bucks_updated(0)
+	
+func _on_bucks_updated(new_bucks: int):
+	if GameManager.can_afford_cost(int(cost.text)):
+		panel_container_2.self_modulate = Color("24b8a0")
+	else:
+		panel_container_2.self_modulate = Color("da6175")
 	
 func get_tower(t: TowerType) -> Tower:
 	match(t):

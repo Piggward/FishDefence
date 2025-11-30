@@ -9,7 +9,7 @@ extends EnemyNavigator
 const GOAL_LAYER := 10
 var dead = false
 @onready var sprite_2d = $Sprite2D
-signal died(enemy: Enemy)
+signal died(enemy: Enemy, killed: bool)
 @onready var progress_bar = $ProgressBar
 @onready var debuffs = $Debuffs
 @onready var enemy_area = $EnemyArea

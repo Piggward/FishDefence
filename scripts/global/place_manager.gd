@@ -12,6 +12,13 @@ enum State { IDLE, MOVING, PLACING }
 signal pick_up(object: PlacedObject)
 signal start_placing
 signal stop_placing
+
+func reset():
+	tile_grid = TileGrid.new()
+	hover_tile = null
+	moving_object = null
+	cd = false
+	state = State.IDLE
 	
 func mouse_entered_tile(tile: Tile):
 	hover_tile = tile
@@ -31,8 +38,8 @@ func rotate():
 	moving_object.rotate_object()
 	
 func try_place():
-	for area in moving_object.get_overlapping_areas():
-		if area.name == "EnemyArea":
+	for area in moving_object.get_overlapping_bodies():
+		if area is Enemy:
 			return
 			
 	var start_time := Time.get_ticks_usec()  # Start stopwatch

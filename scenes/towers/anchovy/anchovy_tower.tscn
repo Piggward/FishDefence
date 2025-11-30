@@ -9,11 +9,12 @@ size = Vector2(20, 18)
 
 [node name="Tower" instance=ExtResource("1_ekojl")]
 script = ExtResource("2_ta63j")
-range = Array[Vector2]([Vector2(1, 0), Vector2(2, 0), Vector2(3, 0)])
+range = Array[Vector2]([Vector2(1, 0), Vector2(2, 0), Vector2(3, 0), Vector2(4, 0)])
 damage = 200.0
 attack_speed = 0.35
 cost = 400
 fish_name = "Anchovy"
+can_rotate = true
 fish_texture = ExtResource("3_t0wob")
 
 [node name="Sprite2D" parent="." index="0"]

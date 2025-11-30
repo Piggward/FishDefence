@@ -13,7 +13,7 @@ func _ready():
 	xc.wave_start.connect(_on_wave_start)
 	
 func _on_wave_start(n):
-	if n == 1:
+	if n == 3:
 		await get_tree().create_timer(5).timeout
 		self.visible = true
 		tooltip_label.text = "";
@@ -21,17 +21,15 @@ func _on_wave_start(n):
 		await get_tree().create_timer(5).timeout
 		if tooltip_label.text == "Press space to speed up time.":
 			self.visible = false
-	if n == 3:
-		should_show_basic_tooltip = false
 	
 	
 func _on_start_place(t: Tower):
-	if should_show_basic_tooltip:
+	if not GameManager.has_rotated:
 		showing_place_tooltip = true
 		self.visible = true
 		tooltip_label.text = "Left click to place, right click to cancel." 
 		if t.can_rotate:
-			tooltip_label.text += " Press R to rotate."
+			tooltip_label.text = "Press R to rotate."
 		
 func _on_stop_place():
 	if showing_place_tooltip:

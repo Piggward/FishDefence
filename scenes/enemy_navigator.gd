@@ -29,7 +29,7 @@ func _ready() -> void:
 	tile_grid.path_updated.connect(_on_path_updated)
 	
 func set_start_speed():
-	var t = queue_number * 0.7
+	var t = queue_number
 	var s = (self.global_position - _path[0]).length()
 	before_start_speed = s / t
 	
@@ -68,7 +68,7 @@ func _move_to(local_position, delta):
 	velocity = _velocity * delta
 	#rotation = _velocity.angle()
 	move_and_slide()
-	return global_position.distance_to(local_position) < 2
+	return global_position.distance_to(local_position) < 3
 
 
 func _physics_process(delta):

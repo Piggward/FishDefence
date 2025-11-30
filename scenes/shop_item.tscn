@@ -2,16 +2,10 @@
 
 [ext_resource type="Script" uid="uid://bbg8gjk3us0i7" path="res://scenes/ui/shop_item.gd" id="1_btjjm"]
 [ext_resource type="Texture2D" uid="uid://bj6g84nfxwemt" path="res://art/fish/Surgeonfish.png" id="1_lrx6i"]
+[ext_resource type="StyleBox" uid="uid://bdngju8qv1olw" path="res://scenes/ui/shop_item_affordable.tres" id="2_xcw7k"]
 [ext_resource type="Texture2D" uid="uid://6ffjaldxnjy4" path="res://art/ui/icons8-recycle-48(1).png" id="3_6gmg1"]
 
 [sub_resource type="Theme" id="Theme_6gmg1"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btjjm"]
-bg_color = Color(0.14117648, 0.72156864, 0.627451, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1d7d6"]
 bg_color = Color(0.14901961, 0.4392157, 0.47843137, 1)
@@ -43,10 +37,11 @@ theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
 [node name="PanelContainer2" type="PanelContainer" parent="MarginContainer"]
+self_modulate = Color(0.85490197, 0.38039216, 0.45882353, 1)
 show_behind_parent = true
 layout_mode = 2
 mouse_filter = 1
-theme_override_styles/panel = SubResource("StyleBoxFlat_btjjm")
+theme_override_styles/panel = ExtResource("2_xcw7k")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer2"]
 custom_minimum_size = Vector2(0, 100)

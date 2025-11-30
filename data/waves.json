@@ -1,112 +1,228 @@
 [
+
  {
   "Wave": 1,
-  "batches": 4,
-  "amount": 5,
-  "time_before_next_batch": 4,
-  "speed": 1500,
+  "amount": 15,
+  "speed": 5000,
   "health": 50,
-  "bounty": 10,
+  "enemy_bounty": 2,
   "texture": "soda_coke",
-  "Gold from wave:": 200
+  "wave_bounty": 200
  },
  {
   "Wave": 2,
-  "batches": 4,
-  "amount": 7,
-  "time_before_next_batch": 4,
+  "amount": 20,
   "speed": 1500,
   "health": 50,
-  "bounty": 11,
+  "enemy_bounty": 2,
   "texture": "canned_soup",
-  "Gold from wave:": 308
+  "wave_bounty": 260
  },
  {
   "Wave": 3,
-  "batches": 4,
-  "amount": 10,
-  "time_before_next_batch": 4,
+  "amount": 20,
   "speed": 1500,
   "health": 100,
-  "bounty": 12,
+  "enemy_bounty": 2,
   "texture": "soda_pepsi",
-  "Gold from wave:": 480
+  "wave_bounty": 312
  },
  {
   "Wave": 4,
-  "batches": 5,
-  "amount": 10,
-  "time_before_next_batch": 4,
+  "amount": 25,
   "speed": 1500,
   "health": 150,
-  "bounty": 13,
+  "enemy_bounty": 2,
   "texture": "soymilk_match",
-  "Gold from wave:": 650
+  "wave_bounty": 374.4
  },
  {
   "Wave": 5,
-  "batches": 11,
-  "amount": 5,
-  "time_before_next_batch": 3,
-  "speed": 2800,
+  "amount": 15,
+  "speed": 2300,
   "health": 200,
-  "bounty": 14,
+  "enemy_bounty": 3,
   "texture": "soda_fanta",
-  "Gold from wave:": 770
+  "wave_bounty": 449.28
  },
  {
   "Wave": 6,
-  "batches": 7,
-  "amount": 8,
-  "time_before_next_batch": 4,
-  "speed": 2800,
+  "amount": 20,
+  "speed": 2300,
   "health": 300,
-  "bounty": 15,
+  "enemy_bounty": 3,
   "texture": "water_bottled",
-  "Gold from wave:": 840
+  "wave_bounty": 539.136
  },
  {
   "Wave": 7,
-  "batches": 6,
-  "amount": 10,
-  "time_before_next_batch": 3,
+  "amount": 25,
   "speed": 1500,
-  "health": 450,
-  "bounty": 16,
+  "health": 400,
+  "enemy_bounty": 3,
   "texture": "soda_sprite",
-  "Gold from wave:": 960
+  "wave_bounty": 646.9632
  },
  {
   "Wave": 8,
-  "batches": 7,
-  "amount": 10,
-  "time_before_next_batch": 3,
-  "speed": 2800,
-  "health": 700,
-  "bounty": 17,
+  "amount": 20,
+  "speed": 2300,
+  "health": 600,
+  "enemy_bounty": 3,
   "texture": "yogurt_cup",
-  "Gold from wave:": 1190
+  "wave_bounty": 776.35584
  },
  {
   "Wave": 9,
-  "batches": 7,
-  "amount": 10,
-  "time_before_next_batch": 3,
+  "amount": 25,
   "speed": 1500,
-  "health": 1000,
-  "bounty": 18,
+  "health": 800,
+  "enemy_bounty": 3,
   "texture": "soda_coke",
-  "Gold from wave:": 1260
+  "wave_bounty": 931.627008
  },
  {
   "Wave": 10,
-  "batches": 8,
-  "amount": 15,
-  "time_before_next_batch": 3,
-  "speed": 1500,
-  "health": 1500,
-  "bounty": 19,
+  "amount": 20,
+  "speed": 2000,
+  "health": 1000,
+  "enemy_bounty": 3,
   "texture": "garbage",
-  "Gold from wave:": 2280
+  "wave_bounty": 1117.95241
+ },
+ {
+  "Wave": 11,
+  "amount": 20,
+  "speed": 2000,
+  "health": 1400,
+  "enemy_bounty": 4,
+  "texture": "soda_coke",
+  "wave_bounty": 1341.542892
+ },
+ {
+  "Wave": 12,
+  "amount": 25,
+  "speed": 2000,
+  "health": 1800,
+  "enemy_bounty": 4,
+  "texture": "canned_soup",
+  "wave_bounty": 1609.85147
+ },
+ {
+  "Wave": 13,
+  "amount": 20,
+  "speed": 2000,
+  "health": 2300,
+  "enemy_bounty": 4,
+  "texture": "soda_pepsi",
+  "wave_bounty": 1931.821764
+ },
+ {
+  "Wave": 14,
+  "amount": 25,
+  "speed": 2000,
+  "health": 2800,
+  "enemy_bounty": 4,
+  "texture": "soymilk_match",
+  "wave_bounty": 2318.186117
+ },
+ {
+  "Wave": 15,
+  "amount": 15,
+  "speed": 2800,
+  "health": 3400,
+  "enemy_bounty": 4,
+  "texture": "soda_fanta",
+  "wave_bounty": 2781.82334
+ },
+ {
+  "Wave": 16,
+  "amount": 20,
+  "speed": 2000,
+  "health": 4000,
+  "enemy_bounty": 5,
+  "texture": "soda_coke",
+  "wave_bounty": 3338.188008
+ },
+ {
+  "Wave": 17,
+  "amount": 25,
+  "speed": 2000,
+  "health": 4600,
+  "enemy_bounty": 5,
+  "texture": "canned_soup",
+  "wave_bounty": 4005.825609
+ },
+ {
+  "Wave": 18,
+  "amount": 20,
+  "speed": 2000,
+  "health": 5200,
+  "enemy_bounty": 5,
+  "texture": "soda_pepsi",
+  "wave_bounty": 4806.990731
+ },
+ {
+  "Wave": 19,
+  "amount": 25,
+  "speed": 2000,
+  "health": 5800,
+  "enemy_bounty": 5,
+  "texture": "soymilk_match",
+  "wave_bounty": 5768.388878
+ },
+ {
+  "Wave": 20,
+  "amount": 15,
+  "speed": 2800,
+  "health": 6500,
+  "enemy_bounty": 5,
+  "texture": "soda_fanta",
+  "wave_bounty": 6922.066653
+ },
+ {
+  "Wave": 21,
+  "amount": 20,
+  "speed": 2800,
+  "health": 7200,
+  "enemy_bounty": 6,
+  "texture": "water_bottled",
+  "wave_bounty": 8306.479984
+ },
+ {
+  "Wave": 22,
+  "amount": 25,
+  "speed": 2000,
+  "health": 8000,
+  "enemy_bounty": 6,
+  "texture": "soda_sprite",
+  "wave_bounty": 9967.77598
+ },
+ {
+  "Wave": 23,
+  "amount": 20,
+  "speed": 2500,
+  "health": 9000,
+  "enemy_bounty": 6,
+  "texture": "yogurt_cup",
+  "wave_bounty": 11961.33118
+ },
+ {
+  "Wave": 24,
+  "amount": 25,
+  "speed": 2000,
+  "health": 10000,
+  "enemy_bounty": 6,
+  "texture": "soda_coke",
+  "wave_bounty": 14353.59741
+ },
+ {
+  "Wave": 25,
+  "amount": 20,
+  "speed": 2000,
+  "health": 11000,
+  "enemy_bounty": 6,
+  "texture": "garbage",
+  "wave_bounty": 17224.31689
  }
 ]

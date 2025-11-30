@@ -59,6 +59,8 @@ func add_buff_to_tower(tower: Tower):
 	tower.add_buff(buff.duplicate())
 	var konfetti = KONFETTI.instantiate()
 	konfetti.global_position = tower.global_position
+	if not is_instance_valid(projectile_container):
+		return
 	projectile_container.add_child(konfetti)
 	var cc = KONFETTI_CONSTANT.instantiate()
 	cc.global_position = tower.global_position

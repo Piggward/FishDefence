@@ -31,6 +31,8 @@ func _ready():
 	slow()
 	
 func slow():
+	if not moving:
+		return
 	self.speed *= 0.9
 	await get_tree().create_timer(0.3).timeout
 	slow()

@@ -1,0 +1,28 @@
+[gd_scene load_steps=7 format=3 uid="uid://coi0nc4ijpt1t"]
+
+[ext_resource type="Script" uid="uid://dr3jfsmtews16" path="res://scenes/test/gpu_loader.gd" id="1_532vp"]
+[ext_resource type="PackedScene" uid="uid://dq2iwrtbcm1d6" path="res://scenes/attacks/bubble_particles.tscn" id="2_f6ecg"]
+[ext_resource type="PackedScene" uid="uid://cspd8fsbdje0h" path="res://scenes/towers/clown_fish/konfetti.tscn" id="3_3xurs"]
+[ext_resource type="PackedScene" uid="uid://b7oy52upclir0" path="res://scenes/towers/clown_fish/konfetti_constant.tscn" id="4_wadbu"]
+[ext_resource type="PackedScene" uid="uid://iv1thjyw4q72" path="res://scenes/towers/discus/splash.tscn" id="5_tmpuc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cqwk1"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_532vp")
+
+[node name="GPUParticles2D" parent="." instance=ExtResource("2_f6ecg")]
+
+[node name="Konfetti" parent="." instance=ExtResource("3_3xurs")]
+
+[node name="Konfetti2" parent="." instance=ExtResource("4_wadbu")]
+
+[node name="Splash" parent="." instance=ExtResource("5_tmpuc")]
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = -494.0
+offset_top = -324.0
+offset_right = 1536.0
+offset_bottom = 900.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_cqwk1")

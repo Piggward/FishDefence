@@ -54,12 +54,12 @@ func input_cd():
 
 func handle_idle():
 	#TODO: VIKTIGT! Har Stängt Av Plocka Upp
-	if Input.is_action_just_released("left_click") and PlaceManager.hover_tile.object != null and not cd:
+	if Input.is_action_just_pressed("left_click") and PlaceManager.hover_tile.object != null and not cd:
 		input_cd()
 		PlaceManager.try_pickup()
 		
 func handle_moving():
-	if Input.is_action_just_pressed("left_click") and not cd:
+	if (Input.is_action_just_pressed("left_click") or Input.is_action_just_released("left_click")) and not cd:
 		input_cd()
 		PlaceManager.try_place()
 	if Input.is_action_just_pressed("r") and not cd:
@@ -67,15 +67,11 @@ func handle_moving():
 		PlaceManager.rotate()
 		
 func handle_placing(): 
-	if Input.is_action_pressed("left_click") and not cd:
+	if (Input.is_action_just_pressed("left_click") or Input.is_action_just_released("left_click")) and not cd:
 		input_cd()
 		var tower_copy = PlaceManager.moving_object.object.duplicate()
 		PlaceManager.try_place()
 		if PlaceManager.moving_object == null and GameManager.can_afford(tower_copy):
-			#var obj: PlacedObject
-			#obj = PLACED_OBJECT.instantiate()
-			#obj.object = copy
-			#obj.add_child(copy)
 			tower_copy.is_copy = true
 			var place = PLACED_OBJECT.instantiate()
 			place.object = tower_copy

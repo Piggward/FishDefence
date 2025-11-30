@@ -39,7 +39,7 @@ func _ready():
 		show_range(false)
 		
 func load_stats() -> void:
-	var file := FileAccess.open("res://data/towers(2).json", FileAccess.READ)
+	var file := FileAccess.open("res://data/towers.json", FileAccess.READ)
 	if file == null:
 		push_error("Could not open %s: %s" % ["res://data/towers.json", error_string(FileAccess.get_open_error())])
 		return
@@ -63,10 +63,6 @@ func load_stats() -> void:
 		self.cost = item["Cost"]
 		
 func get_description():
-	print("Attack speed: %s
-	Damage: %s
-	
-	%s" % [str(int(attack_speed * 1000)), str(int(damage)), str(description)])
 	return "Attack speed: %s
 	Damage: %s
 	
@@ -129,7 +125,7 @@ func attack(enemy: Enemy):
 	#await attack.hit
 	#enemy.take_damage(self.damage)
 
-func _on_enemy_died(enemy: Enemy):
+func _on_enemy_died(enemy: Enemy, killed: bool):
 	targets.erase(enemy)
 
 func _on_range_body_entered(body):

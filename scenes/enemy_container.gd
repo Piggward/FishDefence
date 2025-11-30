@@ -18,7 +18,7 @@ func _ready():
 	next_wave_button = get_tree().get_first_node_in_group("NextWaveButton")
 	wave_animation = get_tree().get_first_node_in_group("WaveAnimation")
 	next_wave_button.pressed.connect(_on_next_wave_pressed)
-	load_waves("res://data/waves(2).json")
+	load_waves("res://data/waves.json")
 		
 func spawn_wave(wave: Wave):
 	var total_enemis = wave.amount
@@ -58,6 +58,9 @@ func set_enemy_stats(wave: Wave, enemy: Enemy):
 	enemy.start = start.global_position
 	enemy.texture = wave.get_texture()
 	enemy.bounty = wave.enemy_bounty
+	if GameManager.easy_mode:
+		enemy.health *= 0.7
+		enemy.speed *= 0.8
 		
 func _on_enemy_died(e: Enemy, killed: bool = true):
 	alive_enemies.erase(e)
@@ -68,10 +71,11 @@ func _on_enemy_died(e: Enemy, killed: bool = true):
 		on_wave_cleared()
 		
 func on_wave_cleared():
+	if current_wave == waves.size() -1:
+		EventManager.win.emit()
+		return
 	next_wave_button.visible = true
 	GameManager.add_bounty(waves[current_wave].wave_bounty)
-	if current_wave == waves.size() -1:
-		print("you won!")
 	
 func _on_next_wave_pressed():
 	next_wave_button.visible = false
