@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://clu7lueyxlr8e"]
+
+[ext_resource type="Script" uid="uid://naqg6rncegjg" path="res://scenes/ui/tower_damage_row.gd" id="1_7xs3p"]
+[ext_resource type="Texture2D" uid="uid://cr5xq8b8gccdn" path="res://art/fish/Pufferfish.png" id="2_8u0ff"]
+
+[node name="TowerDamageRow" type="HBoxContainer"]
+script = ExtResource("1_7xs3p")
+
+[node name="TowerTexture" type="TextureRect" parent="."]
+texture_filter = 1
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("2_8u0ff")
+
+[node name="TowerDamageDealt" type="Label" parent="."]
+layout_mode = 2
+text = "2000000"

@@ -17,6 +17,7 @@ signal path_updated
 signal show_tiles_requested(value:bool)
 @onready var tile_area = $TileArea/CollisionShape2D
 @onready var tile_poly_container = $TilePolyContainer
+@onready var tile_poly_container2 = $"../CanvasLayer2/Node2D"
 
 func _ready():
 	enemy_container = get_tree().get_first_node_in_group("EnemyContainer")
@@ -153,6 +154,8 @@ func place(o: PlacedObject, tile: Tile):
 	set_object_to_tile(o, right)
 	set_object_to_tile(o, down)
 	set_object_to_tile(o, down_right)
+	
+	o.reparent(get_tree().root)
 	
 	path_updated.emit()
 	

@@ -7,17 +7,14 @@
 [node name="Tower" instance=ExtResource("1_cpmkw")]
 script = ExtResource("2_ck3tb")
 range = Array[Vector2]([Vector2(-1, -1), Vector2(-1, 0), Vector2(-1, 1), Vector2(0, 1), Vector2(0, -1), Vector2(1, -1), Vector2(1, 0), Vector2(1, 1)])
-damage = 2.0
+damage = 15.0
 attack_speed = 2.0
-cost = 50
-fish_name = "PufferFish"
+cost = 350
+fish_name = "Puffer Fish"
 fish_texture = ExtResource("3_oymv6")
 
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("3_oymv6")
 
 [node name="CollisionShape2D" parent="." index="1"]
-visible = false
-
-[node name="CollisionShape2D" parent="Range" index="0"]
 visible = false

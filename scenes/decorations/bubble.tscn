@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://dncqyivscsihw"]
+
+[ext_resource type="Texture2D" uid="uid://cbmtdwo3kyaa0" path="res://art/fish/aquarium/SmallBubble.png" id="1_p4met"]
+[ext_resource type="Script" uid="uid://b4ikguvxt0gj3" path="res://scenes/decorations/bubble.gd" id="2_gd6om"]
+
+[node name="Bubble" type="Sprite2D"]
+texture = ExtResource("1_p4met")
+script = ExtResource("2_gd6om")

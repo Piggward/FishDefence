@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dq2iwrtbcm1d6"]
 
-[ext_resource type="Texture2D" uid="uid://lb60l71l3ilq" path="res://art/effects/circle_01.png" id="1_5cns4"]
+[ext_resource type="Texture2D" uid="uid://bgjjqer5nbdpb" path="res://art/fish/aquarium/Bubble.png" id="1_5cns4"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hcwr1"]
 lifetime_randomness = 0.51
@@ -9,13 +9,13 @@ emission_shape = 3
 emission_box_extents = Vector3(4, 1, 1)
 direction = Vector3(-1, 0, 0)
 spread = 40.0
-initial_velocity_min = 15.0
-initial_velocity_max = 25.0
+initial_velocity_min = 25.0
+initial_velocity_max = 35.0
 gravity = Vector3(0, 0, 0)
 linear_accel_min = -0.010002235
 linear_accel_max = 2.3399978
-scale_min = 0.01
-scale_max = 0.01
+scale_min = 0.29999998
+scale_max = 0.39999998
 
 [node name="GPUParticles2D" type="GPUParticles2D"]
 emitting = false

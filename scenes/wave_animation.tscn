@@ -1,0 +1,769 @@
+[gd_scene load_steps=8 format=3 uid="uid://d1c5uuss17rdq"]
+
+[ext_resource type="Script" uid="uid://75kyfu60j34s" path="res://scenes/wave_animation.gd" id="1_2py7l"]
+[ext_resource type="PackedScene" uid="uid://cslxcg6idydi8" path="res://scenes/wave.tscn" id="2_pjq5d"]
+[ext_resource type="Shader" uid="uid://7nv0ndklq121" path="res://scenes/wave.gdshader" id="3_pjq5d"]
+[ext_resource type="PackedScene" uid="uid://ve7g61hrtufu" path="res://scenes/decorations/random_shit.tscn" id="4_8g60k"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_8g60k"]
+frequency = 0.0045
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_st7mc"]
+noise = SubResource("FastNoiseLite_8g60k")
+seamless = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3h1i2"]
+shader = ExtResource("3_pjq5d")
+shader_parameter/color = Color(0, 0.33893612, 0.49586457, 1)
+shader_parameter/noise = SubResource("NoiseTexture2D_st7mc")
+shader_parameter/speed = Vector2(-0.1, 0)
+shader_parameter/wave_strength = 1.0
+shader_parameter/wave_scale = Vector2(5, 5)
+
+[node name="WaveAnimation" type="Sprite2D"]
+script = ExtResource("1_2py7l")
+
+[node name="Wave" parent="." instance=ExtResource("2_pjq5d")]
+material = SubResource("ShaderMaterial_3h1i2")
+
+[node name="EnemiesNode" type="Node2D" parent="."]
+position = Vector2(-30.000002, 98)
+scale = Vector2(1.0000001, 1)
+
+[node name="Trash" type="Node2D" parent="EnemiesNode"]
+process_mode = 4
+position = Vector2(3.000002, 111)
+
+[node name="RandomShit" parent="EnemiesNode/Trash" instance=ExtResource("4_8g60k")]
+position = Vector2(-6, 8)
+
+[node name="RandomShit2" parent="EnemiesNode/Trash" instance=ExtResource("4_8g60k")]
+position = Vector2(5, 6)
+
+[node name="RandomShit3" parent="EnemiesNode/Trash" instance=ExtResource("4_8g60k")]
+position = Vector2(-6, -6)
+
+[node name="RandomShit4" parent="EnemiesNode/Trash" instance=ExtResource("4_8g60k")]
+position = Vector2(5, -6)
+
+[node name="RandomShit5" parent="EnemiesNode/Trash" instance=ExtResource("4_8g60k")]
+position = Vector2(-10, 0)
+
+[node name="RandomShit6" parent="EnemiesNode/Trash" instance=ExtResource("4_8g60k")]
+position = Vector2(9, 0)
+
+[node name="RandomShit7" parent="EnemiesNode/Trash" instance=ExtResource("4_8g60k")]
+position = Vector2(5, 11)
+
+[node name="RandomShit8" parent="EnemiesNode/Trash" instance=ExtResource("4_8g60k")]
+position = Vector2(-16, 7)
+
+[node name="RandomShit9" parent="EnemiesNode/Trash" instance=ExtResource("4_8g60k")]
+position = Vector2(13, 14)
+
+[node name="RandomShit10" parent="EnemiesNode/Trash" instance=ExtResource("4_8g60k")]
+position = Vector2(0, 11)
+
+[node name="RandomShit11" parent="EnemiesNode/Trash" instance=ExtResource("4_8g60k")]
+position = Vector2(5, -12)
+
+[node name="RandomShit12" parent="EnemiesNode/Trash" instance=ExtResource("4_8g60k")]
+position = Vector2(0, -11)
+
+[node name="RandomShit13" parent="EnemiesNode/Trash" instance=ExtResource("4_8g60k")]
+position = Vector2(-10, -8)
+
+[node name="RandomShit14" parent="EnemiesNode/Trash" instance=ExtResource("4_8g60k")]
+position = Vector2(9, -8)
+
+[node name="Trash2" type="Node2D" parent="EnemiesNode"]
+process_mode = 4
+position = Vector2(1.9073486e-06, 130)
+
+[node name="RandomShit" parent="EnemiesNode/Trash2" instance=ExtResource("4_8g60k")]
+position = Vector2(-6, 8)
+
+[node name="RandomShit2" parent="EnemiesNode/Trash2" instance=ExtResource("4_8g60k")]
+position = Vector2(5, 6)
+
+[node name="RandomShit3" parent="EnemiesNode/Trash2" instance=ExtResource("4_8g60k")]
+position = Vector2(-6, -6)
+
+[node name="RandomShit4" parent="EnemiesNode/Trash2" instance=ExtResource("4_8g60k")]
+position = Vector2(5, -6)
+
+[node name="RandomShit5" parent="EnemiesNode/Trash2" instance=ExtResource("4_8g60k")]
+position = Vector2(-10, 0)
+
+[node name="RandomShit6" parent="EnemiesNode/Trash2" instance=ExtResource("4_8g60k")]
+position = Vector2(9, 0)
+
+[node name="RandomShit7" parent="EnemiesNode/Trash2" instance=ExtResource("4_8g60k")]
+position = Vector2(5, 11)
+
+[node name="RandomShit8" parent="EnemiesNode/Trash2" instance=ExtResource("4_8g60k")]
+position = Vector2(-16, 7)
+
+[node name="RandomShit9" parent="EnemiesNode/Trash2" instance=ExtResource("4_8g60k")]
+position = Vector2(13, 14)
+
+[node name="RandomShit10" parent="EnemiesNode/Trash2" instance=ExtResource("4_8g60k")]
+position = Vector2(0, 11)
+
+[node name="RandomShit11" parent="EnemiesNode/Trash2" instance=ExtResource("4_8g60k")]
+position = Vector2(5, -12)
+
+[node name="RandomShit12" parent="EnemiesNode/Trash2" instance=ExtResource("4_8g60k")]
+position = Vector2(0, -11)
+
+[node name="RandomShit13" parent="EnemiesNode/Trash2" instance=ExtResource("4_8g60k")]
+position = Vector2(-10, -8)
+
+[node name="RandomShit14" parent="EnemiesNode/Trash2" instance=ExtResource("4_8g60k")]
+position = Vector2(9, -8)
+
+[node name="Trash3" type="Node2D" parent="EnemiesNode"]
+process_mode = 4
+position = Vector2(1.9073486e-06, 145)
+
+[node name="RandomShit" parent="EnemiesNode/Trash3" instance=ExtResource("4_8g60k")]
+position = Vector2(-6, 8)
+
+[node name="RandomShit2" parent="EnemiesNode/Trash3" instance=ExtResource("4_8g60k")]
+position = Vector2(5, 6)
+
+[node name="RandomShit3" parent="EnemiesNode/Trash3" instance=ExtResource("4_8g60k")]
+position = Vector2(-6, -6)
+
+[node name="RandomShit4" parent="EnemiesNode/Trash3" instance=ExtResource("4_8g60k")]
+position = Vector2(5, -6)
+
+[node name="RandomShit5" parent="EnemiesNode/Trash3" instance=ExtResource("4_8g60k")]
+position = Vector2(-10, 0)
+
+[node name="RandomShit6" parent="EnemiesNode/Trash3" instance=ExtResource("4_8g60k")]
+position = Vector2(9, 0)
+
+[node name="RandomShit7" parent="EnemiesNode/Trash3" instance=ExtResource("4_8g60k")]
+position = Vector2(5, 11)
+
+[node name="RandomShit8" parent="EnemiesNode/Trash3" instance=ExtResource("4_8g60k")]
+position = Vector2(-16, 7)
+
+[node name="RandomShit9" parent="EnemiesNode/Trash3" instance=ExtResource("4_8g60k")]
+position = Vector2(13, 14)
+
+[node name="RandomShit10" parent="EnemiesNode/Trash3" instance=ExtResource("4_8g60k")]
+position = Vector2(0, 11)
+
+[node name="RandomShit11" parent="EnemiesNode/Trash3" instance=ExtResource("4_8g60k")]
+position = Vector2(5, -12)
+
+[node name="RandomShit12" parent="EnemiesNode/Trash3" instance=ExtResource("4_8g60k")]
+position = Vector2(0, -11)
+
+[node name="RandomShit13" parent="EnemiesNode/Trash3" instance=ExtResource("4_8g60k")]
+position = Vector2(-10, -8)
+
+[node name="RandomShit14" parent="EnemiesNode/Trash3" instance=ExtResource("4_8g60k")]
+position = Vector2(9, -8)
+
+[node name="Trash4" type="Node2D" parent="EnemiesNode"]
+process_mode = 4
+position = Vector2(1.9073486e-06, 163)
+
+[node name="RandomShit" parent="EnemiesNode/Trash4" instance=ExtResource("4_8g60k")]
+position = Vector2(-6, 8)
+
+[node name="RandomShit2" parent="EnemiesNode/Trash4" instance=ExtResource("4_8g60k")]
+position = Vector2(5, 6)
+
+[node name="RandomShit3" parent="EnemiesNode/Trash4" instance=ExtResource("4_8g60k")]
+position = Vector2(-6, -6)
+
+[node name="RandomShit4" parent="EnemiesNode/Trash4" instance=ExtResource("4_8g60k")]
+position = Vector2(5, -6)
+
+[node name="RandomShit5" parent="EnemiesNode/Trash4" instance=ExtResource("4_8g60k")]
+position = Vector2(-10, 0)
+
+[node name="RandomShit6" parent="EnemiesNode/Trash4" instance=ExtResource("4_8g60k")]
+position = Vector2(9, 0)
+
+[node name="RandomShit7" parent="EnemiesNode/Trash4" instance=ExtResource("4_8g60k")]
+position = Vector2(5, 11)
+
+[node name="RandomShit8" parent="EnemiesNode/Trash4" instance=ExtResource("4_8g60k")]
+position = Vector2(-16, 7)
+
+[node name="RandomShit9" parent="EnemiesNode/Trash4" instance=ExtResource("4_8g60k")]
+position = Vector2(13, 14)
+
+[node name="RandomShit10" parent="EnemiesNode/Trash4" instance=ExtResource("4_8g60k")]
+position = Vector2(0, 11)
+
+[node name="RandomShit11" parent="EnemiesNode/Trash4" instance=ExtResource("4_8g60k")]
+position = Vector2(5, -12)
+
+[node name="RandomShit12" parent="EnemiesNode/Trash4" instance=ExtResource("4_8g60k")]
+position = Vector2(0, -11)
+
+[node name="RandomShit13" parent="EnemiesNode/Trash4" instance=ExtResource("4_8g60k")]
+position = Vector2(-10, -8)
+
+[node name="RandomShit14" parent="EnemiesNode/Trash4" instance=ExtResource("4_8g60k")]
+position = Vector2(9, -8)
+
+[node name="Trash5" type="Node2D" parent="EnemiesNode"]
+process_mode = 4
+position = Vector2(1.9073486e-06, 175)
+
+[node name="RandomShit" parent="EnemiesNode/Trash5" instance=ExtResource("4_8g60k")]
+position = Vector2(-6, 8)
+
+[node name="RandomShit2" parent="EnemiesNode/Trash5" instance=ExtResource("4_8g60k")]
+position = Vector2(5, 6)
+
+[node name="RandomShit3" parent="EnemiesNode/Trash5" instance=ExtResource("4_8g60k")]
+position = Vector2(-6, -6)
+
+[node name="RandomShit4" parent="EnemiesNode/Trash5" instance=ExtResource("4_8g60k")]
+position = Vector2(5, -6)
+
+[node name="RandomShit5" parent="EnemiesNode/Trash5" instance=ExtResource("4_8g60k")]
+position = Vector2(-10, 0)
+
+[node name="RandomShit6" parent="EnemiesNode/Trash5" instance=ExtResource("4_8g60k")]
+position = Vector2(9, 0)
+
+[node name="RandomShit7" parent="EnemiesNode/Trash5" instance=ExtResource("4_8g60k")]
+position = Vector2(5, 11)
+
+[node name="RandomShit8" parent="EnemiesNode/Trash5" instance=ExtResource("4_8g60k")]
+position = Vector2(-16, 7)
+
+[node name="RandomShit9" parent="EnemiesNode/Trash5" instance=ExtResource("4_8g60k")]
+position = Vector2(13, 14)
+
+[node name="RandomShit10" parent="EnemiesNode/Trash5" instance=ExtResource("4_8g60k")]
+position = Vector2(0, 11)
+
+[node name="RandomShit11" parent="EnemiesNode/Trash5" instance=ExtResource("4_8g60k")]
+position = Vector2(5, -12)
+
+[node name="RandomShit12" parent="EnemiesNode/Trash5" instance=ExtResource("4_8g60k")]
+position = Vector2(0, -11)
+
+[node name="RandomShit13" parent="EnemiesNode/Trash5" instance=ExtResource("4_8g60k")]
+position = Vector2(-10, -8)
+
+[node name="RandomShit14" parent="EnemiesNode/Trash5" instance=ExtResource("4_8g60k")]
+position = Vector2(9, -8)
+
+[node name="Trash6" type="Node2D" parent="EnemiesNode"]
+process_mode = 4
+position = Vector2(1.9073486e-06, 202)
+
+[node name="RandomShit" parent="EnemiesNode/Trash6" instance=ExtResource("4_8g60k")]
+position = Vector2(-6, 8)
+
+[node name="RandomShit2" parent="EnemiesNode/Trash6" instance=ExtResource("4_8g60k")]
+position = Vector2(5, 6)
+
+[node name="RandomShit3" parent="EnemiesNode/Trash6" instance=ExtResource("4_8g60k")]
+position = Vector2(-6, -6)
+
+[node name="RandomShit4" parent="EnemiesNode/Trash6" instance=ExtResource("4_8g60k")]
+position = Vector2(5, -6)
+
+[node name="RandomShit5" parent="EnemiesNode/Trash6" instance=ExtResource("4_8g60k")]
+position = Vector2(-10, 0)
+
+[node name="RandomShit6" parent="EnemiesNode/Trash6" instance=ExtResource("4_8g60k")]
+position = Vector2(9, 0)
+
+[node name="RandomShit7" parent="EnemiesNode/Trash6" instance=ExtResource("4_8g60k")]
+position = Vector2(5, 11)
+
+[node name="RandomShit8" parent="EnemiesNode/Trash6" instance=ExtResource("4_8g60k")]
+position = Vector2(-16, 7)
+
+[node name="RandomShit9" parent="EnemiesNode/Trash6" instance=ExtResource("4_8g60k")]
+position = Vector2(13, 14)
+
+[node name="RandomShit10" parent="EnemiesNode/Trash6" instance=ExtResource("4_8g60k")]
+position = Vector2(0, 11)
+
+[node name="RandomShit11" parent="EnemiesNode/Trash6" instance=ExtResource("4_8g60k")]
+position = Vector2(5, -12)
+
+[node name="RandomShit12" parent="EnemiesNode/Trash6" instance=ExtResource("4_8g60k")]
+position = Vector2(0, -11)
+
+[node name="RandomShit13" parent="EnemiesNode/Trash6" instance=ExtResource("4_8g60k")]
+position = Vector2(-10, -8)
+
+[node name="RandomShit14" parent="EnemiesNode/Trash6" instance=ExtResource("4_8g60k")]
+position = Vector2(9, -8)
+
+[node name="Trash7" type="Node2D" parent="EnemiesNode"]
+process_mode = 4
+position = Vector2(1.9073486e-06, 88)
+
+[node name="RandomShit" parent="EnemiesNode/Trash7" instance=ExtResource("4_8g60k")]
+position = Vector2(-6, 8)
+
+[node name="RandomShit2" parent="EnemiesNode/Trash7" instance=ExtResource("4_8g60k")]
+position = Vector2(5, 6)
+
+[node name="RandomShit3" parent="EnemiesNode/Trash7" instance=ExtResource("4_8g60k")]
+position = Vector2(-6, -6)
+
+[node name="RandomShit4" parent="EnemiesNode/Trash7" instance=ExtResource("4_8g60k")]
+position = Vector2(5, -6)
+
+[node name="RandomShit5" parent="EnemiesNode/Trash7" instance=ExtResource("4_8g60k")]
+position = Vector2(-10, 0)
+
+[node name="RandomShit6" parent="EnemiesNode/Trash7" instance=ExtResource("4_8g60k")]
+position = Vector2(9, 0)
+
+[node name="RandomShit7" parent="EnemiesNode/Trash7" instance=ExtResource("4_8g60k")]
+position = Vector2(5, 11)
+
+[node name="RandomShit8" parent="EnemiesNode/Trash7" instance=ExtResource("4_8g60k")]
+position = Vector2(-16, 7)
+
+[node name="RandomShit9" parent="EnemiesNode/Trash7" instance=ExtResource("4_8g60k")]
+position = Vector2(13, 14)
+
+[node name="RandomShit10" parent="EnemiesNode/Trash7" instance=ExtResource("4_8g60k")]
+position = Vector2(0, 11)
+
+[node name="RandomShit11" parent="EnemiesNode/Trash7" instance=ExtResource("4_8g60k")]
+position = Vector2(5, -12)
+
+[node name="RandomShit12" parent="EnemiesNode/Trash7" instance=ExtResource("4_8g60k")]
+position = Vector2(0, -11)
+
+[node name="RandomShit13" parent="EnemiesNode/Trash7" instance=ExtResource("4_8g60k")]
+position = Vector2(-10, -8)
+
+[node name="RandomShit14" parent="EnemiesNode/Trash7" instance=ExtResource("4_8g60k")]
+position = Vector2(9, -8)
+
+[node name="Trash8" type="Node2D" parent="EnemiesNode"]
+process_mode = 4
+position = Vector2(1.9073486e-06, 69)
+
+[node name="RandomShit" parent="EnemiesNode/Trash8" instance=ExtResource("4_8g60k")]
+position = Vector2(-6, 8)
+
+[node name="RandomShit2" parent="EnemiesNode/Trash8" instance=ExtResource("4_8g60k")]
+position = Vector2(5, 6)
+
+[node name="RandomShit3" parent="EnemiesNode/Trash8" instance=ExtResource("4_8g60k")]
+position = Vector2(-6, -6)
+
+[node name="RandomShit4" parent="EnemiesNode/Trash8" instance=ExtResource("4_8g60k")]
+position = Vector2(5, -6)
+
+[node name="RandomShit5" parent="EnemiesNode/Trash8" instance=ExtResource("4_8g60k")]
+position = Vector2(-10, 0)
+
+[node name="RandomShit6" parent="EnemiesNode/Trash8" instance=ExtResource("4_8g60k")]
+position = Vector2(9, 0)
+
+[node name="RandomShit7" parent="EnemiesNode/Trash8" instance=ExtResource("4_8g60k")]
+position = Vector2(5, 11)
+
+[node name="RandomShit8" parent="EnemiesNode/Trash8" instance=ExtResource("4_8g60k")]
+position = Vector2(-16, 7)
+
+[node name="RandomShit9" parent="EnemiesNode/Trash8" instance=ExtResource("4_8g60k")]
+position = Vector2(13, 14)
+
+[node name="RandomShit10" parent="EnemiesNode/Trash8" instance=ExtResource("4_8g60k")]
+position = Vector2(0, 11)
+
+[node name="RandomShit11" parent="EnemiesNode/Trash8" instance=ExtResource("4_8g60k")]
+position = Vector2(5, -12)
+
+[node name="RandomShit12" parent="EnemiesNode/Trash8" instance=ExtResource("4_8g60k")]
+position = Vector2(0, -11)
+
+[node name="RandomShit13" parent="EnemiesNode/Trash8" instance=ExtResource("4_8g60k")]
+position = Vector2(-10, -8)
+
+[node name="RandomShit14" parent="EnemiesNode/Trash8" instance=ExtResource("4_8g60k")]
+position = Vector2(9, -8)
+
+[node name="Trash9" type="Node2D" parent="EnemiesNode"]
+process_mode = 4
+position = Vector2(3.000002, 49)
+
+[node name="RandomShit" parent="EnemiesNode/Trash9" instance=ExtResource("4_8g60k")]
+position = Vector2(-6, 8)
+
+[node name="RandomShit2" parent="EnemiesNode/Trash9" instance=ExtResource("4_8g60k")]
+position = Vector2(5, 6)
+
+[node name="RandomShit3" parent="EnemiesNode/Trash9" instance=ExtResource("4_8g60k")]
+position = Vector2(-6, -6)
+
+[node name="RandomShit4" parent="EnemiesNode/Trash9" instance=ExtResource("4_8g60k")]
+position = Vector2(5, -6)
+
+[node name="RandomShit5" parent="EnemiesNode/Trash9" instance=ExtResource("4_8g60k")]
+position = Vector2(-10, 0)
+
+[node name="RandomShit6" parent="EnemiesNode/Trash9" instance=ExtResource("4_8g60k")]
+position = Vector2(9, 0)
+
+[node name="RandomShit7" parent="EnemiesNode/Trash9" instance=ExtResource("4_8g60k")]
+position = Vector2(5, 11)
+
+[node name="RandomShit8" parent="EnemiesNode/Trash9" instance=ExtResource("4_8g60k")]
+position = Vector2(-16, 7)
+
+[node name="RandomShit9" parent="EnemiesNode/Trash9" instance=ExtResource("4_8g60k")]
+position = Vector2(13, 14)
+
+[node name="RandomShit10" parent="EnemiesNode/Trash9" instance=ExtResource("4_8g60k")]
+position = Vector2(0, 11)
+
+[node name="RandomShit11" parent="EnemiesNode/Trash9" instance=ExtResource("4_8g60k")]
+position = Vector2(5, -12)
+
+[node name="RandomShit12" parent="EnemiesNode/Trash9" instance=ExtResource("4_8g60k")]
+position = Vector2(0, -11)
+
+[node name="RandomShit13" parent="EnemiesNode/Trash9" instance=ExtResource("4_8g60k")]
+position = Vector2(-10, -8)
+
+[node name="RandomShit14" parent="EnemiesNode/Trash9" instance=ExtResource("4_8g60k")]
+position = Vector2(9, -8)
+
+[node name="Trash10" type="Node2D" parent="EnemiesNode"]
+process_mode = 4
+position = Vector2(1.9073486e-06, 68)
+
+[node name="RandomShit" parent="EnemiesNode/Trash10" instance=ExtResource("4_8g60k")]
+position = Vector2(-6, 8)
+
+[node name="RandomShit2" parent="EnemiesNode/Trash10" instance=ExtResource("4_8g60k")]
+position = Vector2(5, 6)
+
+[node name="RandomShit3" parent="EnemiesNode/Trash10" instance=ExtResource("4_8g60k")]
+position = Vector2(-6, -6)
+
+[node name="RandomShit4" parent="EnemiesNode/Trash10" instance=ExtResource("4_8g60k")]
+position = Vector2(5, -6)
+
+[node name="RandomShit5" parent="EnemiesNode/Trash10" instance=ExtResource("4_8g60k")]
+position = Vector2(-10, 0)
+
+[node name="RandomShit6" parent="EnemiesNode/Trash10" instance=ExtResource("4_8g60k")]
+position = Vector2(9, 0)
+
+[node name="RandomShit7" parent="EnemiesNode/Trash10" instance=ExtResource("4_8g60k")]
+position = Vector2(5, 11)
+
+[node name="RandomShit8" parent="EnemiesNode/Trash10" instance=ExtResource("4_8g60k")]
+position = Vector2(-16, 7)
+
+[node name="RandomShit9" parent="EnemiesNode/Trash10" instance=ExtResource("4_8g60k")]
+position = Vector2(13, 14)
+
+[node name="RandomShit10" parent="EnemiesNode/Trash10" instance=ExtResource("4_8g60k")]
+position = Vector2(0, 11)
+
+[node name="RandomShit11" parent="EnemiesNode/Trash10" instance=ExtResource("4_8g60k")]
+position = Vector2(5, -12)
+
+[node name="RandomShit12" parent="EnemiesNode/Trash10" instance=ExtResource("4_8g60k")]
+position = Vector2(0, -11)
+
+[node name="RandomShit13" parent="EnemiesNode/Trash10" instance=ExtResource("4_8g60k")]
+position = Vector2(-10, -8)
+
+[node name="RandomShit14" parent="EnemiesNode/Trash10" instance=ExtResource("4_8g60k")]
+position = Vector2(9, -8)
+
+[node name="Trash11" type="Node2D" parent="EnemiesNode"]
+process_mode = 4
+position = Vector2(1.9073486e-06, 83)
+
+[node name="RandomShit" parent="EnemiesNode/Trash11" instance=ExtResource("4_8g60k")]
+position = Vector2(-6, 8)
+
+[node name="RandomShit2" parent="EnemiesNode/Trash11" instance=ExtResource("4_8g60k")]
+position = Vector2(5, 6)
+
+[node name="RandomShit3" parent="EnemiesNode/Trash11" instance=ExtResource("4_8g60k")]
+position = Vector2(-6, -6)
+
+[node name="RandomShit4" parent="EnemiesNode/Trash11" instance=ExtResource("4_8g60k")]
+position = Vector2(5, -6)
+
+[node name="RandomShit5" parent="EnemiesNode/Trash11" instance=ExtResource("4_8g60k")]
+position = Vector2(-10, 0)
+
+[node name="RandomShit6" parent="EnemiesNode/Trash11" instance=ExtResource("4_8g60k")]
+position = Vector2(9, 0)
+
+[node name="RandomShit7" parent="EnemiesNode/Trash11" instance=ExtResource("4_8g60k")]
+position = Vector2(5, 11)
+
+[node name="RandomShit8" parent="EnemiesNode/Trash11" instance=ExtResource("4_8g60k")]
+position = Vector2(-16, 7)
+
+[node name="RandomShit9" parent="EnemiesNode/Trash11" instance=ExtResource("4_8g60k")]
+position = Vector2(13, 14)
+
+[node name="RandomShit10" parent="EnemiesNode/Trash11" instance=ExtResource("4_8g60k")]
+position = Vector2(0, 11)
+
+[node name="RandomShit11" parent="EnemiesNode/Trash11" instance=ExtResource("4_8g60k")]
+position = Vector2(5, -12)
+
+[node name="RandomShit12" parent="EnemiesNode/Trash11" instance=ExtResource("4_8g60k")]
+position = Vector2(0, -11)
+
+[node name="RandomShit13" parent="EnemiesNode/Trash11" instance=ExtResource("4_8g60k")]
+position = Vector2(-10, -8)
+
+[node name="RandomShit14" parent="EnemiesNode/Trash11" instance=ExtResource("4_8g60k")]
+position = Vector2(9, -8)
+
+[node name="Trash12" type="Node2D" parent="EnemiesNode"]
+process_mode = 4
+position = Vector2(1.9073486e-06, 101)
+
+[node name="RandomShit" parent="EnemiesNode/Trash12" instance=ExtResource("4_8g60k")]
+position = Vector2(-6, 8)
+
+[node name="RandomShit2" parent="EnemiesNode/Trash12" instance=ExtResource("4_8g60k")]
+position = Vector2(5, 6)
+
+[node name="RandomShit3" parent="EnemiesNode/Trash12" instance=ExtResource("4_8g60k")]
+position = Vector2(-6, -6)
+
+[node name="RandomShit4" parent="EnemiesNode/Trash12" instance=ExtResource("4_8g60k")]
+position = Vector2(5, -6)
+
+[node name="RandomShit5" parent="EnemiesNode/Trash12" instance=ExtResource("4_8g60k")]
+position = Vector2(-10, 0)
+
+[node name="RandomShit6" parent="EnemiesNode/Trash12" instance=ExtResource("4_8g60k")]
+position = Vector2(9, 0)
+
+[node name="RandomShit7" parent="EnemiesNode/Trash12" instance=ExtResource("4_8g60k")]
+position = Vector2(5, 11)
+
+[node name="RandomShit8" parent="EnemiesNode/Trash12" instance=ExtResource("4_8g60k")]
+position = Vector2(-16, 7)
+
+[node name="RandomShit9" parent="EnemiesNode/Trash12" instance=ExtResource("4_8g60k")]
+position = Vector2(13, 14)
+
+[node name="RandomShit10" parent="EnemiesNode/Trash12" instance=ExtResource("4_8g60k")]
+position = Vector2(0, 11)
+
+[node name="RandomShit11" parent="EnemiesNode/Trash12" instance=ExtResource("4_8g60k")]
+position = Vector2(5, -12)
+
+[node name="RandomShit12" parent="EnemiesNode/Trash12" instance=ExtResource("4_8g60k")]
+position = Vector2(0, -11)
+
+[node name="RandomShit13" parent="EnemiesNode/Trash12" instance=ExtResource("4_8g60k")]
+position = Vector2(-10, -8)
+
+[node name="RandomShit14" parent="EnemiesNode/Trash12" instance=ExtResource("4_8g60k")]
+position = Vector2(9, -8)
+
+[node name="Trash13" type="Node2D" parent="EnemiesNode"]
+process_mode = 4
+position = Vector2(1.9073486e-06, 113)
+
+[node name="RandomShit" parent="EnemiesNode/Trash13" instance=ExtResource("4_8g60k")]
+position = Vector2(-6, 8)
+
+[node name="RandomShit2" parent="EnemiesNode/Trash13" instance=ExtResource("4_8g60k")]
+position = Vector2(5, 6)
+
+[node name="RandomShit3" parent="EnemiesNode/Trash13" instance=ExtResource("4_8g60k")]
+position = Vector2(-6, -6)
+
+[node name="RandomShit4" parent="EnemiesNode/Trash13" instance=ExtResource("4_8g60k")]
+position = Vector2(5, -6)
+
+[node name="RandomShit5" parent="EnemiesNode/Trash13" instance=ExtResource("4_8g60k")]
+position = Vector2(-10, 0)
+
+[node name="RandomShit6" parent="EnemiesNode/Trash13" instance=ExtResource("4_8g60k")]
+position = Vector2(9, 0)
+
+[node name="RandomShit7" parent="EnemiesNode/Trash13" instance=ExtResource("4_8g60k")]
+position = Vector2(5, 11)
+
+[node name="RandomShit8" parent="EnemiesNode/Trash13" instance=ExtResource("4_8g60k")]
+position = Vector2(-16, 7)
+
+[node name="RandomShit9" parent="EnemiesNode/Trash13" instance=ExtResource("4_8g60k")]
+position = Vector2(13, 14)
+
+[node name="RandomShit10" parent="EnemiesNode/Trash13" instance=ExtResource("4_8g60k")]
+position = Vector2(0, 11)
+
+[node name="RandomShit11" parent="EnemiesNode/Trash13" instance=ExtResource("4_8g60k")]
+position = Vector2(5, -12)
+
+[node name="RandomShit12" parent="EnemiesNode/Trash13" instance=ExtResource("4_8g60k")]
+position = Vector2(0, -11)
+
+[node name="RandomShit13" parent="EnemiesNode/Trash13" instance=ExtResource("4_8g60k")]
+position = Vector2(-10, -8)
+
+[node name="RandomShit14" parent="EnemiesNode/Trash13" instance=ExtResource("4_8g60k")]
+position = Vector2(9, -8)
+
+[node name="Trash14" type="Node2D" parent="EnemiesNode"]
+process_mode = 4
+position = Vector2(1.9073486e-06, 140)
+
+[node name="RandomShit" parent="EnemiesNode/Trash14" instance=ExtResource("4_8g60k")]
+position = Vector2(-6, 8)
+
+[node name="RandomShit2" parent="EnemiesNode/Trash14" instance=ExtResource("4_8g60k")]
+position = Vector2(5, 6)
+
+[node name="RandomShit3" parent="EnemiesNode/Trash14" instance=ExtResource("4_8g60k")]
+position = Vector2(-6, -6)
+
+[node name="RandomShit4" parent="EnemiesNode/Trash14" instance=ExtResource("4_8g60k")]
+position = Vector2(5, -6)
+
+[node name="RandomShit5" parent="EnemiesNode/Trash14" instance=ExtResource("4_8g60k")]
+position = Vector2(-10, 0)
+
+[node name="RandomShit6" parent="EnemiesNode/Trash14" instance=ExtResource("4_8g60k")]
+position = Vector2(9, 0)
+
+[node name="RandomShit7" parent="EnemiesNode/Trash14" instance=ExtResource("4_8g60k")]
+position = Vector2(5, 11)
+
+[node name="RandomShit8" parent="EnemiesNode/Trash14" instance=ExtResource("4_8g60k")]
+position = Vector2(-16, 7)
+
+[node name="RandomShit9" parent="EnemiesNode/Trash14" instance=ExtResource("4_8g60k")]
+position = Vector2(13, 14)
+
+[node name="RandomShit10" parent="EnemiesNode/Trash14" instance=ExtResource("4_8g60k")]
+position = Vector2(0, 11)
+
+[node name="RandomShit11" parent="EnemiesNode/Trash14" instance=ExtResource("4_8g60k")]
+position = Vector2(5, -12)
+
+[node name="RandomShit12" parent="EnemiesNode/Trash14" instance=ExtResource("4_8g60k")]
+position = Vector2(0, -11)
+
+[node name="RandomShit13" parent="EnemiesNode/Trash14" instance=ExtResource("4_8g60k")]
+position = Vector2(-10, -8)
+
+[node name="RandomShit14" parent="EnemiesNode/Trash14" instance=ExtResource("4_8g60k")]
+position = Vector2(9, -8)
+
+[node name="Trash15" type="Node2D" parent="EnemiesNode"]
+process_mode = 4
+position = Vector2(1.9073486e-06, 26)
+
+[node name="RandomShit" parent="EnemiesNode/Trash15" instance=ExtResource("4_8g60k")]
+position = Vector2(-6, 8)
+
+[node name="RandomShit2" parent="EnemiesNode/Trash15" instance=ExtResource("4_8g60k")]
+position = Vector2(5, 6)
+
+[node name="RandomShit3" parent="EnemiesNode/Trash15" instance=ExtResource("4_8g60k")]
+position = Vector2(-6, -6)
+
+[node name="RandomShit4" parent="EnemiesNode/Trash15" instance=ExtResource("4_8g60k")]
+position = Vector2(5, -6)
+
+[node name="RandomShit5" parent="EnemiesNode/Trash15" instance=ExtResource("4_8g60k")]
+position = Vector2(-10, 0)
+
+[node name="RandomShit6" parent="EnemiesNode/Trash15" instance=ExtResource("4_8g60k")]
+position = Vector2(9, 0)
+
+[node name="RandomShit7" parent="EnemiesNode/Trash15" instance=ExtResource("4_8g60k")]
+position = Vector2(5, 11)
+
+[node name="RandomShit8" parent="EnemiesNode/Trash15" instance=ExtResource("4_8g60k")]
+position = Vector2(-16, 7)
+
+[node name="RandomShit9" parent="EnemiesNode/Trash15" instance=ExtResource("4_8g60k")]
+position = Vector2(13, 14)
+
+[node name="RandomShit10" parent="EnemiesNode/Trash15" instance=ExtResource("4_8g60k")]
+position = Vector2(0, 11)
+
+[node name="RandomShit11" parent="EnemiesNode/Trash15" instance=ExtResource("4_8g60k")]
+position = Vector2(5, -12)
+
+[node name="RandomShit12" parent="EnemiesNode/Trash15" instance=ExtResource("4_8g60k")]
+position = Vector2(0, -11)
+
+[node name="RandomShit13" parent="EnemiesNode/Trash15" instance=ExtResource("4_8g60k")]
+position = Vector2(-10, -8)
+
+[node name="RandomShit14" parent="EnemiesNode/Trash15" instance=ExtResource("4_8g60k")]
+position = Vector2(9, -8)
+
+[node name="Trash16" type="Node2D" parent="EnemiesNode"]
+process_mode = 4
+position = Vector2(1.9073486e-06, 7)
+
+[node name="RandomShit" parent="EnemiesNode/Trash16" instance=ExtResource("4_8g60k")]
+position = Vector2(-6, 8)
+
+[node name="RandomShit2" parent="EnemiesNode/Trash16" instance=ExtResource("4_8g60k")]
+position = Vector2(5, 6)
+
+[node name="RandomShit3" parent="EnemiesNode/Trash16" instance=ExtResource("4_8g60k")]
+position = Vector2(-6, -6)
+
+[node name="RandomShit4" parent="EnemiesNode/Trash16" instance=ExtResource("4_8g60k")]
+position = Vector2(5, -6)
+
+[node name="RandomShit5" parent="EnemiesNode/Trash16" instance=ExtResource("4_8g60k")]
+position = Vector2(-10, 0)
+
+[node name="RandomShit6" parent="EnemiesNode/Trash16" instance=ExtResource("4_8g60k")]
+position = Vector2(9, 0)
+
+[node name="RandomShit7" parent="EnemiesNode/Trash16" instance=ExtResource("4_8g60k")]
+position = Vector2(5, 11)
+
+[node name="RandomShit8" parent="EnemiesNode/Trash16" instance=ExtResource("4_8g60k")]
+position = Vector2(-16, 7)
+
+[node name="RandomShit9" parent="EnemiesNode/Trash16" instance=ExtResource("4_8g60k")]
+position = Vector2(13, 14)
+
+[node name="RandomShit10" parent="EnemiesNode/Trash16" instance=ExtResource("4_8g60k")]
+position = Vector2(0, 11)
+
+[node name="RandomShit11" parent="EnemiesNode/Trash16" instance=ExtResource("4_8g60k")]
+position = Vector2(5, -12)
+
+[node name="RandomShit12" parent="EnemiesNode/Trash16" instance=ExtResource("4_8g60k")]
+position = Vector2(0, -11)
+
+[node name="RandomShit13" parent="EnemiesNode/Trash16" instance=ExtResource("4_8g60k")]
+position = Vector2(-10, -8)
+
+[node name="RandomShit14" parent="EnemiesNode/Trash16" instance=ExtResource("4_8g60k")]
+position = Vector2(9, -8)
+
+[editable path="Wave"]

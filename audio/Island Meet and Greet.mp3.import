@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://gdcfxmg2g8ef"
+path="res://.godot/imported/Island Meet and Greet.mp3-ae8cbde87cbb15d082ddf612421a7639.mp3str"
+
+[deps]
+
+source_file="res://audio/Island Meet and Greet.mp3"
+dest_files=["res://.godot/imported/Island Meet and Greet.mp3-ae8cbde87cbb15d082ddf612421a7639.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

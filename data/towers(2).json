@@ -1,0 +1,58 @@
+[
+ {
+  "Name": "Crab",
+  "Cost": 200,
+  "Damage": 100,
+  "AttackSpeed": "1.3",
+  "Description": "The crab attacks enemies that comes too close to either of it's sides.",
+  "Special": "0.0"
+ },
+ {
+  "Name": "Surgeon Fish",
+  "Cost": 100,
+  "Damage": 50,
+  "AttackSpeed": "1.0",
+  "Description": "The surgeon fish hurls water at enemies within a two square radius in order to protect it's reef.",
+  "Special": "0.0"
+ },
+ {
+  "Name": "Puffer Fish",
+  "Cost": 400,
+  "Damage": 20,
+  "AttackSpeed": "2.0",
+  "Description": "The puffer fish inflates itself, hurting nearby enemies with its scales.",
+  "Special": "0.0"
+ },
+ {
+  "Name": "Snail",
+  "Cost": 350,
+  "Damage": 0,
+  "AttackSpeed": "0.0",
+  "Description": "The snail deals no damage, but its slime slows enemies by 50%.",
+  "Special": "0.5"
+ },
+ {
+  "Name": "Anchovy",
+  "Cost": 650,
+  "Damage": 200,
+  "AttackSpeed": "0.35",
+  "Description": "The anchovy rushes towards its enemies, damaging all in it's path.",
+  "Special": "0.0"
+ },
+ {
+  "Name": "Clown Fish",
+  "Cost": 500,
+  "Damage": 0,
+  "AttackSpeed": "0.0",
+  "Description": "The clown fish deals no damage, but uses it's comedic presence to boost nearby towers, increasing their attack speed by 50 %.",
+  "Special": "1.75"
+ },
+ {
+  "Name": "Discus ",
+  "Cost": 850,
+  "Damage": 750,
+  "AttackSpeed": "0.8",
+  "Description": "The discus searches its surroundings, smashing down on any enemies it can detect a 2 square radius away.",
+  "Special": "0.0"
+ }
+]

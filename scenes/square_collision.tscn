@@ -11,5 +11,5 @@ shape = SubResource("RectangleShape2D_ul66i")
 script = ExtResource("1_gmjde")
 
 [node name="RangePolygon" parent="." instance=ExtResource("1_gta8d")]
-color = Color(1, 0.7137255, 0.4627451, 0.7019608)
+color = Color(1, 0.68235296, 0.4627451, 0.4862745)
 polygon = PackedVector2Array(-7, -7, 7, -7, 7, 7, -7, 7)

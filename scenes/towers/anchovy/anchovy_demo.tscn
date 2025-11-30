@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://b2iwto0ov5ms3"]
+
+[ext_resource type="Script" uid="uid://5p5i4yp6gsaj" path="res://scenes/test/demo_enemy_spawner.gd" id="1_1xiu2"]
+[ext_resource type="Script" uid="uid://c53ba5p5jkkxu" path="res://scenes/test/crab_demo.gd" id="1_vikt8"]
+[ext_resource type="PackedScene" uid="uid://ru86gcsabmxc" path="res://scenes/towers/anchovy/anchovy_tower.tscn" id="2_vikt8"]
+
+[node name="AnchovyDemo" type="Node2D"]
+script = ExtResource("1_vikt8")
+zoom = Vector2(3, 3)
+
+[node name="ProjectileContainer" type="Node2D" parent="." groups=["DemoProjectileContainer"]]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(3, 3)
+
+[node name="EnemySpawner2" type="Node2D" parent="."]
+position = Vector2(32, -64)
+script = ExtResource("1_1xiu2")
+direction = Vector2(0, 1)
+interval = 0.5
+
+[node name="EnemySpawner3" type="Node2D" parent="."]
+position = Vector2(16, -64)
+script = ExtResource("1_1xiu2")
+direction = Vector2(0, 1)
+interval = 0.5
+
+[node name="EnemySpawner4" type="Node2D" parent="."]
+position = Vector2(48, -64)
+script = ExtResource("1_1xiu2")
+direction = Vector2(0, 1)
+interval = 0.5
+
+[node name="Tower" parent="." instance=ExtResource("2_vikt8")]
+demo = true

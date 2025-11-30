@@ -6,24 +6,77 @@ extends Area2D
 @export var attack_speed: float
 @export var cost: int
 @export var fish_name: String
+@export var can_rotate: bool = false
+@export var demo = false
+@export var description: String = ""
+@export var is_copy: bool = false
 var projectile_container: Node2D
 var targets: Array[Enemy] = []
 var cd = false
 var enabled = false
+const ROTATE_INFO = " Can be rotated while placing by pressing R."
 const PROJECTILE = preload("uid://1ios5h5gj0n8")
 @onready var range_area = $Range
 @export var fish_texture: Texture
 const SQUARE_COLLISION = preload("uid://dsipufjotl8y8")
+@onready var sprite_2d = $Sprite2D
+signal just_enabled
+@onready var buffs = $Buffs
+signal dmg_dealt(amount: int)
 
 func _ready():
-	for r in range:
-		var collision = SQUARE_COLLISION.instantiate()
-		range_area.add_child(collision)
-		collision.position = r * Vector2(16, 16)
-	projectile_container = get_tree().get_first_node_in_group("ProjectileContainer")
-	disable()
+	if not is_copy:
+		for r in range:
+			var collision = SQUARE_COLLISION.instantiate()
+			range_area.add_child(collision)
+			collision.position = r * Vector2(16, 16)
+	if not demo:
+		projectile_container = get_tree().get_first_node_in_group("ProjectileContainer")
+		disable()
+	else:
+		projectile_container = get_tree().get_first_node_in_group("DemoProjectileContainer")
+		enable()
+		show_range(false)
+		
+func load_stats() -> void:
+	var file := FileAccess.open("res://data/towers(2).json", FileAccess.READ)
+	if file == null:
+		push_error("Could not open %s: %s" % ["res://data/towers.json", error_string(FileAccess.get_open_error())])
+		return
+
+	var data = JSON.parse_string(file.get_as_text())
+	if !(data is Array):
+		push_error("Invalid JSON format (expected array).")
+		return
+
+	for item in data:
+		if !(item is Dictionary):
+			push_warning("Skipping non-dictionary entry in JSON.")
+			continue
+		
+		if not item["Name"] == self.fish_name:
+			continue
+		
+		self.attack_speed = item["AttackSpeed"]
+		self.damage = item["Damage"]
+		self.description = item["Description"]
+		self.cost = item["Cost"]
+		
+func get_description():
+	print("Attack speed: %s
+	Damage: %s
+	
+	%s" % [str(int(attack_speed * 1000)), str(int(damage)), str(description)])
+	return "Attack speed: %s
+	Damage: %s
+	
+	%s" % [str(int(attack_speed * 1000)), str(int(damage)), str(description)]
+	
+func get_demo():
+	pass
 	
 func enable():
+	self.z_index = 0
 	enabled = true
 	modulate = Color(1, 1, 1, 1);
 	range_area.body_entered.connect(_on_range_body_entered)
@@ -33,13 +86,19 @@ func enable():
 	for b in range_area.get_overlapping_bodies():
 		if b is Enemy:
 			targets.append(b)
+	just_enabled.emit()
 			
 func disable():
+	self.z_index = 999
 	enabled = false
 	modulate = Color(0.5, 0.5, 0.5, 0.35);
 	range_area.body_entered.disconnect(_on_range_body_entered)
 	range_area.body_exited.disconnect(_on_range_body_exited)
 	show_range(true)
+	
+func deal_damage(e: Enemy):
+	var damage_dealt = e.take_damage(self.damage)
+	GameManager.on_tower_damage_dealt(self, damage_dealt)
 	
 func show_range(value: bool):
 	for r in range_area.get_children():
@@ -50,11 +109,11 @@ func _process(delta):
 	if targets.size() > 0 and not cd and enabled:
 		set_cd()
 		#TODO: select target
-		attack(targets[0])
+		attack(targets[randi_range(0, targets.size()-1)])
 		
 func set_cd():
 	cd = true
-	await get_tree().create_timer(1 / attack_speed).timeout
+	await get_tree().create_timer(1 / (attack_speed * Engine.time_scale)).timeout
 	cd = false
 		
 func attack(enemy: Enemy):
@@ -85,3 +144,27 @@ func _on_range_body_exited(body):
 		targets.erase(body)
 		body.died.disconnect(_on_enemy_died)
 	pass # Replace with function body.
+
+func add_buff(b: Buff):
+	buffs.add_child(b)
+
+func remove_buff(b: Buff):
+	for c: Buff in buffs.get_children():
+		if c.buff_name == b.buff_name:
+			c.queue_free()
+			return 
+
+
+func _on_buffs_child_entered_tree(node: Buff):
+	var current_buffs = buffs.get_children()
+	var has_buff = current_buffs.any(func(c: Buff): return c.buff_name == node.buff_name and c != node)
+	if not has_buff:
+		print("applying")
+		node.apply(self)
+	pass # Replace with function body.
+
+
+func _on_buffs_child_exiting_tree(node: Buff):
+	if not buffs.get_children().any(func(c: Buff): return c.buff_name == node.buff_name and node != c):
+		print("removing")
+		node.remove(self)

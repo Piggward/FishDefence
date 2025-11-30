@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cwf3d577usmtq"]
+
+[ext_resource type="PackedScene" uid="uid://dagtsle1vogl3" path="res://scenes/towers/surgeon_fish/surgeon_demo.tscn" id="1_e127g"]
+[ext_resource type="Script" uid="uid://c53ba5p5jkkxu" path="res://scenes/test/crab_demo.gd" id="2_l5vob"]
+
+[node name="SubViewport" type="SubViewport"]
+disable_3d = true
+own_world_3d = true
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(200, 100)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="SurgeonDemo" parent="." instance=ExtResource("1_e127g")]
+script = ExtResource("2_l5vob")

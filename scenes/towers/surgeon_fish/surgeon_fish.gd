@@ -3,7 +3,7 @@ extends Tower
 
 @export var range_tiles := 2
 const FISH_SPIT = preload("uid://nekt2j1xfquv")
-@onready var sprite_2d = $Sprite2D
+var SURGEON_DEMO = load("uid://dagtsle1vogl3")
 
 func _ready():
 	range.clear()
@@ -33,6 +33,10 @@ func _on_range_body_exited(body):
 			sprite_2d.rotation_degrees = 0
 	pass # Replace with function body.
 
+	
+func get_demo():
+	return SURGEON_DEMO.instantiate()
+
 func attack(enemy: Enemy):
 	sprite_2d.look_at(enemy.global_position)
 	var direction = enemy.global_position - global_position
@@ -44,7 +48,13 @@ func attack(enemy: Enemy):
 		sprite_2d.scale.y = 1
 	var proj: Projectile = FISH_SPIT.instantiate()
 	proj.global_position = self.global_position
+	proj.follows_enemy = true
 	proj.damage = self.damage
 	proj.speed = 200
 	proj.target_enemy = enemy
+	proj.damage_dealt.connect(_on_hit)
 	projectile_container.add_child(proj)
+
+
+func _on_hit(dmg):
+	GameManager.on_tower_damage_dealt(self, dmg)

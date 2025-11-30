@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://blsj64h4q4c0l"]
+
+[ext_resource type="PackedScene" uid="uid://be2r40gq4pi5y" path="res://scenes/test/crab_demo.tscn" id="1_spb05"]
+
+[node name="SubViewport" type="SubViewport"]
+disable_3d = true
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(200, 100)
+render_target_update_mode = 4
+
+[node name="Camera2D" type="Camera2D" parent="."]
+scale = Vector2(2.4384992, 3.5259676)
+zoom = Vector2(3, 3)
+limit_enabled = false
+
+[node name="CrabDemo" parent="." instance=ExtResource("1_spb05")]

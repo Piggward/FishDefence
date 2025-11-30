@@ -3,9 +3,11 @@ extends Area2D
 
 var target_position: Vector2
 var target_enemy: Enemy = null
+var follows_enemy: bool = false
 var speed: float = 200
 var damage: int = 10
 @export var hit_on_collision: bool = false
+signal damage_dealt(amount: int)
 
 func _ready():
 	await get_tree().create_timer(2).timeout
@@ -13,14 +15,14 @@ func _ready():
 	pass
 	
 func _process(delta):
-	if target_enemy != null:
+	if follows_enemy:
 		follow_enemy(target_enemy, delta)
 		
 	else: 
 		look_at(target_position)
 		var dir = (target_position - self.global_position).normalized()
 		self.global_position += speed * dir * delta
-		if abs((self.global_position - target_position).length()) < 15:
+		if abs((self.global_position - target_position).length()) < 4:
 			self.queue_free()
 			return
 		
@@ -36,7 +38,8 @@ func follow_enemy(target, delta):
 		hit_target(target)
 			
 func hit_target(enemy: Enemy):
-	enemy.take_damage(damage)
+	var dmg = enemy.take_damage(damage)
+	damage_dealt.emit(dmg)
 	self.queue_free()
 
 func _on_area_entered(area):

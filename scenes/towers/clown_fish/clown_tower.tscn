@@ -7,10 +7,13 @@
 [node name="Tower" instance=ExtResource("1_nis4k")]
 script = ExtResource("2_lkm33")
 range_tiles = 1
+attack_speed_multiplier = 1.5
 range = Array[Vector2]([])
 damage = 0.0
 attack_speed = 0.1
+cost = 500
 fish_name = "Clown Fish"
+description = "The crab attacks enemies that comes too close to either of it's sides. Can be rotated while placing by pressing R."
 fish_texture = ExtResource("3_np0l3")
 
 [node name="Sprite2D" parent="." index="0"]
@@ -18,6 +21,3 @@ texture = ExtResource("3_np0l3")
 
 [node name="Range" parent="." index="2"]
 collision_mask = 1
-
-[node name="CollisionShape2D" parent="Range" index="0"]
-visible = false

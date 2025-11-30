@@ -1,0 +1,112 @@
+[
+ {
+  "Wave": 1,
+  "batches": 4,
+  "amount": 5,
+  "time_before_next_batch": 4,
+  "speed": 1500,
+  "health": 50,
+  "bounty": 10,
+  "texture": "soda_coke",
+  "Gold from wave:": 200
+ },
+ {
+  "Wave": 2,
+  "batches": 4,
+  "amount": 7,
+  "time_before_next_batch": 4,
+  "speed": 1500,
+  "health": 50,
+  "bounty": 11,
+  "texture": "canned_soup",
+  "Gold from wave:": 308
+ },
+ {
+  "Wave": 3,
+  "batches": 4,
+  "amount": 10,
+  "time_before_next_batch": 4,
+  "speed": 1500,
+  "health": 100,
+  "bounty": 12,
+  "texture": "soda_pepsi",
+  "Gold from wave:": 480
+ },
+ {
+  "Wave": 4,
+  "batches": 5,
+  "amount": 10,
+  "time_before_next_batch": 4,
+  "speed": 1500,
+  "health": 150,
+  "bounty": 13,
+  "texture": "soymilk_match",
+  "Gold from wave:": 650
+ },
+ {
+  "Wave": 5,
+  "batches": 11,
+  "amount": 5,
+  "time_before_next_batch": 3,
+  "speed": 2800,
+  "health": 200,
+  "bounty": 14,
+  "texture": "soda_fanta",
+  "Gold from wave:": 770
+ },
+ {
+  "Wave": 6,
+  "batches": 7,
+  "amount": 8,
+  "time_before_next_batch": 4,
+  "speed": 2800,
+  "health": 300,
+  "bounty": 15,
+  "texture": "water_bottled",
+  "Gold from wave:": 840
+ },
+ {
+  "Wave": 7,
+  "batches": 6,
+  "amount": 10,
+  "time_before_next_batch": 3,
+  "speed": 1500,
+  "health": 450,
+  "bounty": 16,
+  "texture": "soda_sprite",
+  "Gold from wave:": 960
+ },
+ {
+  "Wave": 8,
+  "batches": 7,
+  "amount": 10,
+  "time_before_next_batch": 3,
+  "speed": 2800,
+  "health": 700,
+  "bounty": 17,
+  "texture": "yogurt_cup",
+  "Gold from wave:": 1190
+ },
+ {
+  "Wave": 9,
+  "batches": 7,
+  "amount": 10,
+  "time_before_next_batch": 3,
+  "speed": 1500,
+  "health": 1000,
+  "bounty": 18,
+  "texture": "soda_coke",
+  "Gold from wave:": 1260
+ },
+ {
+  "Wave": 10,
+  "batches": 8,
+  "amount": 15,
+  "time_before_next_batch": 3,
+  "speed": 1500,
+  "health": 1500,
+  "bounty": 19,
+  "texture": "garbage",
+  "Gold from wave:": 2280
+ }
+]

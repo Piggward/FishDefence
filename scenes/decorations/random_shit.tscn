@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://ve7g61hrtufu"]
+
+[ext_resource type="Script" uid="uid://b7kympk6820gd" path="res://scenes/decorations/random_shit.gd" id="1_deoqm"]
+
+[node name="RandomShit" type="Sprite2D"]
+texture_filter = 1
+script = ExtResource("1_deoqm")

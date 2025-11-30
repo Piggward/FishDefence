@@ -8,6 +8,8 @@
 script = ExtResource("2_w1vr1")
 range_tiles = 2
 range = Array[Vector2]([Vector2(-1, 0), Vector2(1, 0), Vector2(0, 0), Vector2(0, 0)])
+damage = 50.0
+cost = 100
 fish_name = "Surgeon Fish"
 fish_texture = ExtResource("3_meo5d")
 
@@ -15,7 +17,4 @@ fish_texture = ExtResource("3_meo5d")
 texture = ExtResource("3_meo5d")
 
 [node name="CollisionShape2D" parent="." index="1"]
-visible = false
-
-[node name="CollisionShape2D" parent="Range" index="0"]
 visible = false

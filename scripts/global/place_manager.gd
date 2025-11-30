@@ -10,6 +10,8 @@ var tile_grid: TileGrid
 enum State { IDLE, MOVING, PLACING }
 
 signal pick_up(object: PlacedObject)
+signal start_placing
+signal stop_placing
 	
 func mouse_entered_tile(tile: Tile):
 	hover_tile = tile
@@ -29,6 +31,10 @@ func rotate():
 	moving_object.rotate_object()
 	
 func try_place():
+	for area in moving_object.get_overlapping_areas():
+		if area.name == "EnemyArea":
+			return
+			
 	var start_time := Time.get_ticks_usec()  # Start stopwatch
 	if not tile_grid.can_place(moving_object, hover_tile):
 		return
@@ -43,14 +49,16 @@ func try_place():
 		change_state(State.IDLE)
 	var end_time := Time.get_ticks_usec()    # End stopwatch
 	var elapsed := end_time - start_time     # Microseconds
-	print("try_place took %s microseconds" % elapsed)
+	#print("try_place took %s microseconds" % elapsed)
 		
 		
 func end_placing():
 	tile_grid.show_tiles(false)
-	moving_object.queue_free()
-	moving_object = null
+	if is_instance_valid(moving_object):
+		moving_object.queue_free()
+		moving_object = null
 	change_state(State.IDLE)
+	stop_placing.emit()
 	
 func add_object(o: PlacedObject):
 	tile_grid.show_tiles(true)
@@ -61,8 +69,9 @@ func add_object(o: PlacedObject):
 func change_state(to: State):
 	if to == self.state:
 		return
-	print("Changing state to: ", to)
 	self.state = to;
+	if to == State.PLACING:
+		start_placing.emit(moving_object.object)
 			
 #func can_place(tile: Vector2i):
 	#if not tile_inside_area(placeable_tiles.map_to_local(tile)):

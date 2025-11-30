@@ -7,6 +7,11 @@
 
 [node name="Crab" instance=ExtResource("1_2s5kv")]
 script = ExtResource("2_xedrm")
+damage = 100.0
+attack_speed = 1.3
+cost = 200
+can_rotate = true
+description = "The crab attacks enemies that comes too close to it's sides."
 fish_texture = ExtResource("2_jvo4p")
 
 [node name="GPUParticles2D" parent="." index="0" instance=ExtResource("4_xedrm")]

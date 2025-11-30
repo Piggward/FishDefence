@@ -23,7 +23,11 @@ shape = SubResource("RectangleShape2D_vysjg")
 collision_layer = 0
 collision_mask = 64
 
+[node name="Buffs" type="Node2D" parent="."]
+
 [connection signal="area_entered" from="Range" to="." method="_on_range_area_entered"]
 [connection signal="area_exited" from="Range" to="." method="_on_range_area_exited"]
 [connection signal="body_entered" from="Range" to="." method="_on_range_body_entered"]
 [connection signal="body_exited" from="Range" to="." method="_on_range_body_exited"]
+[connection signal="child_entered_tree" from="Buffs" to="." method="_on_buffs_child_entered_tree"]
+[connection signal="child_exiting_tree" from="Buffs" to="." method="_on_buffs_child_exiting_tree"]

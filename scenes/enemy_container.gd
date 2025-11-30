@@ -7,31 +7,40 @@ const TEST_ENEMY = preload("uid://wqreiq6q3r7x")
 @export var start: Marker2D
 var alive_enemies : Array[Enemy] = []
 var unstarted_enemies : Array[Enemy] = []
-var current_wave: int = 0
+var current_wave: int = -1
+var next_wave_button: NextWaveButton
 signal wave_cleared
 @onready var enemy_spawn_rect = $EnemySpawnArea/CollisionShape2D
+var wave_animation: WaveAnimation
+signal wave_start(number: int)
 
 func _ready(): 
-	spawn_wave(waves[current_wave])
+	next_wave_button = get_tree().get_first_node_in_group("NextWaveButton")
+	wave_animation = get_tree().get_first_node_in_group("WaveAnimation")
+	next_wave_button.pressed.connect(_on_next_wave_pressed)
+	load_waves("res://data/waves(2).json")
 		
 func spawn_wave(wave: Wave):
-	var total_enemis = wave.batches.reduce(func(accum, batch): return accum + batch.amount, 0);
+	var total_enemis = wave.amount
 
 	for i in total_enemis:
 		var enemy: Enemy = TEST_ENEMY.instantiate()
+		enemy.queue_number = i + 1
 		set_enemy_stats(wave, enemy)
 		set_enemy_position(enemy)
-		add_child(enemy)
+		wave_animation.add_enemy(enemy)
 		alive_enemies.append(enemy)
 		unstarted_enemies.append(enemy)
 		enemy.died.connect(_on_enemy_died)
 		
-	for j in wave.batches.size():
-		var batch: Batch = wave.batches[j]
-		for k in batch.amount:
-			unstarted_enemies[0].can_start = true
-			unstarted_enemies = unstarted_enemies.slice(1)
-		await get_tree().create_timer(batch.time_before_next_batch).timeout
+	wave_animation.play_wave()
+	await wave_animation.wave_reached
+	for child in wave_animation.get_enemies():
+		if child is Enemy:
+			child.reparent(self)
+			child.can_start = true
+			child.set_start_speed()
+		
 		
 func set_enemy_position(enemy: Enemy):
 	var rect = enemy_spawn_rect.shape.get_rect().size
@@ -47,6 +56,8 @@ func set_enemy_stats(wave: Wave, enemy: Enemy):
 	enemy.speed = wave.speed
 	enemy.health = wave.health
 	enemy.start = start.global_position
+	enemy.texture = wave.get_texture()
+	enemy.bounty = wave.enemy_bounty
 		
 func _on_enemy_died(e: Enemy, killed: bool = true):
 	alive_enemies.erase(e)
@@ -57,11 +68,46 @@ func _on_enemy_died(e: Enemy, killed: bool = true):
 		on_wave_cleared()
 		
 func on_wave_cleared():
-	print("Well done! Spawning next wave in 3")
-	await get_tree().create_timer(1).timeout
-	print("2")
-	await get_tree().create_timer(1).timeout
-	print("1")
-	await get_tree().create_timer(1).timeout
+	next_wave_button.visible = true
+	GameManager.add_bounty(waves[current_wave].wave_bounty)
+	if current_wave == waves.size() -1:
+		print("you won!")
+	
+func _on_next_wave_pressed():
+	next_wave_button.visible = false
 	current_wave += 1 
+	var wds = get_tree().get_first_node_in_group("CurrentWaveDisplay")
+	wds.show_new_wave(current_wave + 1)
+	#wds.get_child(0).text = "Wave: " + str(current_wave + 1)
 	spawn_wave(waves[current_wave])
+	wave_start.emit(current_wave + 1)
+	
+
+func load_waves(path: String) -> void:
+	var file := FileAccess.open(path, FileAccess.READ)
+	if file == null:
+		push_error("Could not open %s: %s" % [path, error_string(FileAccess.get_open_error())])
+		return
+
+	var data = JSON.parse_string(file.get_as_text())
+	if !(data is Array):
+		push_error("Invalid JSON format (expected array).")
+		return
+
+	waves.clear()
+
+	for item in data:
+		if !(item is Dictionary):
+			push_warning("Skipping non-dictionary entry in JSON.")
+			continue
+
+		var wave := Wave.new()		
+		
+		wave.speed = item["speed"]
+		wave.health = item["health"]
+		wave.enemy_bounty = item["enemy_bounty"]
+		wave.wave_bounty = item["wave_bounty"]
+		wave.name = item["texture"]
+		wave.amount = item["amount"]
+
+		waves.append(wave)

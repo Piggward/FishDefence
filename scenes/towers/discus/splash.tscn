@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://iv1thjyw4q72"]
+
+[ext_resource type="Texture2D" uid="uid://d2sf3oa6e6ipd" path="res://scenes/towers/discus/dirt_02.png" id="1_rdxau"]
+
+[sub_resource type="Curve" id="Curve_ft8ev"]
+_limits = [0.0, 5.0, 0.0, 1.0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.13344316, 0), 0.0, 0.0, 0, 0, Vector2(0.23558483, 2.1024096), 0.0, 0.0, 0, 0, Vector2(0.33607906, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_58roq"]
+curve = SubResource("Curve_ft8ev")
+
+[sub_resource type="Curve" id="Curve_58roq"]
+_limits = [0.0, 10.0, 0.0, 1.0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.25700164, 10), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_i27xe"]
+curve = SubResource("Curve_58roq")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mbftx"]
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+spread = 35.0
+initial_velocity_min = 90.0
+initial_velocity_max = 90.0
+orbit_velocity_min = -0.06799991
+orbit_velocity_max = 0.0560001
+radial_velocity_min = 24.999977
+radial_velocity_max = 24.999977
+gravity = Vector3(0, -500, 0)
+damping_min = 200.00002
+damping_max = 200.00002
+damping_curve = SubResource("CurveTexture_58roq")
+scale_min = 0.01
+scale_max = 0.01
+scale_curve = SubResource("CurveTexture_i27xe")
+color = Color(0.74509805, 1, 0.9529412, 1)
+
+[node name="Splash" type="GPUParticles2D"]
+rotation = 3.1415927
+emitting = false
+amount = 12
+texture = ExtResource("1_rdxau")
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_mbftx")

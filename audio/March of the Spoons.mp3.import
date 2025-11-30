@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://ds4u0qu5vwmtu"
+path="res://.godot/imported/March of the Spoons.mp3-f60618b39fa3d6e560f53009582edbb4.mp3str"
+
+[deps]
+
+source_file="res://audio/March of the Spoons.mp3"
+dest_files=["res://.godot/imported/March of the Spoons.mp3-f60618b39fa3d6e560f53009582edbb4.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

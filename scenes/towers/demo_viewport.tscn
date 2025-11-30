@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://besqxivag63uh"]
+
+[ext_resource type="Script" uid="uid://wie6dni4r7tc" path="res://scenes/towers/demo_viewport.gd" id="1_rm5n0"]
+
+[node name="SubViewport" type="SubViewport"]
+disable_3d = true
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(200, 100)
+render_target_update_mode = 4
+script = ExtResource("1_rm5n0")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+scale = Vector2(2.4384992, 3.5259676)
+zoom = Vector2(3, 3)
+limit_enabled = false

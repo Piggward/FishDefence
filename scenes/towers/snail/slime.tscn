@@ -1,0 +1,75 @@
+[gd_scene load_steps=7 format=3 uid="uid://bv30370oa8nt"]
+
+[ext_resource type="Script" uid="uid://qa0bganpkhcy" path="res://scenes/towers/snail/slime.gd" id="1_3qtqu"]
+[ext_resource type="Texture2D" uid="uid://b0dbk1gmugaub" path="res://art/effects/smoke_08.png" id="2_3qtqu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xjskp"]
+size = Vector2(16, 16)
+
+[sub_resource type="Animation" id="Animation_3qtqu"]
+resource_name = "slime"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteContainer:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.01, 0.2, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0.8, 0.8), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_pkcq1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteContainer:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_y0b3t"]
+_data = {
+&"RESET": SubResource("Animation_pkcq1"),
+&"slime": SubResource("Animation_3qtqu")
+}
+
+[node name="Slime" type="Area2D"]
+z_index = -5
+collision_layer = 0
+collision_mask = 64
+script = ExtResource("1_3qtqu")
+
+[node name="SpriteContainer" type="Node2D" parent="."]
+
+[node name="Smoke07" type="Sprite2D" parent="SpriteContainer"]
+modulate = Color(1.013616, 1.361005, 0, 1)
+scale = Vector2(0.043660615, 0.043660615)
+texture = ExtResource("2_3qtqu")
+
+[node name="Smoke08" type="Sprite2D" parent="SpriteContainer"]
+modulate = Color(1.013616, 1.361005, 0, 1)
+scale = Vector2(0.043660615, 0.043660615)
+texture = ExtResource("2_3qtqu")
+
+[node name="Smoke09" type="Sprite2D" parent="SpriteContainer"]
+modulate = Color(1.013616, 1.361005, 0, 1)
+scale = Vector2(0.043660615, 0.043660615)
+texture = ExtResource("2_3qtqu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_xjskp")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_y0b3t")
+}
