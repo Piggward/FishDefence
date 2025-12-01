@@ -13,10 +13,15 @@ var started = false
 @onready var game_title = $"CanvasLayer2/Game Title"
 @onready var volume_c_ontainer = $CanvasLayer2/VolumeCOntainer
 @onready var expert_mode_button = $CanvasLayer2/ExpertModeButton
+var tutorial_container: TutorialContainer
 
 func _ready():
+	tutorial_container = get_tree().get_first_node_in_group("TutorialContainer")
 	game_start_button = get_tree().get_first_node_in_group("GameStartButton")
+	var fast_mode_button: FastModeButton = get_tree().get_first_node_in_group("FastModeButton")
+	fast_mode_button.fast_mode.connect(_on_fast_mode_change)
 	if skip_intro or GameManager.skip_intro:
+		GameManager.tutorial_done = true
 		canvas_layer.visible = true
 		wave_button.visible = true
 		camera_2d.position.x = 192.0
@@ -42,13 +47,14 @@ func spawn_fish():
 	await get_tree().create_timer(4).timeout
 	if not started:
 		spawn_fish()
+		
+func _on_fast_mode_change(value):
+	GameManager.time_scale = 2.0 if value else 1.0
 	
 func _on_start():
 	animation_player.play("intro")
 	started = true
-	
-func _process(delta):
-	if Input.is_action_pressed("ui_accept"):
-		Engine.time_scale = 1.5
-	else:
-		Engine.time_scale = 1.0
+		
+func play_tutorial():
+	tutorial_container.play_tutorial()
+	get_tree().root.process_mode = Node.PROCESS_MODE_DISABLED

@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://jdasnkkeyv3u"]
+[gd_scene load_steps=5 format=3 uid="uid://jdasnkkeyv3u"]
 
 [ext_resource type="PackedScene" uid="uid://cv8o7ubf2m0b1" path="res://scenes/tower.tscn" id="1_cpmkw"]
 [ext_resource type="Script" uid="uid://da8ufgvgdq145" path="res://scenes/towers/puffer_tower/puffer_tower.gd" id="2_ck3tb"]
+[ext_resource type="AudioStream" uid="uid://crpvkphfr3sfs" path="res://audio/sfx/puffer_attack.mp3" id="3_ck3tb"]
 [ext_resource type="Texture2D" uid="uid://cr5xq8b8gccdn" path="res://art/fish/Pufferfish.png" id="3_oymv6"]
 
 [node name="Tower" instance=ExtResource("1_cpmkw")]
@@ -11,6 +12,7 @@ damage = 15.0
 attack_speed = 2.0
 cost = 350
 fish_name = "Puffer Fish"
+attack_sound = ExtResource("3_ck3tb")
 fish_texture = ExtResource("3_oymv6")
 
 [node name="Sprite2D" parent="." index="0"]

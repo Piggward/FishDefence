@@ -14,7 +14,6 @@ var start_tile: Tile
 var enemy_container: Node2D
 var new_enemy_paths = {}
 signal path_updated
-signal show_tiles_requested(value:bool)
 @onready var tile_area = $TileArea/CollisionShape2D
 @onready var tile_poly_container = $TilePolyContainer
 @onready var tile_poly_container2 = $"../CanvasLayer2/Node2D"

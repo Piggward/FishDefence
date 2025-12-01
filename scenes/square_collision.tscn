@@ -8,8 +8,9 @@ size = Vector2(14, 14)
 
 [node name="CollisionShape2D" type="CollisionShape2D"]
 shape = SubResource("RectangleShape2D_ul66i")
+debug_color = Color(0, 0.6, 0.69803923, 1)
 script = ExtResource("1_gmjde")
 
 [node name="RangePolygon" parent="." instance=ExtResource("1_gta8d")]
-color = Color(1, 0.68235296, 0.4627451, 0.4862745)
+color = Color(0, 0, 0, 1)
 polygon = PackedVector2Array(-7, -7, 7, -7, 7, 7, -7, 7)

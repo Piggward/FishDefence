@@ -3,7 +3,7 @@
  {
   "Wave": 1,
   "amount": 15,
-  "speed": 5000,
+  "speed": 1000,
   "health": 50,
   "enemy_bounty": 2,
   "texture": "soda_coke",
@@ -15,7 +15,7 @@
   "speed": 1500,
   "health": 50,
   "enemy_bounty": 2,
-  "texture": "canned_soup",
+  "texture": "soymilk_match",
   "wave_bounty": 260
  },
  {
@@ -33,7 +33,7 @@
   "speed": 1500,
   "health": 150,
   "enemy_bounty": 2,
-  "texture": "soymilk_match",
+  "texture": "canned_soup",
   "wave_bounty": 374.4
  },
  {

@@ -40,10 +40,12 @@ func rotate():
 func try_place():
 	for area in moving_object.get_overlapping_bodies():
 		if area is Enemy:
+			EventManager.error.emit()
 			return
 			
 	var start_time := Time.get_ticks_usec()  # Start stopwatch
 	if not tile_grid.can_place(moving_object, hover_tile):
+		EventManager.error.emit()
 		return
 	
 	if state == State.PLACING and not GameManager.transaction_requested(moving_object.object):

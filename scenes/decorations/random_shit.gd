@@ -26,7 +26,7 @@ const items = [
 ]
 
 func _ready():
-	self.texture = items[randi_range(0, items.size()-1)]
+	self.texture = get_random_item()
 	self.speed *= randf_range(0.5, 1.5)
 	slow()
 	
@@ -36,6 +36,9 @@ func slow():
 	self.speed *= 0.9
 	await get_tree().create_timer(0.3).timeout
 	slow()
+	
+func get_random_item():
+	return items[randi_range(0, items.size()-1)]
 
 func _process(delta):
 	self.position.x += delta * speed

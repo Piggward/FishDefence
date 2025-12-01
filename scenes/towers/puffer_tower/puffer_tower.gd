@@ -8,6 +8,7 @@ var PUFFER_DEMO = load("uid://pd7xpsbcprrs")
 
 
 func puff():
+	play_attack_sound(0.7, 1.0)
 	attacking = true
 	var tween = get_tree().create_tween()
 	var y_scale = sprite_2d.scale.y

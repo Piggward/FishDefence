@@ -38,4 +38,25 @@ func get_texture():
 		"yogurt_cup":
 			return YOGURT_CUP		
 		"garbage":
-			return	GARBAGE				
+			return	GARBAGE		
+			
+func get_material():
+	match(name):
+		"soda_coke":
+			return "can"
+		"canned_soup":
+			return "can"
+		"soda_pepsi":
+			return "can"
+		"soymilk_match":
+			return "paper"	
+		"soda_fanta":
+			return "can"
+		"water_bottled":
+			return "plastic"
+		"soda_sprite":
+			return "can"
+		"yogurt_cup":
+			return "plastic"		
+		"garbage":
+			return	"plastic bag"		

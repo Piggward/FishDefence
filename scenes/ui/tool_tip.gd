@@ -9,18 +9,6 @@ func _ready():
 	self.visible = false
 	PlaceManager.start_placing.connect(_on_start_place)
 	PlaceManager.stop_placing.connect(_on_stop_place)
-	var xc = get_tree().get_first_node_in_group("EnemyContainer")
-	xc.wave_start.connect(_on_wave_start)
-	
-func _on_wave_start(n):
-	if n == 3:
-		await get_tree().create_timer(5).timeout
-		self.visible = true
-		tooltip_label.text = "";
-		tooltip_label.text = "Press space to speed up time." 
-		await get_tree().create_timer(5).timeout
-		if tooltip_label.text == "Press space to speed up time.":
-			self.visible = false
 	
 	
 func _on_start_place(t: Tower):

@@ -21,7 +21,7 @@ func _process(delta):
 	else: 
 		look_at(target_position)
 		var dir = (target_position - self.global_position).normalized()
-		self.global_position += speed * dir * delta
+		self.global_position += speed * dir * delta * GameManager.time_scale
 		if abs((self.global_position - target_position).length()) < 4:
 			self.queue_free()
 			return
@@ -33,7 +33,7 @@ func follow_enemy(target, delta):
 		
 	look_at(target.global_position)
 	var dir = (target.global_position - self.global_position).normalized()
-	self.global_position += speed * dir * delta
+	self.global_position += speed * dir * delta * GameManager.time_scale
 	if abs((self.global_position - target.global_position).length()) < 15:
 		hit_target(target)
 			

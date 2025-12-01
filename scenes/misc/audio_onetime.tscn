@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dfms11u6nqgkq"]
+
+[ext_resource type="Script" uid="uid://cf33vmdkodrku" path="res://scenes/misc/audio_onetime.gd" id="2_3rh6y"]
+
+[node name="OneTimeAudio" type="AudioStreamPlayer2D"]
+bus = &"SoundEffects"
+script = ExtResource("2_3rh6y")

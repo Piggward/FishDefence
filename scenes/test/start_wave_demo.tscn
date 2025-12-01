@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://b4kgvldngck0c"]
+
+[ext_resource type="PackedScene" uid="uid://dwrb20ty0gvsi" path="res://scenes/ui/wave_button.tscn" id="1_lw0im"]
+
+[node name="StartWave_Demo" type="Node2D"]
+
+[node name="WaveButton" parent="." instance=ExtResource("1_lw0im")]
+visible = true
+offset_left = -54.0
+offset_top = -66.99999
+offset_right = 115.0
+offset_bottom = 138.0

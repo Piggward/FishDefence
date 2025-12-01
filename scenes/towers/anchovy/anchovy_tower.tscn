@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://ru86gcsabmxc"]
+[gd_scene load_steps=6 format=3 uid="uid://ru86gcsabmxc"]
 
 [ext_resource type="PackedScene" uid="uid://cv8o7ubf2m0b1" path="res://scenes/tower.tscn" id="1_ekojl"]
 [ext_resource type="Script" uid="uid://bi0agf0j0u25e" path="res://scenes/towers/anchovy/anchovy_tower.gd" id="2_ta63j"]
+[ext_resource type="AudioStream" uid="uid://vpepy71c3bot" path="res://audio/sfx/anchovy_attack.mp3" id="3_ekojl"]
 [ext_resource type="Texture2D" uid="uid://cumx1uv4hu88g" path="res://art/fish/Anchovy.png" id="3_t0wob"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ekojl"]
@@ -15,6 +16,7 @@ attack_speed = 0.35
 cost = 400
 fish_name = "Anchovy"
 can_rotate = true
+attack_sound = ExtResource("3_ekojl")
 fish_texture = ExtResource("3_t0wob")
 
 [node name="Sprite2D" parent="." index="0"]

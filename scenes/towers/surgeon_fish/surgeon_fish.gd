@@ -50,12 +50,13 @@ func attack(enemy: Enemy):
 	proj.global_position = self.global_position
 	proj.follows_enemy = true
 	proj.damage = self.damage
-	proj.speed = 200 * Engine.time_scale
+	proj.speed = 200
 	proj.target_enemy = enemy
 	proj.damage_dealt.connect(_on_hit)
 	if not is_instance_valid(projectile_container):
 		return
 	projectile_container.add_child(proj)
+	play_attack_sound()
 
 
 func _on_hit(dmg):

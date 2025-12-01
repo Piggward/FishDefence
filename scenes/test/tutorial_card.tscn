@@ -1,0 +1,61 @@
+[gd_scene load_steps=6 format=3 uid="uid://ci2trvukaytw3"]
+
+[ext_resource type="PackedScene" uid="uid://bxmg00ne8giic" path="res://scenes/test/tower_card.tscn" id="1_ki65h"]
+[ext_resource type="Script" uid="uid://bcbq3kpuj1hqj" path="res://scenes/test/tutorial_card.gd" id="2_2epxx"]
+[ext_resource type="PackedScene" uid="uid://b4kgvldngck0c" path="res://scenes/test/start_wave_demo.tscn" id="3_2epxx"]
+[ext_resource type="Texture2D" uid="uid://xmhkt17mpj2n" path="res://art/ui/icon_play_light.png" id="4_2epxx"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_kttek"]
+viewport_path = NodePath("SubViewportContainer/SubViewport")
+
+[node name="TutorialCard" instance=ExtResource("1_ki65h")]
+script = ExtResource("2_2epxx")
+title = "Building Mazes"
+text = " Long textLong textLong textLong textLong textLong textLong textLong textLong textLong textLong textLong textLong textLong textLong textLong text"
+last = true
+has_viewport = true
+packed_scene = ExtResource("3_2epxx")
+zoom = Vector2(1.4, 1.4)
+
+[node name="TextureRect" parent="PanelContainer/VBoxContainer/MarginContainer/BodyContainer/VBoxContainer/TextureContainer" index="0"]
+texture = SubResource("ViewportTexture_kttek")
+
+[node name="DescriptionLabel" parent="PanelContainer/VBoxContainer/MarginContainer/BodyContainer/VBoxContainer/PanelContainer/MarginContainer" index="0"]
+theme_override_font_sizes/font_size = 12
+
+[node name="MarginContainer2" type="MarginContainer" parent="PanelContainer/VBoxContainer" index="2"]
+layout_mode = 2
+theme_override_constants/margin_top = 45
+
+[node name="Control" type="Control" parent="PanelContainer/VBoxContainer/MarginContainer2" index="0"]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="NextButton" type="TextureRect" parent="PanelContainer/VBoxContainer/MarginContainer2/Control" index="0"]
+layout_mode = 0
+offset_left = 150.90292
+offset_top = -39.858162
+offset_right = 250.90294
+offset_bottom = 60.141838
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("4_2epxx")
+
+[node name="Control2" type="Control" parent="PanelContainer/VBoxContainer/MarginContainer2" index="1"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/MarginContainer2/Control2" index="0"]
+layout_mode = 0
+offset_left = 49.33365
+offset_top = -52.14763
+offset_right = 144.33365
+offset_bottom = 5.081539
+theme_override_font_sizes/font_size = 36
+text = "Next"
+
+[connection signal="mouse_entered" from="PanelContainer/VBoxContainer/MarginContainer2" to="." method="_on_margin_container_2_mouse_entered"]
+[connection signal="mouse_exited" from="PanelContainer/VBoxContainer/MarginContainer2" to="." method="_on_margin_container_2_mouse_exited"]
+[connection signal="gui_input" from="PanelContainer/VBoxContainer/MarginContainer2/Control/NextButton" to="." method="_on_texture_rect_gui_input"]
+[connection signal="mouse_entered" from="PanelContainer/VBoxContainer/MarginContainer2/Control/NextButton" to="." method="_on_texture_rect_mouse_entered"]
+[connection signal="mouse_exited" from="PanelContainer/VBoxContainer/MarginContainer2/Control/NextButton" to="." method="_on_texture_rect_mouse_exited"]
+
+[editable path="SubViewportContainer"]

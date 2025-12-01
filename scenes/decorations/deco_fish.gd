@@ -39,12 +39,12 @@ func _ready():
 	self.scale.x = 1 if direction <= 0 else -1
 	
 func spawn_bubble():
+	await get_tree().create_timer(randi_range(3, 22)).timeout
 	if dead:
 		return
 	var b = BUBBLE.instantiate()
 	b.global_position = self.global_position
 	get_parent().add_child(b)
-	await get_tree().create_timer(randi_range(1, 4)).timeout
 	spawn_bubble()
 	pass
 	

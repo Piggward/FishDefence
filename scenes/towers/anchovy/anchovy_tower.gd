@@ -16,13 +16,14 @@ func attack(target: Enemy):
 	sprite_2d.add_child(bub)
 	bub.emitting = true
 	var tween = get_tree().create_tween()
-	tween.tween_property(sprite_2d, "position", Vector2.RIGHT * (16 * range.size()), (1 / (attack_speed * 6)))
+	tween.tween_property(sprite_2d, "position", Vector2.RIGHT * (16 * range.size()), (1 / (attack_speed * 6 * GameManager.time_scale)))
 	tween.play()
+	play_attack_sound()
 	await tween.finished
 	charging = false
 	sprite_2d.scale.x = -1
 	tween = get_tree().create_tween()
-	tween.tween_property(sprite_2d, "position", Vector2.ZERO, (1 / (attack_speed * 3)))
+	tween.tween_property(sprite_2d, "position", Vector2.ZERO, (1 / (attack_speed * 3 * GameManager.time_scale)))
 	tween.play()
 	await tween.finished
 	sprite_2d.scale.x = 1

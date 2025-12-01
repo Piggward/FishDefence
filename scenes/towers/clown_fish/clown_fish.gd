@@ -31,6 +31,7 @@ func _ready():
 	super();
 	
 func enable():
+	play_attack_sound(0.95, 1.05, 3.0)
 	for c in range_area.get_overlapping_areas():
 		if c is Tower:
 			add_buff_to_tower(c)
@@ -65,6 +66,7 @@ func add_buff_to_tower(tower: Tower):
 	var cc = KONFETTI_CONSTANT.instantiate()
 	cc.global_position = tower.global_position
 	tower.add_child(cc)
+
 
 func remove_buff_from_tower(tower: Tower):
 	if tower == self:

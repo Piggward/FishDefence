@@ -10,6 +10,7 @@ extends Area2D
 @export var demo = false
 @export var description: String = ""
 @export var is_copy: bool = false
+@export var attack_sound: AudioStream = null
 var projectile_container: Node2D
 var targets: Array[Enemy] = []
 var cd = false
@@ -23,8 +24,12 @@ const SQUARE_COLLISION = preload("uid://dsipufjotl8y8")
 signal just_enabled
 @onready var buffs = $Buffs
 signal dmg_dealt(amount: int)
+@onready var place_sound = $PlaceSound
+@onready var attack_sound_player = $AttackSound
 
 func _ready():
+	if attack_sound:
+		attack_sound_player.stream = attack_sound
 	if not is_copy:
 		for r in range:
 			var collision = SQUARE_COLLISION.instantiate()
@@ -62,6 +67,9 @@ func load_stats() -> void:
 		self.description = item["Description"]
 		self.cost = item["Cost"]
 		
+		if not GameManager.easy_mode: 
+			self.cost *= 1.3
+		
 func get_description():
 	return "Attack speed: %s
 	Damage: %s
@@ -83,13 +91,19 @@ func enable():
 		if b is Enemy:
 			targets.append(b)
 	just_enabled.emit()
+	
+	if not demo:
+		place_sound.pitch_scale = randf_range(0.8, 1.2)
+		place_sound.play()
 			
 func disable():
 	self.z_index = 999
 	enabled = false
 	modulate = Color(0.5, 0.5, 0.5, 0.35);
-	range_area.body_entered.disconnect(_on_range_body_entered)
-	range_area.body_exited.disconnect(_on_range_body_exited)
+	if range_area.is_connected("body_entered", _on_range_body_entered):
+		range_area.body_entered.disconnect(_on_range_body_entered)
+	if range_area.is_connected("body_exited", _on_range_body_exited):
+		range_area.body_exited.disconnect(_on_range_body_exited)
 	show_range(true)
 	
 func deal_damage(e: Enemy):
@@ -107,9 +121,14 @@ func _process(delta):
 		#TODO: select target
 		attack(targets[randi_range(0, targets.size()-1)])
 		
+func play_attack_sound(low = 0.8, high = 1.2, volume = 0.0):
+	attack_sound_player.pitch_scale = randf_range(low, high)
+	attack_sound_player.volume_db = volume
+	attack_sound_player.play()
+		
 func set_cd():
 	cd = true
-	await get_tree().create_timer(1 / (attack_speed * Engine.time_scale)).timeout
+	await get_tree().create_timer(1 / (attack_speed * GameManager.time_scale)).timeout
 	cd = false
 		
 func attack(enemy: Enemy):
@@ -138,7 +157,8 @@ func _on_range_body_entered(body):
 func _on_range_body_exited(body):
 	if body is Enemy:
 		targets.erase(body)
-		body.died.disconnect(_on_enemy_died)
+		if body.is_connected("died", _on_enemy_died):
+			body.died.disconnect(_on_enemy_died)
 	pass # Replace with function body.
 
 func add_buff(b: Buff):

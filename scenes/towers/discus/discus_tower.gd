@@ -7,7 +7,6 @@ var current_target_pos = 0
 @onready var animation_player = $TargetArea/AnimationPlayer
 @onready var magic_03 = $TargetArea/Magic03
 @onready var aoe_area = $TargetArea/AoeArea
-@onready var splash = $TargetArea/Splash
 const SPLASH = preload("uid://iv1thjyw4q72")
 var DISCUS_DEMO = load("uid://bcfnx28sn8rok")
 
@@ -24,8 +23,9 @@ func _on_target_area_entered(enemy: Enemy):
 	target_found = true
 	animation_player.play("target_found")
 	var tween = get_tree().create_tween()
-	tween.tween_property(sprite_2d, "position", Vector2(0, -600), (0.8 * attack_speed))
-	tween.tween_property(sprite_2d, "position", target_area.position, (0.375 * attack_speed))
+	play_attack_sound()
+	tween.tween_property(sprite_2d, "position", Vector2(0, -600), (0.8 * attack_speed * GameManager.time_scale))
+	tween.tween_property(sprite_2d, "position", target_area.position, (0.375 * attack_speed * GameManager.time_scale))
 	#explode
 	await tween.finished
 	var spl = SPLASH.instantiate()
@@ -39,9 +39,13 @@ func _on_target_area_entered(enemy: Enemy):
 		deal_damage(aoe_enemy)
 	await get_tree().create_timer(0.3).timeout
 	var tween2 = get_tree().create_tween()
-	tween2.tween_property(sprite_2d, "position", Vector2(0, 0), (0.625 * attack_speed))
+	tween2.tween_property(sprite_2d, "position", Vector2(0, 0), (0.625 * attack_speed * GameManager.time_scale))
 	await tween2.finished
 	target_found = false
+	
+func play_attack_sound(l = 0.8, h = 1.2, volume = 5.0):
+	await get_tree().create_timer((0.8 * attack_speed * GameManager.time_scale) / 2).timeout
+	super(l,h, volume)
 
 func _process(delta):
 	if not cd and enabled and not target_found:

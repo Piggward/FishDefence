@@ -1,0 +1,176 @@
+[gd_scene load_steps=6 format=3 uid="uid://ba8uppw6gwps3"]
+
+[ext_resource type="Script" uid="uid://cq0hipyeludpe" path="res://scenes/test/tutorial_demo.gd" id="1_l5pnr"]
+[ext_resource type="PackedScene" uid="uid://b2gtmx4hy4pjk" path="res://scenes/path.tscn" id="2_a7x6e"]
+[ext_resource type="PackedScene" uid="uid://c4f6gt4tdgpwo" path="res://scenes/towers/surgeon_fish/surgeon_tower.tscn" id="3_lp0af"]
+[ext_resource type="PackedScene" uid="uid://jdasnkkeyv3u" path="res://scenes/towers/puffer_tower/puffer_tower.tscn" id="4_nm87m"]
+[ext_resource type="Texture2D" uid="uid://w5gfimlgv37" path="res://art/fish/aquarium/LargeRock2.png" id="5_ktey8"]
+
+[node name="Node2D" type="Node2D"]
+position = Vector2(13, 0)
+script = ExtResource("1_l5pnr")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(3, 3)
+
+[node name="Path" parent="." instance=ExtResource("2_a7x6e")]
+points = PackedVector2Array(-115, -17, -69, -17, -28, -17, -28, 22, 0, 22, 0, -17, 39, -17, 84, -17)
+script = null
+
+[node name="Tower" parent="." instance=ExtResource("3_lp0af")]
+position = Vector2(-13, -18)
+demo = true
+
+[node name="Tower4" parent="." instance=ExtResource("3_lp0af")]
+position = Vector2(-44, 19)
+demo = true
+
+[node name="Tower5" parent="." instance=ExtResource("3_lp0af")]
+position = Vector2(-44, 0)
+demo = true
+
+[node name="Tower6" parent="." instance=ExtResource("3_lp0af")]
+position = Vector2(18, 19)
+demo = true
+
+[node name="Tower7" parent="." instance=ExtResource("3_lp0af")]
+position = Vector2(18, 0)
+demo = true
+
+[node name="Tower3" parent="." instance=ExtResource("4_nm87m")]
+position = Vector2(-13, 0)
+demo = true
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D"]
+texture_filter = 1
+position = Vector2(0, -31)
+texture = ExtResource("5_ktey8")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Node2D"]
+texture_filter = 1
+position = Vector2(-13, -31)
+texture = ExtResource("5_ktey8")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Node2D"]
+texture_filter = 1
+position = Vector2(-26, -31)
+texture = ExtResource("5_ktey8")
+
+[node name="Sprite2D4" type="Sprite2D" parent="Node2D"]
+texture_filter = 1
+position = Vector2(13, -31)
+texture = ExtResource("5_ktey8")
+
+[node name="Sprite2D5" type="Sprite2D" parent="Node2D"]
+texture_filter = 1
+position = Vector2(-52, -31)
+texture = ExtResource("5_ktey8")
+
+[node name="Sprite2D6" type="Sprite2D" parent="Node2D"]
+texture_filter = 1
+position = Vector2(-65, -31)
+texture = ExtResource("5_ktey8")
+
+[node name="Sprite2D7" type="Sprite2D" parent="Node2D"]
+texture_filter = 1
+position = Vector2(-78, -31)
+texture = ExtResource("5_ktey8")
+
+[node name="Sprite2D8" type="Sprite2D" parent="Node2D"]
+texture_filter = 1
+position = Vector2(-39, -31)
+texture = ExtResource("5_ktey8")
+
+[node name="Sprite2D9" type="Sprite2D" parent="Node2D"]
+texture_filter = 1
+position = Vector2(52, -31)
+texture = ExtResource("5_ktey8")
+
+[node name="Sprite2D10" type="Sprite2D" parent="Node2D"]
+texture_filter = 1
+position = Vector2(39, -31)
+texture = ExtResource("5_ktey8")
+
+[node name="Sprite2D11" type="Sprite2D" parent="Node2D"]
+texture_filter = 1
+position = Vector2(26, -31)
+texture = ExtResource("5_ktey8")
+
+[node name="Sprite2D12" type="Sprite2D" parent="Node2D"]
+texture_filter = 1
+position = Vector2(65, -31)
+texture = ExtResource("5_ktey8")
+
+[node name="Node2D4" type="Node2D" parent="."]
+position = Vector2(-13, 0)
+rotation = 3.1415927
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D4"]
+texture_filter = 1
+position = Vector2(0, -31)
+texture = ExtResource("5_ktey8")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Node2D4"]
+texture_filter = 1
+position = Vector2(-13, -31)
+texture = ExtResource("5_ktey8")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Node2D4"]
+texture_filter = 1
+position = Vector2(-26, -31)
+texture = ExtResource("5_ktey8")
+
+[node name="Sprite2D4" type="Sprite2D" parent="Node2D4"]
+texture_filter = 1
+position = Vector2(13, -31)
+texture = ExtResource("5_ktey8")
+
+[node name="Sprite2D5" type="Sprite2D" parent="Node2D4"]
+texture_filter = 1
+position = Vector2(-52, -31)
+texture = ExtResource("5_ktey8")
+
+[node name="Sprite2D6" type="Sprite2D" parent="Node2D4"]
+texture_filter = 1
+position = Vector2(-65, -31)
+texture = ExtResource("5_ktey8")
+
+[node name="Sprite2D7" type="Sprite2D" parent="Node2D4"]
+texture_filter = 1
+position = Vector2(-78, -31)
+texture = ExtResource("5_ktey8")
+
+[node name="Sprite2D8" type="Sprite2D" parent="Node2D4"]
+texture_filter = 1
+position = Vector2(-39, -31)
+texture = ExtResource("5_ktey8")
+
+[node name="Sprite2D9" type="Sprite2D" parent="Node2D4"]
+texture_filter = 1
+position = Vector2(52, -31)
+texture = ExtResource("5_ktey8")
+
+[node name="Sprite2D10" type="Sprite2D" parent="Node2D4"]
+texture_filter = 1
+position = Vector2(39, -31)
+texture = ExtResource("5_ktey8")
+
+[node name="Sprite2D11" type="Sprite2D" parent="Node2D4"]
+texture_filter = 1
+position = Vector2(26, -31)
+texture = ExtResource("5_ktey8")
+
+[node name="Sprite2D12" type="Sprite2D" parent="Node2D4"]
+texture_filter = 1
+position = Vector2(65, -31)
+texture = ExtResource("5_ktey8")
+
+[node name="Path2D" type="Path2D" parent="."]
+position = Vector2(18, 0)
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+rotation = -2.802729
+
+[node name="Node2D3" type="Node2D" parent="." groups=["DemoProjectileContainer"]]

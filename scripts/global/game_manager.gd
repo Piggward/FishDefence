@@ -1,13 +1,14 @@
 extends Node
 
 var eco_bucks = 250
-var health = 10
+var health = 100
 var skip_intro = false
 var damage_dealt_container: Control
 var easy_mode: bool = true
-var can_speed_up: bool = false 
-var has_rotated: bool = false
-var has_placed: bool = false
+var has_rotated: bool = false 
+var tutorial_done: bool = false
+var current_wave = 0
+var time_scale = 1.0
 
 signal bucks_updated(value: int)
 signal health_updated(value: int)
@@ -16,6 +17,8 @@ func reset():
 	eco_bucks = 250
 	health = 100
 	skip_intro = true
+	tutorial_done = true
+	current_wave = 0
 
 func player_damage(damage: int):
 	health -= damage
@@ -25,6 +28,8 @@ func player_damage(damage: int):
 		return
 
 func transaction_requested(tower: Tower) -> bool:
+	if not tutorial_done: 
+		return false
 	var cost = tower.cost
 	if cost > eco_bucks:
 		return false
@@ -33,6 +38,8 @@ func transaction_requested(tower: Tower) -> bool:
 	return true
 	
 func can_afford(tower: Tower) -> bool:
+	if not tutorial_done:
+		return false
 	tower.load_stats()
 	if tower.cost > eco_bucks:
 		return false

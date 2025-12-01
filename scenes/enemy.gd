@@ -6,6 +6,7 @@ extends EnemyNavigator
 @export var health: int
 @export var texture: Texture2D
 @export var demo = false
+@export var recycle_material: String
 const GOAL_LAYER := 10
 var dead = false
 @onready var sprite_2d = $Sprite2D
@@ -14,6 +15,11 @@ signal died(enemy: Enemy, killed: bool)
 @onready var debuffs = $Debuffs
 @onready var enemy_area = $EnemyArea
 @onready var collision_shape_2d = $CollisionShape2D
+const CAN_DIE = preload("uid://degalk0n5xp1h")
+const PAPER_CRUSH = preload("uid://fww72qtj7aqg")
+const PLASTIC_BAG_CRUSH = preload("uid://di2rvh1keh6gy")
+const PLASTIC_CRUSH = preload("uid://4dbjhmnhfi08")
+const AUDIO_ONETIME = preload("uid://dfms11u6nqgkq")
 
 func _ready():
 	if not demo:
@@ -48,8 +54,23 @@ func _on_path_updated():
 	
 func die(killed: bool = true):
 	dead = true
+	spawn_audio()
 	died.emit(self, killed)
 	self.queue_free()
+	
+func spawn_audio():
+	var a = AUDIO_ONETIME.instantiate()
+	match(recycle_material):
+		"plastic":
+			a.stream = PLASTIC_CRUSH
+		"plastic bag":
+			a.stream = PLASTIC_BAG_CRUSH
+		"can":
+			a.stream = CAN_DIE
+		"paper":
+			a.stream = PAPER_CRUSH
+			
+	get_tree().root.add_child(a)
 	
 func take_damage(dmg: int) -> int:
 	if dead or health < 0:

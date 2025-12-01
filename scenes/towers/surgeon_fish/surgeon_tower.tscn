@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://c4f6gt4tdgpwo"]
+[gd_scene load_steps=5 format=3 uid="uid://c4f6gt4tdgpwo"]
 
 [ext_resource type="PackedScene" uid="uid://cv8o7ubf2m0b1" path="res://scenes/tower.tscn" id="1_3aa5n"]
 [ext_resource type="Script" uid="uid://gblu3nmvayo4" path="res://scenes/towers/surgeon_fish/surgeon_fish.gd" id="2_w1vr1"]
 [ext_resource type="Texture2D" uid="uid://bj6g84nfxwemt" path="res://art/fish/Surgeonfish.png" id="3_meo5d"]
+[ext_resource type="AudioStream" uid="uid://cxs38mpv30oj0" path="res://audio/sfx/surgeon_attack.mp3" id="3_w1vr1"]
 
 [node name="Tower" instance=ExtResource("1_3aa5n")]
 script = ExtResource("2_w1vr1")
@@ -11,6 +12,7 @@ range = Array[Vector2]([Vector2(-1, 0), Vector2(1, 0), Vector2(0, 0), Vector2(0,
 damage = 50.0
 cost = 100
 fish_name = "Surgeon Fish"
+attack_sound = ExtResource("3_w1vr1")
 fish_texture = ExtResource("3_meo5d")
 
 [node name="Sprite2D" parent="." index="0"]

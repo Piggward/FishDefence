@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://cslxcg6idydi8"]
+[gd_scene load_steps=10 format=3 uid="uid://cslxcg6idydi8"]
 
 [ext_resource type="Shader" uid="uid://7nv0ndklq121" path="res://scenes/wave.gdshader" id="1_h2l3e"]
 [ext_resource type="Texture2D" uid="uid://bd0q6xd2ytslo" path="res://art/effects/wave.png" id="1_y5ysc"]
+[ext_resource type="AudioStream" uid="uid://hcueltcc743f" path="res://audio/sfx/ocean_wave.mp3" id="3_sl0wx"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_h2l3e"]
 frequency = 0.003
@@ -55,7 +56,7 @@ tracks/0/path = NodePath(".:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.7, 0.96666664, 2.23, 4.9666667),
+"times": PackedFloat32Array(0.26666668, 0.9666667, 1.2333333, 2.4966667, 5.2333336),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(-26.000004, 107), Vector2(18, 107), Vector2(22, 107), Vector2(22, 107), Vector2(-26.000004, 107)]
@@ -67,10 +68,24 @@ tracks/1/path = NodePath(".:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.7, 1.5, 4.9666667),
+"times": PackedFloat32Array(0.26666668, 0.9666667, 1.7666667, 5.2333336),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(0.07118531, 0.38415718), Vector2(0.1, 0.541), Vector2(0.1, 0.541), Vector2(0.07118531, 0.38415718)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AudioStreamPlayer2D")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_cyya8"]
@@ -89,3 +104,9 @@ texture = ExtResource("1_y5ysc")
 libraries = {
 &"": SubResource("AnimationLibrary_cyya8")
 }
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(5.358827e-05, 0)
+stream = ExtResource("3_sl0wx")
+volume_db = 12.0
+bus = &"SoundEffects"

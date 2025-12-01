@@ -12,6 +12,7 @@ func _ready():
 
 func enable():
 	super()
+	play_attack_sound(0.8, 1.2, -3.0)
 	for v in range:
 		add_slime(v * 16)
 	
@@ -24,8 +25,10 @@ func get_demo():
 	
 func remove_all_slime():
 	for slime: Slime in slimes:
-		slime.body_entered.disconnect(_on_slime_entered)
-		slime.body_exited.disconnect(_on_slime_exited)
+		if slime.is_connected("body_entered", _on_slime_entered):
+			slime.body_entered.disconnect(_on_slime_entered)
+		if slime.is_connected("body_exited", _on_slime_exited):
+			slime.body_exited.disconnect(_on_slime_exited)
 		slime.queue_free()
 	for e in enemy_dict:
 		e.speed += enemy_dict[e]

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dfnjl1n31rmfm"
+path="res://.godot/imported/End of the Era.mp3-f484853efb5b759394d2d104eaa20246.mp3str"
+
+[deps]
+
+source_file="res://audio/End of the Era.mp3"
+dest_files=["res://.godot/imported/End of the Era.mp3-f484853efb5b759394d2d104eaa20246.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

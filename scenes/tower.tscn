@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://cv8o7ubf2m0b1"]
+[gd_scene load_steps=4 format=3 uid="uid://cv8o7ubf2m0b1"]
 
 [ext_resource type="Script" uid="uid://c04lu2rydngfx" path="res://scenes/tower.gd" id="1_ay4al"]
+[ext_resource type="AudioStream" uid="uid://8htwwkwdsclc" path="res://audio/sfx/place_tower (1).mp3" id="2_ay4al"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vysjg"]
 size = Vector2(16, 16)
@@ -24,6 +25,13 @@ collision_layer = 0
 collision_mask = 64
 
 [node name="Buffs" type="Node2D" parent="."]
+
+[node name="PlaceSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_ay4al")
+bus = &"SoundEffects"
+
+[node name="AttackSound" type="AudioStreamPlayer2D" parent="."]
+bus = &"SoundEffects"
 
 [connection signal="area_entered" from="Range" to="." method="_on_range_area_entered"]
 [connection signal="area_exited" from="Range" to="." method="_on_range_area_exited"]

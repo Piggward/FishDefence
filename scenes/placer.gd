@@ -26,6 +26,7 @@ func _on_shop_item_clicked(item: ShopItem):
 		if not cd:
 			var tower = item.get_tower(item.tower_type)
 			if not GameManager.can_afford(tower):
+				EventManager.error.emit()
 				return
 			input_cd()
 			var obj: PlacedObject

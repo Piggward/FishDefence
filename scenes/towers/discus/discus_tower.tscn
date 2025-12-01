@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://drtd5a4mjfa2j"]
+[gd_scene load_steps=11 format=3 uid="uid://drtd5a4mjfa2j"]
 
 [ext_resource type="PackedScene" uid="uid://cv8o7ubf2m0b1" path="res://scenes/tower.tscn" id="1_cpxyw"]
 [ext_resource type="Script" uid="uid://b87tcn68jbjlp" path="res://scenes/towers/discus/discus_tower.gd" id="2_ft8ev"]
 [ext_resource type="Texture2D" uid="uid://k25y6737py8m" path="res://art/fish/aquarium/Discus.png" id="2_tkb53"]
 [ext_resource type="Texture2D" uid="uid://4g2rv0remi3q" path="res://art/effects/magic_03.png" id="3_4u0d7"]
+[ext_resource type="AudioStream" uid="uid://c2w0ixaek7nit" path="res://audio/sfx/discus_attack.mp3" id="3_ft8ev"]
 
 [sub_resource type="Animation" id="Animation_i27xe"]
 length = 0.001
@@ -55,6 +56,7 @@ damage = 1000.0
 attack_speed = 0.8
 cost = 500
 fish_name = "Discus"
+attack_sound = ExtResource("3_ft8ev")
 fish_texture = ExtResource("2_tkb53")
 
 [node name="Sprite2D" parent="." index="0"]

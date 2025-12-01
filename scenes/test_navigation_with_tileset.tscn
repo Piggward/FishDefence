@@ -1,4 +1,4 @@
-[gd_scene load_steps=84 format=4 uid="uid://drkhpej01r8vi"]
+[gd_scene load_steps=88 format=4 uid="uid://drkhpej01r8vi"]
 
 [ext_resource type="Texture2D" uid="uid://ceg6bpkr167xq" path="res://art/Tileset Spring.png" id="1_kncup"]
 [ext_resource type="Script" uid="uid://bpd7f7v0wwsg0" path="res://scenes/level.gd" id="1_y6gvw"]
@@ -16,8 +16,10 @@
 [ext_resource type="Script" uid="uid://dwxpta7p43a2f" path="res://scenes/ui/show_enemy_path.gd" id="11_twjon"]
 [ext_resource type="Script" uid="uid://0841yimg6eu8" path="res://scenes/ui/bucks_container.gd" id="12_ngjjf"]
 [ext_resource type="Texture2D" uid="uid://6ffjaldxnjy4" path="res://art/ui/icons8-recycle-48(1).png" id="12_pg4dt"]
-[ext_resource type="Script" uid="uid://bgyvrs8xqtdhr" path="res://scenes/wave_button.gd" id="15_awp58"]
-[ext_resource type="Texture2D" uid="uid://kgb3j3gxebfc" path="res://art/ui/sword-clash(1).png" id="16_awp58"]
+[ext_resource type="AudioStream" uid="uid://cd6ed2qlsxrry" path="res://audio/sfx/error_sound.mp3" id="14_0ai0x"]
+[ext_resource type="AudioStream" uid="uid://qwd80t4x2nvx" path="res://audio/sfx/underwater_ambi2.mp3" id="14_0j0uk"]
+[ext_resource type="Script" uid="uid://bntduu8ibf60y" path="res://scenes/misc/error.gd" id="15_etg4x"]
+[ext_resource type="AudioStream" uid="uid://ds4u0qu5vwmtu" path="res://audio/March of the Spoons.mp3" id="15_sjxjp"]
 [ext_resource type="Texture2D" uid="uid://cvgvqcdvxre3p" path="res://art/ui/lifebar_16x16.png" id="18_8lr2p"]
 [ext_resource type="Texture2D" uid="uid://c5uimgym0n7g3" path="res://art/fish/aquarium/AquariumPlant1.png" id="19_l35lw"]
 [ext_resource type="Script" uid="uid://c5q0foqoxawdm" path="res://scenes/ui/start_game_button.gd" id="20_cp2ay"]
@@ -30,6 +32,7 @@
 [ext_resource type="Texture2D" uid="uid://r2mdoeblig2l" path="res://art/fish/aquarium/Log1_Plants.png" id="26_funyk"]
 [ext_resource type="Texture2D" uid="uid://cdalardda4owj" path="res://art/fish/aquarium/MarimoMossballLarge.png" id="27_c7qsp"]
 [ext_resource type="Texture2D" uid="uid://chrcm7l3quvpm" path="res://art/fish/aquarium/MidRock1.png" id="28_0j0uk"]
+[ext_resource type="AudioStream" uid="uid://cghxr1qaxykle" path="res://audio/sfx/wave_clear.wav" id="29_etg4x"]
 [ext_resource type="Texture2D" uid="uid://c4xfo6d6ux7lr" path="res://art/fish/aquarium/MidRock2.png" id="29_sjxjp"]
 [ext_resource type="Script" uid="uid://bdsn5kgunbif3" path="res://scenes/decorations/deco_fish_spawner.gd" id="31_nfbc7"]
 [ext_resource type="Script" uid="uid://b4rutiiwqbplu" path="res://scenes/ui/wave_display.gd" id="32_2uwox"]
@@ -37,6 +40,8 @@
 [ext_resource type="Script" uid="uid://cmq5uo6ri7d2v" path="res://scenes/ui/volume_slider.gd" id="35_2uwox"]
 [ext_resource type="Script" uid="uid://d3m7otwqm6hhj" path="res://scenes/ui/expert_mode_button.gd" id="36_c7qsp"]
 [ext_resource type="Texture2D" uid="uid://ccp8hbm6o8sq3" path="res://art/ui/check_square_grey.png" id="36_funyk"]
+[ext_resource type="PackedScene" uid="uid://dwrb20ty0gvsi" path="res://scenes/ui/wave_button.tscn" id="37_0ai0x"]
+[ext_resource type="Script" uid="uid://bvo2ln3tvulgc" path="res://scenes/ui/fast_mode_button.gd" id="38_etg4x"]
 
 [sub_resource type="Animation" id="Animation_y6gvw"]
 length = 0.001
@@ -115,7 +120,7 @@ tracks/5/keys = {
 
 [sub_resource type="Animation" id="Animation_cp2ay"]
 resource_name = "intro"
-length = 30.0
+length = 20.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -123,7 +128,7 @@ tracks/0/path = NodePath(".:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 14.666668, 18.5),
+"times": PackedFloat32Array(0, 11, 11.966666),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector2(550, 112), Vector2(550, 112), Vector2(192, 112)]
@@ -147,7 +152,7 @@ tracks/2/path = NodePath("../Music")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(3.4333334, 22.533333),
+"times": PackedFloat32Array(2.6333334, 13.133333),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
@@ -164,7 +169,7 @@ tracks/3/path = NodePath("../Decorations/DecoFish")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(1.4, 7.5333333),
+"times": PackedFloat32Array(0.96666664, 5.9),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [25],
@@ -181,7 +186,7 @@ tracks/4/path = NodePath("../CanvasLayer:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0.0333333, 22.766666),
+"times": PackedFloat32Array(0.0333333, 13.133332),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -193,7 +198,7 @@ tracks/5/path = NodePath("../WaveAnimation")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(17.033333),
+"times": PackedFloat32Array(10.733333),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -231,10 +236,24 @@ tracks/8/path = NodePath("../CanvasLayer/WaveButton:visible")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"times": PackedFloat32Array(23),
+"times": PackedFloat32Array(13.133332),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/9/type = "method"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("..")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(13.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"play_tutorial"
+}]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2uwox"]
@@ -941,13 +960,17 @@ _data = {
 &"show": SubResource("Animation_2uwox")
 }
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vswhx"]
-bg_color = Color(0.41960785, 0.6784314, 0.21176471, 1)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2uwox"]
+bg_color = Color(0.16078432, 0.62352943, 0.64705884, 0.5647059)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
 border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nfbc7"]
 bg_color = Color(0.14901961, 0.4392157, 0.47843137, 1)
@@ -968,20 +991,9 @@ corner_radius_top_right = 60
 corner_radius_bottom_right = 60
 corner_radius_bottom_left = 60
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2uwox"]
-bg_color = Color(0.14901961, 0.4392157, 0.47843137, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-
 [node name="Level" type="Node2D"]
 script = ExtResource("1_y6gvw")
+skip_intro = false
 
 [node name="Decorations" type="Node2D" parent="."]
 
@@ -1574,8 +1586,22 @@ position = Vector2(338, 107)
 [node name="Right" type="Marker2D" parent="Decorations/DecoFish"]
 position = Vector2(754, 115)
 
+[node name="Error" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("14_0ai0x")
+pitch_scale = 0.9
+script = ExtResource("15_etg4x")
+
+[node name="Ambient" type="AudioStreamPlayer2D" parent="."]
+process_mode = 3
+stream = ExtResource("14_0j0uk")
+volume_db = -5.0
+autoplay = true
+
 [node name="Music" type="AudioStreamPlayer2D" parent="."]
 process_mode = 3
+position = Vector2(197, 111)
+stream = ExtResource("15_sjxjp")
+bus = &"Music"
 script = ExtResource("32_nfbc7")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -1711,6 +1737,11 @@ visible = false
 position = Vector2(11, 111)
 shape = SubResource("RectangleShape2D_6oa22")
 
+[node name="WaveClear" type="AudioStreamPlayer2D" parent="EnemyContainer"]
+position = Vector2(197, 110)
+stream = ExtResource("29_etg4x")
+pitch_scale = 2.0
+
 [node name="ProjectileContainer" type="Node2D" parent="." groups=["ProjectileContainer"]]
 
 [node name="Placer" parent="." instance=ExtResource("2_ncq2f")]
@@ -1718,7 +1749,7 @@ shape = SubResource("RectangleShape2D_6oa22")
 [node name="CanvasLayer" parent="." instance=ExtResource("10_tnbrr")]
 visible = false
 
-[node name="ShopContainer" parent="CanvasLayer" index="2" groups=["Shop"]]
+[node name="ShopContainer" parent="CanvasLayer" index="3" groups=["Shop"]]
 
 [node name="ShowEnemyPath" type="PanelContainer" parent="CanvasLayer"]
 visible = false
@@ -1907,60 +1938,46 @@ libraries = {
 &"": SubResource("AnimationLibrary_funyk")
 }
 
-[node name="WaveButton" type="PanelContainer" parent="CanvasLayer" groups=["NextWaveButton"]]
-visible = false
+[node name="WaveButton" parent="CanvasLayer" instance=ExtResource("37_0ai0x")]
+
+[node name="FastModeButton" type="PanelContainer" parent="CanvasLayer" groups=["FastModeButton"]]
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -560.0
-offset_top = -189.0
-offset_right = -391.0
-offset_bottom = 16.0
+offset_left = -542.0
+offset_top = -558.0
+offset_right = -416.82672
+offset_bottom = -518.4535
 grow_horizontal = 2
 grow_vertical = 0
-scale = Vector2(0.65682995, 0.65682995)
-size_flags_vertical = 4
-theme_override_styles/panel = SubResource("StyleBoxFlat_vswhx")
-script = ExtResource("15_awp58")
-normal_color = Color(1, 1, 1, 1)
-hover_color = Color(1, 0.5568628, 0.34509805, 1)
+scale = Vector2(0.62313634, 0.62313634)
+theme_override_styles/panel = SubResource("StyleBoxFlat_2uwox")
+script = ExtResource("38_etg4x")
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/WaveButton"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/FastModeButton"]
 layout_mode = 2
-theme_override_constants/margin_left = 0
-theme_override_constants/margin_top = 0
-theme_override_constants/margin_right = 0
-theme_override_constants/margin_bottom = 0
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/WaveButton/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/FastModeButton/MarginContainer"]
 layout_mode = 2
-theme_override_constants/separation = 0
+theme_override_constants/separation = 9
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/WaveButton/MarginContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="CanvasLayer/FastModeButton/MarginContainer/HBoxContainer"]
 layout_mode = 2
+tooltip_text = "I am an expert labyrinth builder and tower defender and want a challenge."
+mouse_filter = 0
+theme_override_font_sizes/font_size = 14
+text = "Fast mode"
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/WaveButton/MarginContainer/HBoxContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 100)
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/FastModeButton/MarginContainer/HBoxContainer"]
 layout_mode = 2
-texture = ExtResource("16_awp58")
-expand_mode = 3
-
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/WaveButton/MarginContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 35
-theme_override_constants/margin_right = 25
-
-[node name="Label" type="Label" parent="CanvasLayer/WaveButton/MarginContainer/HBoxContainer/VBoxContainer/MarginContainer"]
-layout_mode = 2
-theme_override_constants/line_spacing = -7
-theme_override_font_sizes/font_size = 36
-text = "NEXT 
-WAVE"
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/WaveButton/MarginContainer"]
-layout_mode = 2
+texture = ExtResource("36_funyk")
+expand_mode = 2
 
 [node name="CanvasLayer2" type="CanvasLayer" parent="." groups=["CanvasLayer"]]
 process_mode = 3
@@ -2100,11 +2117,13 @@ theme_override_constants/margin_bottom = 5
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer2/ExpertModeButton/MarginContainer"]
 layout_mode = 2
+theme_override_constants/separation = 9
 
 [node name="Label" type="Label" parent="CanvasLayer2/ExpertModeButton/MarginContainer/HBoxContainer"]
 layout_mode = 2
 tooltip_text = "I am an expert labyrinth builder and tower defender and want a challenge."
 mouse_filter = 0
+theme_override_font_sizes/font_size = 14
 text = "Expert mode"
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer2/ExpertModeButton/MarginContainer/HBoxContainer"]
@@ -2112,13 +2131,9 @@ layout_mode = 2
 texture = ExtResource("36_funyk")
 expand_mode = 2
 
-[connection signal="gui_input" from="CanvasLayer/WaveButton" to="CanvasLayer/WaveButton" method="_on_gui_input"]
-[connection signal="mouse_entered" from="CanvasLayer/WaveButton" to="CanvasLayer/WaveButton" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="CanvasLayer/WaveButton" to="CanvasLayer/WaveButton" method="_on_mouse_exited"]
+[connection signal="gui_input" from="CanvasLayer/FastModeButton/MarginContainer/HBoxContainer/TextureRect" to="CanvasLayer/FastModeButton" method="_on_texture_rect_gui_input"]
 [connection signal="gui_input" from="CanvasLayer2/StartGameButton" to="CanvasLayer2/StartGameButton" method="_on_gui_input"]
 [connection signal="value_changed" from="CanvasLayer2/VolumeCOntainer/MarginContainer/HBoxContainer/VolumeSlider" to="CanvasLayer2/VolumeCOntainer/MarginContainer/HBoxContainer/VolumeSlider" method="_on_value_changed"]
 [connection signal="gui_input" from="CanvasLayer2/ExpertModeButton/MarginContainer/HBoxContainer/TextureRect" to="CanvasLayer2/ExpertModeButton" method="_on_texture_rect_gui_input"]
 
 [editable path="CanvasLayer"]
-[editable path="CanvasLayer/ShopContainer/PanelContainer/MarginContainer2/VBoxContainer/HBoxContainer/MarginContainer3"]
-[editable path="CanvasLayer/ShopContainer/PanelContainer/MarginContainer2/VBoxContainer/HBoxContainer4/MarginContainer2"]
