@@ -5,3 +5,4 @@ signal win
 signal lose
 signal error
 signal endless_started
+signal expert_updated

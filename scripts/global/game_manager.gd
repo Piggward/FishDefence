@@ -9,6 +9,7 @@ var has_rotated: bool = false
 var tutorial_done: bool = false
 var current_wave = 0
 var time_scale = 1.0
+var hide_demo = true
 
 signal bucks_updated(value: int)
 signal health_updated(value: int)

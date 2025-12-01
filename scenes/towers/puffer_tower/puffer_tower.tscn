@@ -8,7 +8,6 @@
 [node name="Tower" instance=ExtResource("1_cpmkw")]
 script = ExtResource("2_ck3tb")
 range = Array[Vector2]([Vector2(-1, -1), Vector2(-1, 0), Vector2(-1, 1), Vector2(0, 1), Vector2(0, -1), Vector2(1, -1), Vector2(1, 0), Vector2(1, 1)])
-damage = 15.0
 attack_speed = 2.0
 cost = 350
 fish_name = "Puffer Fish"

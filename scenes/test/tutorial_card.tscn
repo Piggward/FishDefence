@@ -5,8 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://b4kgvldngck0c" path="res://scenes/test/start_wave_demo.tscn" id="3_2epxx"]
 [ext_resource type="Texture2D" uid="uid://xmhkt17mpj2n" path="res://art/ui/icon_play_light.png" id="4_2epxx"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_kttek"]
-viewport_path = NodePath("SubViewportContainer/SubViewport")
+[sub_resource type="ViewportTexture" id="ViewportTexture_2epxx"]
 
 [node name="TutorialCard" instance=ExtResource("1_ki65h")]
 script = ExtResource("2_2epxx")
@@ -17,8 +16,12 @@ has_viewport = true
 packed_scene = ExtResource("3_2epxx")
 zoom = Vector2(1.4, 1.4)
 
-[node name="TextureRect" parent="PanelContainer/VBoxContainer/MarginContainer/BodyContainer/VBoxContainer/TextureContainer" index="0"]
-texture = SubResource("ViewportTexture_kttek")
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/VBoxContainer/MarginContainer/BodyContainer/VBoxContainer/TextureContainer" index="0"]
+layout_mode = 2
+texture = SubResource("ViewportTexture_2epxx")
+
+[node name="MarginContainer" parent="PanelContainer/VBoxContainer/MarginContainer/BodyContainer/VBoxContainer/TextureContainer" index="1"]
+visible = false
 
 [node name="DescriptionLabel" parent="PanelContainer/VBoxContainer/MarginContainer/BodyContainer/VBoxContainer/PanelContainer/MarginContainer" index="0"]
 theme_override_font_sizes/font_size = 12

@@ -30,7 +30,7 @@ func shop_tutorial():
 	current_tutorial.queue_free()
 	var tutorial: TutorialCard = TUTORIAL_CARD.instantiate()
 	tutorial.title = "Hire defenders!"
-	tutorial.text = "On the right you can find the shop where you can trade recycle-bucks for fishes that will defend against hostile trash. Hover over the fishes to see what they do. Your current recycle-bucks and your reef's health is displayed in the top left corner."
+	tutorial.text = "To the right you find the shop where you can hire fishes that defend against hostile trash. Hover over the fishes to see what they do. Your economy and your reef's health is displayed in the top left corner."
 	tutorial.has_viewport = true
 	tutorial.packed_scene = SHOP_DEMO
 	tutorial.last = false

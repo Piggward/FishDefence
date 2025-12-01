@@ -62,7 +62,7 @@ func _move_to(local_position, delta):
 	var t = speed
 	if not start_reached:
 		t = before_start_speed * 100
-	var desired_velocity = (local_position - global_position).normalized() * t  * GameManager.time_scale
+	var desired_velocity = (local_position - global_position).normalized() * t * GameManager.time_scale
 	_velocity = desired_velocity
 	#global_position += _velocity * delta
 	velocity = _velocity * delta

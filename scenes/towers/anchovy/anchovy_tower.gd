@@ -6,7 +6,7 @@ const BUBBLE_PARTICLES = preload("uid://dq2iwrtbcm1d6")
 @onready var attack_area: Area2D = $Sprite2D/AttackArea
 var ANCHOVY_DEMO = load("uid://b2iwto0ov5ms3")
 
-func attack(target: Enemy):
+func attack(_target: Enemy):
 	charging = true
 	charged_enemies.clear()
 	for a in attack_area.get_overlapping_areas():

@@ -9,7 +9,6 @@ size = Vector2(16, 16)
 [node name="Tower" type="Area2D"]
 script = ExtResource("1_ay4al")
 range = Array[Vector2]([Vector2(-1, 0), Vector2(1, 0)])
-damage = 10.0
 attack_speed = 1.0
 cost = 20
 fish_name = "Crab"

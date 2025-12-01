@@ -104,11 +104,3 @@ func _on_debuffs_child_entered_tree(node):
 	if not has_buff:
 		node.apply(self)
 	pass # Replace with function body.
-
-
-func _on_debuffs_child_exiting_tree(node):
-	pass	
-	#print("EXITED TREE")
-	#if not debuffs.get_children().any(func(c: Buff): return c.buff_name == node.buff_name and node != c):
-		#print("removing")
-		#node.remove(self)

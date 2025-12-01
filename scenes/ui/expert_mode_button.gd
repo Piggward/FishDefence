@@ -11,7 +11,8 @@ var checked = false
 func _on_texture_rect_gui_input(event):
 	if event.is_action_pressed("left_click"):
 		checked = !checked
-		GameManager.easy_mode = checked
+		GameManager.easy_mode = !checked
+		EventManager.expert_updated.emit()
 		update_texture()
 	pass # Replace with function body.
 	

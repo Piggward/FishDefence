@@ -58,7 +58,7 @@ func _on_remove_object(o: PlacedObject):
 				_astar.set_point_solid(Vector2i(tile.pos), false)
 	path_updated.emit()
 
-func can_place(o: PlacedObject, tile: Tile) -> bool:
+func can_place(tile: Tile) -> bool:
 	if tile.pos.x + 1 == grid_size.x || tile.pos.y + 1 == grid_size.y:
 		return false
 		

@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bjwit5vgqyfkp" path="res://scenes/test/sub_viewport_container.tscn" id="1_3hfqn"]
 [ext_resource type="Script" uid="uid://dc1cw66rqyyqm" path="res://scenes/ui/tower_card.gd" id="1_wl4yw"]
+[ext_resource type="Texture2D" uid="uid://cr5xq8b8gccdn" path="res://art/fish/Pufferfish.png" id="3_n82q0"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3hfqn"]
 bg_color = Color(0.12941177, 0.21568628, 0.3372549, 1)
@@ -14,9 +15,6 @@ bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n82q0"]
 bg_color = Color(0.14117648, 0.72156864, 0.627451, 1)
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_3hfqn"]
-viewport_path = NodePath("SubViewportContainer/SubViewport")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dumxt"]
 bg_color = Color(0.14901961, 0.4392157, 0.47843137, 1)
@@ -75,13 +73,20 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxFlat_n82q0")
 
-[node name="TextureRect" type="TextureRect" parent="PanelContainer/VBoxContainer/MarginContainer/BodyContainer/VBoxContainer/TextureContainer"]
-custom_minimum_size = Vector2(200, 100)
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer/MarginContainer/BodyContainer/VBoxContainer/TextureContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 5
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/VBoxContainer/MarginContainer/BodyContainer/VBoxContainer/TextureContainer/MarginContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-texture = SubResource("ViewportTexture_3hfqn")
-stretch_mode = 3
+texture = ExtResource("3_n82q0")
+expand_mode = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="PanelContainer/VBoxContainer/MarginContainer/BodyContainer/VBoxContainer"]
 custom_minimum_size = Vector2(200, 0)

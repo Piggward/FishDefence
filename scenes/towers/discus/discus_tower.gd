@@ -17,15 +17,15 @@ func _ready():
 	target_area.position = range[0] * 16
 	target_area.body_entered.connect(_on_target_area_entered)
 
-func _on_target_area_entered(enemy: Enemy):
+func _on_target_area_entered(_enemy: Enemy):
 	if target_found or not enabled:
 		return
 	target_found = true
 	animation_player.play("target_found")
 	var tween = get_tree().create_tween()
 	play_attack_sound()
-	tween.tween_property(sprite_2d, "position", Vector2(0, -600), (0.8 * attack_speed * GameManager.time_scale))
-	tween.tween_property(sprite_2d, "position", target_area.position, (0.375 * attack_speed * GameManager.time_scale))
+	tween.tween_property(sprite_2d, "position", Vector2(0, -600), (0.5 / (attack_speed * GameManager.time_scale)))
+	tween.tween_property(sprite_2d, "position", target_area.position, (0.24 / (attack_speed * GameManager.time_scale)))
 	#explode
 	await tween.finished
 	var spl = SPLASH.instantiate()
@@ -37,17 +37,17 @@ func _on_target_area_entered(enemy: Enemy):
 	
 	for aoe_enemy: Enemy in aoe_area.get_overlapping_bodies():
 		deal_damage(aoe_enemy)
-	await get_tree().create_timer(0.3).timeout
+	await get_tree().create_timer(0.3 / GameManager.time_scale).timeout
 	var tween2 = get_tree().create_tween()
-	tween2.tween_property(sprite_2d, "position", Vector2(0, 0), (0.625 * attack_speed * GameManager.time_scale))
+	tween2.tween_property(sprite_2d, "position", Vector2(0, 0), (0.4 / (attack_speed * GameManager.time_scale)))
 	await tween2.finished
 	target_found = false
 	
 func play_attack_sound(l = 0.8, h = 1.2, volume = 5.0):
-	await get_tree().create_timer((0.8 * attack_speed * GameManager.time_scale) / 2).timeout
+	await get_tree().create_timer((0.5 / (attack_speed * GameManager.time_scale)) / 2).timeout
 	super(l,h, volume)
 
-func _process(delta):
+func _process(_delta):
 	if not cd and enabled and not target_found:
 		set_cd()
 		next_target()

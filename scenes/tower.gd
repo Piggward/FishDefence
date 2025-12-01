@@ -2,7 +2,7 @@ class_name Tower
 extends Area2D
 
 @export var range: Array[Vector2]
-@export var damage: float
+@export var damage: int
 @export var attack_speed: float
 @export var cost: int
 @export var fish_name: String
@@ -23,7 +23,6 @@ const SQUARE_COLLISION = preload("uid://dsipufjotl8y8")
 @onready var sprite_2d = $Sprite2D
 signal just_enabled
 @onready var buffs = $Buffs
-signal dmg_dealt(amount: int)
 @onready var place_sound = $PlaceSound
 @onready var attack_sound_player = $AttackSound
 
@@ -133,16 +132,6 @@ func set_cd():
 		
 func attack(enemy: Enemy):
 	pass
-	#var projectile: Projectile = PROJECTILE.instantiate()
-	#projectile.target = enemy
-	#projectile.damage = self.damage
-	#projectile.global_position = self.global_position
-	#projectile_container.add_child(projectile)
-	#var attack: AttackAnimation = CRAB_ATTACK.instantiate()
-	#attack.global_position = enemy.global_position
-	#projectile_container.add_child(attack)
-	#await attack.hit
-	#enemy.take_damage(self.damage)
 
 func _on_enemy_died(enemy: Enemy, killed: bool):
 	targets.erase(enemy)

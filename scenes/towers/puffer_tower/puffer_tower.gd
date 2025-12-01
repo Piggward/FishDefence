@@ -12,9 +12,9 @@ func puff():
 	attacking = true
 	var tween = get_tree().create_tween()
 	var y_scale = sprite_2d.scale.y
-	tween.tween_property(sprite_2d, "scale", Vector2(1.4, 1.4 * y_scale), 0.1)
+	tween.tween_property(sprite_2d, "scale", Vector2(1.4, 1.4 * y_scale), (0.1 / (attack_speed * GameManager.time_scale)))
 	tween.play()
-	tween.tween_property(sprite_2d, "scale", Vector2(1, sign(y_scale)), 0.2)
+	tween.tween_property(sprite_2d, "scale", Vector2(1, sign(y_scale)), (0.4 / (attack_speed * GameManager.time_scale)))
 	tween.play()
 	await tween.finished
 	attacking = false
@@ -22,7 +22,7 @@ func puff():
 func get_demo():
 	return PUFFER_DEMO.instantiate()
 
-func attack(enemy: Enemy):
+func attack(_enemy: Enemy):
 	if attacking:
 		return
 	puff()

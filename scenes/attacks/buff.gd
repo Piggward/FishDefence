@@ -3,8 +3,8 @@ extends Node
 
 @export var buff_name: String
 
-func apply(t):
+func apply(_t):
 	pass
 	
-func remove(t):
+func remove(_t):
 	pass

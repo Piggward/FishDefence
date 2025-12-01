@@ -9,11 +9,11 @@ extends Control
 @export var packed_scene: PackedScene = null 
 @export var zoom: Vector2
 @onready var tutorial_name = $PanelContainer/VBoxContainer/TitleContainer/Name
-@onready var texture_rect = $PanelContainer/VBoxContainer/MarginContainer/BodyContainer/VBoxContainer/TextureContainer/TextureRect
 @onready var description_label = $PanelContainer/VBoxContainer/MarginContainer/BodyContainer/VBoxContainer/PanelContainer/MarginContainer/DescriptionLabel
 @onready var next_button = $PanelContainer/VBoxContainer/MarginContainer2/Control/NextButton
 @onready var margin_container_2 = $PanelContainer/VBoxContainer/MarginContainer2
 @onready var label = $PanelContainer/VBoxContainer/MarginContainer2/Control2/Label
+@onready var texture_rect = $PanelContainer/VBoxContainer/MarginContainer/BodyContainer/VBoxContainer/TextureContainer/TextureRect
 
 const DEMO_VIEWPORT = preload("uid://besqxivag63uh")
 signal next

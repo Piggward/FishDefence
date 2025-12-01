@@ -45,13 +45,6 @@ func disable():
 	
 func get_demo():
 	return CLOWN_DEMO.instantiate()
-	
-func _on_range_body_entered(body):
-	pass
-
-
-func _on_range_body_exited(body):
-	pass
 
 func add_buff_to_tower(tower: Tower):
 	if tower == self:

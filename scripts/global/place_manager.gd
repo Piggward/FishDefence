@@ -44,7 +44,7 @@ func try_place():
 			return
 			
 	var start_time := Time.get_ticks_usec()  # Start stopwatch
-	if not tile_grid.can_place(moving_object, hover_tile):
+	if not tile_grid.can_place(hover_tile):
 		EventManager.error.emit()
 		return
 	

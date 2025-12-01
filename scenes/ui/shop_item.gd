@@ -21,14 +21,18 @@ const CRAB_TOWER = preload("uid://38eeivo1kv68")
 @onready var panel_container_2 = $MarginContainer/PanelContainer2
 
 func _ready():
+	set_stats()
+	EventManager.expert_updated.connect(set_stats)
+	tower_card_container = get_tree().get_first_node_in_group("TowerCardContainer")
+	GameManager.bucks_updated.connect(_on_bucks_updated)
+	_on_bucks_updated(0)
+	
+func set_stats():
 	var t: Tower = get_tower(tower_type)
 	t.load_stats()
 	fish_texture.texture = t.fish_texture
 	name_label.text = t.fish_name
 	cost.text = str(t.cost)
-	tower_card_container = get_tree().get_first_node_in_group("TowerCardContainer")
-	GameManager.bucks_updated.connect(_on_bucks_updated)
-	_on_bucks_updated(0)
 	
 func _on_bucks_updated(new_bucks: int):
 	if GameManager.can_afford_cost(int(cost.text)):
