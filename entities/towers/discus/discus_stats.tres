@@ -8,5 +8,4 @@ fish_name = "Discus"
 cost = 4000
 damage = 1000
 attack_speed = 0.8
-special = 0.0
 description = "The discus searches its surroundings, smashing down on any enemies it can detect a 2 square radius away."

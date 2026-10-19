@@ -1,50 +1,136 @@
 class_name Tower
 extends Area2D
+## Base for all towers. A tower does nothing until enabled (placed on the grid, or set up by
+## a demo); then it attacks a random enemy in range whenever its AttackTimer allows.
+## Subclasses override attack(), and support towers (attack speed 0) never attack.
 
-## Grid offsets (in 16px tower cells) this tower reaches. Edited as a clickable grid by the
+signal just_enabled
+signal just_disabled
+
+## Size of one tower cell in pixels; range_cells are measured in these.
+const CELL_SIZE := 16
+const RANGE_CELL = preload("uid://dsipufjotl8y8")
+
+## Grid offsets (in tower cells) this tower reaches. Edited as a clickable grid by the
 ## Cell Grid Editor plugin (addons/cell_grid_editor).
 @export_custom(PROPERTY_HINT_NONE, "cell_grid") var range_cells: Array[Vector2]
 @export var stats: TowerStats
-@export var can_rotate: bool = false
-@export var demo = false
-@export var attack_sound: AudioStream = null
+@export var can_rotate := false
+@export var attack_sound: AudioStream
 @export var fish_texture: Texture
+
 ## Live values, copied from `stats` on ready; buffs change attack_speed at runtime.
 var damage: int
 var attack_speed: float
 var cost: int
-var special: float
 var fish_name: String:
 	get:
 		return stats.fish_name
+var enabled := false
 var projectile_container: Node2D
-var targets: Array[Enemy] = []
-var cd = false
-var enabled = false
-const SQUARE_COLLISION = preload("uid://dsipufjotl8y8")
-@onready var range_area = $Range
-@onready var sprite_2d = $Sprite2D
+## The cooldown has run out; attack the next enemy that is in range.
+var _ready_to_attack := true
+
+@onready var range_area: Area2D = $Range
+@onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var buffs: BuffContainer = $Buffs
-@onready var place_sound = $PlaceSound
-@onready var attack_sound_player = $AttackSound
-signal just_enabled
-signal just_disabled
+@onready var place_sound: AudioStreamPlayer2D = $PlaceSound
+@onready var attack_sound_player: AudioStreamPlayer2D = $AttackSound
+@onready var attack_timer: Timer = $AttackTimer
 
 
-func _ready():
+func _ready() -> void:
 	load_stats()
 	if attack_sound:
 		attack_sound_player.stream = attack_sound
-	for r in range_cells:
-		var collision = SQUARE_COLLISION.instantiate()
+	for cell in range_cells:
+		var collision: RangeCollision = RANGE_CELL.instantiate()
 		range_area.add_child(collision)
-		collision.position = r * Vector2(16, 16)
+		collision.position = cell * CELL_SIZE
+	show_range(false)
 	projectile_container = _find_in_own_viewport("ProjectileContainer")
-	if not demo:
-		disable()
-	else:
-		enable()
-		show_range(false)
+	attack_timer.timeout.connect(_on_attack_timer_timeout)
+	# Deferred: body_entered fires during the physics step, where attacks can't add
+	# projectiles or other collision objects.
+	range_area.body_entered.connect(func(_body): _try_attack.call_deferred())
+
+
+func load_stats() -> void:
+	attack_speed = stats.attack_speed
+	damage = stats.damage
+	cost = stats.get_cost()
+
+
+func enable() -> void:
+	enabled = true
+	# Bodies already in range are reported as entering on the next physics step.
+	range_area.monitoring = true
+	place_sound.pitch_scale = randf_range(0.8, 1.2)
+	place_sound.play()
+	just_enabled.emit()
+
+
+## Stops attacking. The cooldown keeps running, so picking a tower up and putting it back
+## doesn't skip it.
+func disable() -> void:
+	enabled = false
+	range_area.monitoring = false
+	just_disabled.emit()
+
+
+func enemies_in_range() -> Array:
+	return range_area.get_overlapping_bodies().filter(func(b): return b is Enemy and not b.dead)
+
+
+## Overridden by each tower with its attack.
+func attack(_enemy: Enemy) -> void:
+	pass
+
+
+func deal_damage(e: Enemy) -> void:
+	report_damage(e.take_damage(damage))
+
+
+func report_damage(amount: int) -> void:
+	# Only the game's own viewport counts; demo previews run in their own.
+	if get_viewport() == get_tree().root:
+		EventManager.tower_damage_dealt.emit(self, amount)
+
+
+func show_range(value: bool) -> void:
+	for r in range_area.get_children():
+		if r is RangeCollision:
+			r.toggle_show(value)
+
+
+func play_attack_sound(low := 0.8, high := 1.2, volume := 0.0) -> void:
+	attack_sound_player.pitch_scale = randf_range(low, high)
+	attack_sound_player.volume_db = volume
+	attack_sound_player.play()
+
+
+func add_buff(b: Buff) -> void:
+	buffs.add(b)
+
+
+func remove_buff(buff_name: String) -> void:
+	buffs.remove(buff_name)
+
+
+func _on_attack_timer_timeout() -> void:
+	_ready_to_attack = true
+	_try_attack()
+
+
+func _try_attack() -> void:
+	if not _ready_to_attack or not enabled or attack_speed <= 0:
+		return
+	var enemies := enemies_in_range()
+	if enemies.is_empty():
+		return
+	_ready_to_attack = false
+	attack(enemies.pick_random())
+	attack_timer.start(1.0 / attack_speed)
 
 
 ## Groups span the whole tree; demos run in their own viewports and must not pick up
@@ -54,104 +140,3 @@ func _find_in_own_viewport(group: String) -> Node:
 		if n.get_viewport() == get_viewport():
 			return n
 	return null
-
-
-func load_stats() -> void:
-	attack_speed = stats.attack_speed
-	damage = stats.damage
-	special = stats.special
-	cost = stats.get_cost()
-
-
-func enable():
-	z_index = 0
-	enabled = true
-	modulate = Color(1, 1, 1, 1)
-	range_area.body_entered.connect(_on_range_body_entered)
-	range_area.body_exited.connect(_on_range_body_exited)
-	show_range(false)
-	targets.clear()
-	for b in range_area.get_overlapping_bodies():
-		if b is Enemy:
-			targets.append(b)
-	just_enabled.emit()
-
-	if not demo:
-		place_sound.pitch_scale = randf_range(0.8, 1.2)
-		place_sound.play()
-
-
-func disable():
-	z_index = 999
-	enabled = false
-	modulate = Color(0.5, 0.5, 0.5, 0.35)
-	if range_area.body_entered.is_connected(_on_range_body_entered):
-		range_area.body_entered.disconnect(_on_range_body_entered)
-	if range_area.body_exited.is_connected(_on_range_body_exited):
-		range_area.body_exited.disconnect(_on_range_body_exited)
-	show_range(true)
-	just_disabled.emit()
-
-
-func deal_damage(e: Enemy):
-	report_damage(e.take_damage(damage))
-
-
-func report_damage(amount: int):
-	if not demo:
-		EventManager.tower_damage_dealt.emit(self, amount)
-
-
-func show_range(value: bool):
-	for r in range_area.get_children():
-		if r is RangeCollision:
-			r.toggle_show(value)
-
-
-func _process(_delta):
-	# Support towers (attack speed 0) never attack.
-	if targets.size() > 0 and not cd and enabled and attack_speed > 0:
-		set_cd()
-		attack(targets.pick_random())
-
-
-func play_attack_sound(low = 0.8, high = 1.2, volume = 0.0):
-	attack_sound_player.pitch_scale = randf_range(low, high)
-	attack_sound_player.volume_db = volume
-	attack_sound_player.play()
-
-
-func set_cd():
-	cd = true
-	await get_tree().create_timer(1 / attack_speed).timeout
-	cd = false
-
-
-func attack(_enemy: Enemy):
-	pass
-
-
-func _on_enemy_died(enemy: Enemy, _killed: bool):
-	targets.erase(enemy)
-
-
-func _on_range_body_entered(body):
-	if body is Enemy:
-		targets.append(body)
-		if not body.died.is_connected(_on_enemy_died):
-			body.died.connect(_on_enemy_died)
-
-
-func _on_range_body_exited(body):
-	if body is Enemy:
-		targets.erase(body)
-		if body.died.is_connected(_on_enemy_died):
-			body.died.disconnect(_on_enemy_died)
-
-
-func add_buff(b: Buff):
-	buffs.add(b)
-
-
-func remove_buff(buff_name: String):
-	buffs.remove(buff_name)

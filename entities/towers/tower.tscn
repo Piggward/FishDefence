@@ -18,6 +18,7 @@ texture_filter = 1
 shape = SubResource("RectangleShape2D_vysjg")
 
 [node name="Range" type="Area2D" parent="."]
+monitoring = false
 collision_layer = 0
 collision_mask = 64
 
@@ -30,4 +31,7 @@ bus = &"SoundEffects"
 
 [node name="AttackSound" type="AudioStreamPlayer2D" parent="."]
 bus = &"SoundEffects"
+
+[node name="AttackTimer" type="Timer" parent="."]
+one_shot = true
 

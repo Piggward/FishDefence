@@ -1,10 +1,11 @@
-extends Node2D
+extends TowerDemo
 
 @onready var path: Line2D = $Path
 const TEST_ENEMY = preload("uid://wqreiq6q3r7x")
 var path_follows = []
 
-func _ready():
+func _ready() -> void:
+	super()
 	add_enemy()
 	start_loop()
 	

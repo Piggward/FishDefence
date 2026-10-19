@@ -3,13 +3,17 @@ extends Tower
 
 var FISH_SPIT = load("uid://nekt2j1xfquv")
 
-func _on_range_body_exited(body):
-	super(body)
-	if targets.size() == 0:
-		await get_tree().create_timer(1).timeout
-		if targets.size() == 0:
-			sprite_2d.scale.y = 1
-			sprite_2d.rotation_degrees = 0
+func _ready() -> void:
+	super()
+	range_area.body_exited.connect(_on_enemy_left_range)
+
+
+## Turn back to the resting pose a second after the last enemy leaves.
+func _on_enemy_left_range(_body) -> void:
+	await get_tree().create_timer(1).timeout
+	if enemies_in_range().is_empty():
+		sprite_2d.scale.y = 1
+		sprite_2d.rotation_degrees = 0
 
 
 func attack(enemy: Enemy):

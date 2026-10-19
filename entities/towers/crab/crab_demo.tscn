@@ -2,11 +2,12 @@
 
 [ext_resource type="PackedScene" uid="uid://38eeivo1kv68" path="res://entities/towers/crab/crab_tower.tscn" id="1_avtw7"]
 [ext_resource type="Script" uid="uid://5p5i4yp6gsaj" path="res://entities/towers/demo_enemy_spawner.gd" id="3_1n3la"]
+[ext_resource type="Script" uid="uid://cafogmypu0wed" path="res://entities/towers/tower_demo.gd" id="demo_root"]
 
 [node name="Node2D" type="Node2D"]
+script = ExtResource("demo_root")
 
 [node name="Crab" parent="." instance=ExtResource("1_avtw7")]
-demo = true
 
 [node name="ProjectileContainer" type="Node2D" parent="." groups=["ProjectileContainer"]]
 

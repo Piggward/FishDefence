@@ -151,6 +151,7 @@ func _spawn_ghost(scene: PackedScene, rotation_deg := 0.0):
 	obj.object = tower
 	obj.add_child(tower)
 	add_child(obj)
+	obj.set_object_enabled(false)
 	obj.set_object_rotation(rotation_deg)
 	obj.global_position = hover_tile.global_position + hover_tile.size / 2
 	moving_object = obj

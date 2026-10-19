@@ -8,5 +8,4 @@ fish_name = "Anchovy"
 cost = 2000
 damage = 400
 attack_speed = 0.35
-special = 0.0
 description = "The anchovy rushes towards its enemies, damaging all in it's path."

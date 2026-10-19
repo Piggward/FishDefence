@@ -15,7 +15,7 @@ func attack(_target: Enemy):
 	sprite_2d.add_child(bub)
 	bub.emitting = true
 	var tween = get_tree().create_tween()
-	tween.tween_property(sprite_2d, "position", Vector2.RIGHT * (16 * range_cells.size()), (1 / (attack_speed * 6)))
+	tween.tween_property(sprite_2d, "position", Vector2.RIGHT * (CELL_SIZE * range_cells.size()), (1 / (attack_speed * 6)))
 	tween.play()
 	play_attack_sound()
 	await tween.finished

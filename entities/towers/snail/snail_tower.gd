@@ -3,21 +3,14 @@ extends Tower
 
 const SLOW_BUFF_NAME = "snail slow"
 const SLIME = preload("uid://bv30370oa8nt")
-## Speed multiplier for enemies on the slime; set from the tower's TowerStats.special.
-var slow_ratio := 0.5
 var slimes: Array[Slime]
-
-
-func load_stats():
-	super()
-	slow_ratio = special
 
 
 func enable():
 	super()
 	play_attack_sound(0.8, 1.2, -3.0)
 	for v in range_cells:
-		add_slime(v * 16)
+		add_slime(v * CELL_SIZE)
 
 
 func disable():
@@ -48,7 +41,7 @@ func add_slime(v: Vector2):
 
 func _on_slime_entered(enemy: Enemy):
 	var slow_debuff = SlowDebuff.new()
-	slow_debuff.slow_multiplier = slow_ratio
+	slow_debuff.slow_multiplier = (stats as SnailStats).slow_multiplier
 	slow_debuff.buff_name = SLOW_BUFF_NAME
 	enemy.add_debuff(slow_debuff)
 

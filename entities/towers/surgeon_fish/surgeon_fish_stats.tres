@@ -8,5 +8,4 @@ fish_name = "Surgeon Fish"
 cost = 100
 damage = 50
 attack_speed = 1.0
-special = 0.0
 description = "The surgeon fish hurls water at enemies within a two square radius in order to protect it's reef."

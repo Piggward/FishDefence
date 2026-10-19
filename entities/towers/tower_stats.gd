@@ -8,8 +8,6 @@ extends Resource
 @export var damage: int
 ## Attacks per second. 0 for support towers that never attack.
 @export var attack_speed: float
-## Tower-specific value: the snail's slow multiplier, the clown's attack speed multiplier.
-@export var special: float
 @export_multiline var description: String
 
 const EXPERT_COST_MULTIPLIER := 1.3

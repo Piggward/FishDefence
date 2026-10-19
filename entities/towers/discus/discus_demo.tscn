@@ -2,8 +2,10 @@
 
 [ext_resource type="Script" uid="uid://5p5i4yp6gsaj" path="res://entities/towers/demo_enemy_spawner.gd" id="2_2lwjb"]
 [ext_resource type="PackedScene" uid="uid://drtd5a4mjfa2j" path="res://entities/towers/discus/discus_tower.tscn" id="2_41k6a"]
+[ext_resource type="Script" uid="uid://cafogmypu0wed" path="res://entities/towers/tower_demo.gd" id="demo_root"]
 
 [node name="DiscusDemo" type="Node2D"]
+script = ExtResource("demo_root")
 
 [node name="ProjectileContainer" type="Node2D" parent="." groups=["ProjectileContainer"]]
 
@@ -11,7 +13,6 @@
 zoom = Vector2(1.25, 1.25)
 
 [node name="Tower" parent="." instance=ExtResource("2_41k6a")]
-demo = true
 
 [node name="EnemySpawner2" type="Node2D" parent="."]
 position = Vector2(-32, -64)

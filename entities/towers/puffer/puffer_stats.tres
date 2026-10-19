@@ -8,5 +8,4 @@ fish_name = "Puffer Fish"
 cost = 800
 damage = 100
 attack_speed = 2.0
-special = 0.0
 description = "The puffer fish inflates itself, hurting nearby enemies with its scales."

@@ -2,8 +2,10 @@
 
 [ext_resource type="Script" uid="uid://5p5i4yp6gsaj" path="res://entities/towers/demo_enemy_spawner.gd" id="2_hluk0"]
 [ext_resource type="PackedScene" uid="uid://jdasnkkeyv3u" path="res://entities/towers/puffer/puffer_tower.tscn" id="3_1ln36"]
+[ext_resource type="Script" uid="uid://cafogmypu0wed" path="res://entities/towers/tower_demo.gd" id="demo_root"]
 
 [node name="PufferDemo" type="Node2D"]
+script = ExtResource("demo_root")
 
 [node name="ProjectileContainer" type="Node2D" parent="." groups=["ProjectileContainer"]]
 
@@ -35,4 +37,3 @@ direction = Vector2(1, 0)
 interval = 0.5
 
 [node name="Tower" parent="." instance=ExtResource("3_1ln36")]
-demo = true

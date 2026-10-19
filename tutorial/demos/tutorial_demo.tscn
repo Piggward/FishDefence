@@ -20,27 +20,21 @@ script = null
 
 [node name="Tower" parent="." instance=ExtResource("3_lp0af")]
 position = Vector2(-13, -18)
-demo = true
 
 [node name="Tower4" parent="." instance=ExtResource("3_lp0af")]
 position = Vector2(-44, 19)
-demo = true
 
 [node name="Tower5" parent="." instance=ExtResource("3_lp0af")]
 position = Vector2(-44, 0)
-demo = true
 
 [node name="Tower6" parent="." instance=ExtResource("3_lp0af")]
 position = Vector2(18, 19)
-demo = true
 
 [node name="Tower7" parent="." instance=ExtResource("3_lp0af")]
 position = Vector2(18, 0)
-demo = true
 
 [node name="Tower3" parent="." instance=ExtResource("4_nm87m")]
 position = Vector2(-13, 0)
-demo = true
 
 [node name="Node2D" type="Node2D" parent="."]
 

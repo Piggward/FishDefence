@@ -91,7 +91,7 @@ func test_snail_pickup_releases_slowed_enemies():
 	# Stand still: once the snail is gone the enemy's new path may lead into its spot,
 	# and placing a tower on an enemy is (correctly) refused.
 	enemy.following = false
-	check(is_equal_approx(enemy.speed, 1000 * snail.slow_ratio), "slowed on the slime")
+	check(is_equal_approx(enemy.speed, 1000 * (snail.stats as SnailStats).slow_multiplier), "slowed on the slime")
 	var p := placer()
 	p.hover_tile = spot
 	p.try_pickup()
@@ -100,7 +100,7 @@ func test_snail_pickup_releases_slowed_enemies():
 	p.mouse_entered_tile(spot)
 	check(p.try_place(), "snail placed back")
 	await physics_frames(3)
-	check(is_equal_approx(enemy.speed, 1000 * snail.slow_ratio), "slowed again after the snail is placed back")
+	check(is_equal_approx(enemy.speed, 1000 * (snail.stats as SnailStats).slow_multiplier), "slowed again after the snail is placed back")
 
 
 ## Slows with the same name don't stack; removing them in any order restores full speed.
@@ -148,3 +148,50 @@ func test_attacking_towers_damage_enemies_in_range():
 				break
 		check(damaged, "%s damaged an enemy in its range" % stats.fish_name)
 		await cleanup()
+
+
+## A placed tower attacks as soon as an enemy enters its range, without first waiting
+## out a full cooldown.
+func test_tower_attacks_an_entering_enemy_immediately():
+	await load_level()
+	game_manager().eco_bucks = 100000
+	var tower: Tower = await place_tower(load("res://entities/towers/crab/crab_tower.tscn"), placeable_tiles()[0])
+	await frames(120)
+	var enemy := await spawn_enemy_at(tower.global_position + tower.range_cells[0] * 16)
+	enemy.following = false
+	await physics_frames(6)
+	check(enemy.health < 100000, "attacked within 6 frames of entering (cooldown is %.2f s)" % (1.0 / tower.attack_speed))
+
+
+## Effective tint of a node: its modulate times its ancestors'.
+func _tint(node: CanvasItem) -> Color:
+	var c := Color.WHITE
+	var n: Node = node
+	while n is CanvasItem:
+		c *= n.modulate
+		n = n.get_parent()
+	return c
+
+
+func _range_shown(tower: Tower) -> bool:
+	return tower.range_area.get_children().any(func(r): return r is RangeCollision and r.range_polygon.visible)
+
+
+## A carried tower is see-through and shows its range; a placed one is solid and doesn't.
+func test_carried_tower_looks_like_a_ghost():
+	await load_level()
+	game_manager().eco_bucks = 100000
+	var tile: Tile = placeable_tiles()[0]
+	var p := placer()
+	p.hover_tile = tile
+	p._spawn_ghost(load("res://entities/towers/surgeon_fish/surgeon_tower.tscn"))
+	await frames(2)
+	var tower: Tower = p.moving_object.object
+	check(_tint(tower).a < 0.5, "ghost is see-through")
+	check(_range_shown(tower), "ghost shows its range")
+	p.mouse_entered_tile(tile)
+	await physics_frames(3)
+	check(p.try_place(), "placed")
+	await frames(2)
+	check(is_equal_approx(_tint(tower).a, 1.0), "placed tower is solid")
+	check(not _range_shown(tower), "placed tower hides its range")

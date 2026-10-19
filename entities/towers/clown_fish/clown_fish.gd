@@ -6,7 +6,7 @@ extends Tower
 const BUFF_NAME = "clown tower"
 const KONFETTI = preload("uid://cspd8fsbdje0h")
 const KONFETTI_CONSTANT = preload("uid://b7oy52upclir0")
-## Attack speed multiplier; set from the tower's TowerStats.special.
+## Attack speed multiplier for towers in range; from the clown's ClownStats.
 var attack_speed_multiplier := 1.5
 ## Tower in range -> [on_enabled, on_disabled] callables connected to it.
 var towers_in_range := {}
@@ -22,7 +22,7 @@ func _ready():
 
 func load_stats():
 	super()
-	attack_speed_multiplier = special
+	attack_speed_multiplier = (stats as ClownStats).attack_speed_multiplier
 
 
 func enable():

@@ -26,7 +26,6 @@ interval = 0.5
 
 [node name="Tower2" parent="." instance=ExtResource("3_nrnxj")]
 position = Vector2(-16, 0)
-demo = true
 
 [node name="Range" parent="Tower2" index="2"]
 visible = false

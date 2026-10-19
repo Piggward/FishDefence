@@ -2,6 +2,9 @@ class_name PufferTower
 extends Tower
 
 var SPIKE = load("uid://uev6q476kg4a")
+## How far spikes fly, in tower cells, and how far from the centre they start, in pixels.
+const SPIKE_REACH := 1.5
+const SPIKE_START_OFFSET := 2.0
 var attacking = false
 
 
@@ -25,8 +28,8 @@ func attack(_enemy: Enemy):
 	for p in range_cells:
 		var spike: Projectile = SPIKE.instantiate()
 		spike.damage = self.damage
-		spike.target_position = self.global_position + Vector2(24, 24) * p
+		spike.target_position = global_position + p * CELL_SIZE * SPIKE_REACH
 		spike.hit_on_collision = true
 		spike.damage_dealt.connect(report_damage)
 		projectile_container.add_child(spike)
-		spike.global_position = self.global_position + (p * Vector2(2, 2))
+		spike.global_position = global_position + p * SPIKE_START_OFFSET

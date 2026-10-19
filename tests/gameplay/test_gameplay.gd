@@ -135,9 +135,9 @@ func test_fast_mode_doubles_game_speed():
 		var tower: Tower = load("res://entities/towers/surgeon_fish/surgeon_tower.tscn").instantiate()
 		tree.current_scene.add_child(tower)
 		await frames()
-		tower.set_cd()
+		tower.attack_timer.start(1.0 / tower.attack_speed)
 		var cooldown_frames := 0
-		while tower.cd:
+		while not tower.attack_timer.is_stopped():
 			await tree.process_frame
 			cooldown_frames += 1
 		tower.queue_free()
@@ -151,3 +151,19 @@ func test_fast_mode_doubles_game_speed():
 
 func container_cleanup():
 	enemy_container().alive_enemies.clear()
+
+
+## Pausing the game (tutorial, game over) freezes tower cooldowns too.
+func test_pause_freezes_tower_cooldowns():
+	await load_level()
+	game_manager().eco_bucks = 100000
+	var tower: Tower = await place_tower(load("res://entities/towers/crab/crab_tower.tscn"), placeable_tiles()[0])
+	tower.attack_timer.start(1.0)
+	await frames(5)
+	var before := tower.attack_timer.time_left
+	tree.root.process_mode = Node.PROCESS_MODE_DISABLED
+	await frames(60)
+	check(is_equal_approx(tower.attack_timer.time_left, before), "cooldown frozen while paused (%.3f -> %.3f)" % [before, tower.attack_timer.time_left])
+	tree.root.process_mode = Node.PROCESS_MODE_PAUSABLE
+	await frames(5)
+	check(tower.attack_timer.time_left < before, "cooldown runs again after unpausing")
