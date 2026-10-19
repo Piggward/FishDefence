@@ -7,7 +7,7 @@ const TITLES := ["Defend the reef!", "Hire defenders!", "Place fishes!", "Build 
 func test_tutorial_steps_through_and_resumes_the_game():
 	await load_level()
 	game_manager().tutorial_done = false
-	var tutorial: TutorialContainer = tree.current_scene.get_node("CanvasLayer/TutorialContainer")
+	var tutorial: TutorialContainer = tree.current_scene.get_node("HUD/TutorialContainer")
 	EventManager.tutorial_requested.emit()
 	tree.root.process_mode = Node.PROCESS_MODE_DISABLED
 	for i in TITLES.size():

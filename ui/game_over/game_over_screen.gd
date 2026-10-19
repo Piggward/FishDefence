@@ -19,7 +19,7 @@ func _ready():
 	endless.pressed.connect(_on_endless_pressed)
 	
 func _on_endless_pressed():
-	get_tree().root.process_mode = Node.PROCESS_MODE_PAUSABLE
+	GameManager.resume_game()
 	EventManager.endless_started.emit()
 	self.visible = false
 	
@@ -30,18 +30,14 @@ func _on_play_again_expert_pressed():
 func _on_win():
 	self.visible = true
 	endless.visible = true
-	# Deferred: win/lose can fire from a physics callback (enemy reaching the goal),
-	# where disabling collision objects is not allowed.
-	get_tree().root.set_deferred("process_mode", Node.PROCESS_MODE_DISABLED)
+	GameManager.pause_game()
 	label.text = "Congratulations! You won!!"
 	animated_sprite_2d.play("Win")
 
 func _on_lose():
 	self.visible = true
 	endless.visible = false
-	# Deferred: win/lose can fire from a physics callback (enemy reaching the goal),
-	# where disabling collision objects is not allowed.
-	get_tree().root.set_deferred("process_mode", Node.PROCESS_MODE_DISABLED)
+	GameManager.pause_game()
 	label.text = "Game over! You lost on wave " + str(GameManager.current_wave)
 	animated_sprite_2d.play("Lose")
 	

@@ -1,8 +1,33 @@
+class_name DecoFishSpawner
 extends Node2D
+## Background fish and trash. While spawning (title screen) a school of fish swims in every
+## `interval` seconds.
+
 const DECO_FISH = preload("uid://cbcqu0yqs375q")
+const RANDOM_SHIT = preload("uid://ve7g61hrtufu")
+const SCHOOL_SIZE := 25
+
+@export var interval := 4.0
+var _timer := Timer.new()
+
 @onready var left = $Left
 @onready var right = $Right
-const RANDOM_SHIT = preload("uid://ve7g61hrtufu")
+
+
+func _ready() -> void:
+	_timer.wait_time = interval
+	_timer.timeout.connect(spawn_fishes.bind(SCHOOL_SIZE))
+	add_child(_timer)
+
+
+func start_spawning() -> void:
+	spawn_fishes(SCHOOL_SIZE)
+	_timer.start()
+
+
+func stop_spawning() -> void:
+	_timer.stop()
+
 
 func spawn_fish():
 	var f: DecoFish = DECO_FISH.instantiate()

@@ -1,5 +1,4 @@
 [gd_scene format=4 uid="uid://drkhpej01r8vi"]
-
 [ext_resource type="Texture2D" uid="uid://ceg6bpkr167xq" path="res://main/level/art/tileset_spring.png" id="1_kncup"]
 [ext_resource type="Script" uid="uid://bpd7f7v0wwsg0" path="res://main/level/level.gd" id="1_y6gvw"]
 [ext_resource type="Texture2D" uid="uid://bd0q6xd2ytslo" path="res://entities/enemies/wave_animation/wave.png" id="1_yk8q3"]
@@ -21,7 +20,6 @@
 [ext_resource type="AudioStream" uid="uid://ds4u0qu5vwmtu" path="res://main/music/march_of_the_spoons.mp3" id="15_sjxjp"]
 [ext_resource type="Texture2D" uid="uid://cvgvqcdvxre3p" path="res://ui/player_stats/lifebar.png" id="18_8lr2p"]
 [ext_resource type="Texture2D" uid="uid://c5uimgym0n7g3" path="res://main/level/art/aquarium_plant_1.png" id="19_l35lw"]
-[ext_resource type="Script" uid="uid://c5q0foqoxawdm" path="res://ui/title_screen/start_game_button.gd" id="20_cp2ay"]
 [ext_resource type="Texture2D" uid="uid://dw667w6cj8y3c" path="res://main/level/art/aquarium_plant_2.png" id="20_yk8q3"]
 [ext_resource type="Texture2D" uid="uid://vta4fh6qbxm8" path="res://main/level/art/aquarium_plant_3.png" id="21_fm4u6"]
 [ext_resource type="Texture2D" uid="uid://droamelrckjr2" path="res://main/level/art/large_rock_1.png" id="22_nfbc7"]
@@ -36,11 +34,11 @@
 [ext_resource type="Script" uid="uid://bdsn5kgunbif3" path="res://decorations/deco_fish/deco_fish_spawner.gd" id="31_nfbc7"]
 [ext_resource type="Script" uid="uid://b4rutiiwqbplu" path="res://ui/waves/wave_display.gd" id="32_2uwox"]
 [ext_resource type="Script" uid="uid://b7mrb5ceqaex2" path="res://main/music/music.gd" id="32_nfbc7"]
-[ext_resource type="Script" uid="uid://cmq5uo6ri7d2v" path="res://components/audio/volume_slider.gd" id="35_2uwox"]
 [ext_resource type="Texture2D" uid="uid://ccp8hbm6o8sq3" path="res://components/ui/check_box_button/check_square_grey.png" id="36_funyk"]
 [ext_resource type="PackedScene" uid="uid://dwrb20ty0gvsi" path="res://ui/waves/wave_button.tscn" id="37_0ai0x"]
 [ext_resource type="Script" uid="uid://bvo2ln3tvulgc" path="res://components/ui/check_box_button/check_box_button.gd" id="38_etg4x"]
 
+[ext_resource type="PackedScene" uid="uid://gfkfeurlto21" path="res://ui/title_screen/title_screen.tscn" id="title_screen"]
 [sub_resource type="Animation" id="Animation_y6gvw"]
 length = 0.001
 tracks/0/type = "value"
@@ -67,55 +65,6 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector2(3, 2.8)]
 }
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("../CanvasLayer:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("../CanvasLayer2/StartGameButton:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("../CanvasLayer2/Game Title:visible")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("../CanvasLayer/WaveButton:visible")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
 [sub_resource type="Animation" id="Animation_cp2ay"]
 resource_name = "intro"
 length = 20.0
@@ -150,14 +99,11 @@ tracks/2/path = NodePath("../Music")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(2.6333334, 12.9),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(2.6333334),
+"transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
 "method": &"slow_down"
-}, {
-"args": [],
-"method": &"play_main_theme"
 }]
 }
 tracks/3/type = "method"
@@ -177,25 +123,13 @@ tracks/3/keys = {
 "method": &"kill_fishes"
 }]
 }
-tracks/4/type = "value"
+tracks/4/type = "method"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("../CanvasLayer:visible")
+tracks/4/path = NodePath("../WaveAnimation")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0.0333333, 12.899999),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
-}
-tracks/5/type = "method"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("../WaveAnimation")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
 "times": PackedFloat32Array(10.733333),
 "transitions": PackedFloat32Array(1),
 "values": [{
@@ -203,54 +137,18 @@ tracks/5/keys = {
 "method": &"play_wave"
 }]
 }
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("../CanvasLayer2/StartGameButton:visible")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("../CanvasLayer2/Game Title:visible")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("../CanvasLayer/WaveButton:visible")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
-"times": PackedFloat32Array(12.899999),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/9/type = "method"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("..")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
-"times": PackedFloat32Array(13.066667),
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("..")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(12.9),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"play_tutorial"
+"method": &"_on_intro_finished"
 }]
 }
 
@@ -957,25 +855,6 @@ corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nfbc7"]
-bg_color = Color(0.14901961, 0.4392157, 0.47843137, 1)
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
-border_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cp2ay"]
-bg_color = Color(0.14901961, 0.4392157, 0.47843137, 0.75686276)
-corner_radius_top_left = 60
-corner_radius_top_right = 60
-corner_radius_bottom_right = 60
-corner_radius_bottom_left = 60
 
 [node name="Level" type="Node2D" unique_id=1067750321]
 script = ExtResource("1_y6gvw")
@@ -1739,16 +1618,16 @@ follow_viewport_enabled = true
 tile_grid = NodePath("../../TileGrid")
 towers_container = NodePath("../../Towers")
 
-[node name="CanvasLayer" parent="." unique_id=507255972 instance=ExtResource("10_tnbrr")]
+[node name="HUD" parent="." unique_id=507255972 instance=ExtResource("10_tnbrr")]
 visible = false
 
-[node name="ShopContainer" parent="CanvasLayer" index="3"]
+[node name="ShopContainer" parent="HUD" index="3"]
 offset_bottom = 64.91998
 
-[node name="AnimationPlayer" parent="CanvasLayer" index="4"]
+[node name="AnimationPlayer" parent="HUD" index="4"]
 autoplay = &"RESET"
 
-[node name="ShowEnemyPath" type="PanelContainer" parent="CanvasLayer" unique_id=216589219 node_paths=PackedStringArray("enemy_path")]
+[node name="ShowEnemyPath" type="PanelContainer" parent="HUD" unique_id=216589219 node_paths=PackedStringArray("enemy_path")]
 script = ExtResource("11_twjon")
 enemy_path = NodePath("../../Path")
 visible = false
@@ -1764,21 +1643,21 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_pg4dt")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/ShowEnemyPath" unique_id=1255414006]
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/ShowEnemyPath" unique_id=1255414006]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/ShowEnemyPath/HBoxContainer" unique_id=1991864514]
+[node name="MarginContainer" type="MarginContainer" parent="HUD/ShowEnemyPath/HBoxContainer" unique_id=1991864514]
 layout_mode = 2
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_right = 10
 
-[node name="Label" type="Label" parent="CanvasLayer/ShowEnemyPath/HBoxContainer/MarginContainer" unique_id=826602662]
+[node name="Label" type="Label" parent="HUD/ShowEnemyPath/HBoxContainer/MarginContainer" unique_id=826602662]
 layout_mode = 2
 text = "Show enemy path"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CheckButton" type="CheckButton" parent="CanvasLayer/ShowEnemyPath/HBoxContainer" unique_id=1151850165]
+[node name="CheckButton" type="CheckButton" parent="HUD/ShowEnemyPath/HBoxContainer" unique_id=1151850165]
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxEmpty_twjon")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_pg4dt")
@@ -1789,7 +1668,7 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_vswhx")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_awp58")
 button_pressed = true
 
-[node name="BucksContainer" type="PanelContainer" parent="CanvasLayer" unique_id=1635358822]
+[node name="BucksContainer" type="PanelContainer" parent="HUD" unique_id=1635358822]
 script = ExtResource("12_ngjjf")
 self_modulate = Color(1, 1, 1, 0.6745098)
 anchors_preset = -1
@@ -1805,31 +1684,31 @@ scale = Vector2(0.8898865, 0.8898865)
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ngjjf")
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/BucksContainer" unique_id=331680416]
+[node name="HBoxContainer2" type="HBoxContainer" parent="HUD/BucksContainer" unique_id=331680416]
 layout_mode = 2
 theme_override_constants/separation = -6
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/BucksContainer/HBoxContainer2" unique_id=1976287278]
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/BucksContainer/HBoxContainer2" unique_id=1976287278]
 layout_mode = 2
 theme_override_constants/separation = -4
 
-[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/BucksContainer/HBoxContainer2/HBoxContainer" unique_id=1933044788]
+[node name="MarginContainer2" type="MarginContainer" parent="HUD/BucksContainer/HBoxContainer2/HBoxContainer" unique_id=1933044788]
 layout_mode = 2
 theme_override_constants/margin_left = 30
 theme_override_constants/margin_top = 22
 theme_override_constants/margin_right = 35
 
-[node name="Control2" type="Control" parent="CanvasLayer/BucksContainer/HBoxContainer2/HBoxContainer/MarginContainer2" unique_id=760584158]
+[node name="Control2" type="Control" parent="HUD/BucksContainer/HBoxContainer2/HBoxContainer/MarginContainer2" unique_id=760584158]
 layout_mode = 2
 
-[node name="Control" type="Control" parent="CanvasLayer/BucksContainer/HBoxContainer2/HBoxContainer/MarginContainer2/Control2" unique_id=1864144597]
+[node name="Control" type="Control" parent="HUD/BucksContainer/HBoxContainer2/HBoxContainer/MarginContainer2/Control2" unique_id=1864144597]
 anchors_preset = 0
 offset_left = 3.0
 offset_top = 4.0
 offset_right = 3.0
 offset_bottom = 37.0
 
-[node name="RecycleRect" type="TextureRect" parent="CanvasLayer/BucksContainer/HBoxContainer2/HBoxContainer/MarginContainer2/Control2/Control" unique_id=193614132]
+[node name="RecycleRect" type="TextureRect" parent="HUD/BucksContainer/HBoxContainer2/HBoxContainer/MarginContainer2/Control2/Control" unique_id=193614132]
 texture_filter = 1
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 0
@@ -1842,36 +1721,36 @@ texture = ExtResource("12_pg4dt")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/BucksContainer/HBoxContainer2/HBoxContainer" unique_id=1599785646]
+[node name="MarginContainer" type="MarginContainer" parent="HUD/BucksContainer/HBoxContainer2/HBoxContainer" unique_id=1599785646]
 layout_mode = 2
 theme_override_constants/margin_right = 15
 
-[node name="BucksLabel" type="Label" parent="CanvasLayer/BucksContainer/HBoxContainer2/HBoxContainer/MarginContainer" unique_id=1428000951]
+[node name="BucksLabel" type="Label" parent="HUD/BucksContainer/HBoxContainer2/HBoxContainer/MarginContainer" unique_id=1428000951]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.29411766, 0.7647059, 0.21176471, 1)
 theme_override_font_sizes/font_size = 36
 text = "25"
 
-[node name="BucksAnimation" type="AnimationPlayer" parent="CanvasLayer/BucksContainer/HBoxContainer2/HBoxContainer" unique_id=1746883653]
+[node name="BucksAnimation" type="AnimationPlayer" parent="HUD/BucksContainer/HBoxContainer2/HBoxContainer" unique_id=1746883653]
 unique_name_in_owner = true
 root_node = NodePath("../../..")
 libraries/ = SubResource("AnimationLibrary_1uoi6")
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/BucksContainer/HBoxContainer2" unique_id=894164217]
+[node name="HBoxContainer2" type="HBoxContainer" parent="HUD/BucksContainer/HBoxContainer2" unique_id=894164217]
 layout_mode = 2
 theme_override_constants/separation = -4
 
-[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/BucksContainer/HBoxContainer2/HBoxContainer2" unique_id=293128961]
+[node name="MarginContainer2" type="MarginContainer" parent="HUD/BucksContainer/HBoxContainer2/HBoxContainer2" unique_id=293128961]
 layout_mode = 2
 theme_override_constants/margin_left = 30
 theme_override_constants/margin_top = 22
 theme_override_constants/margin_right = 35
 
-[node name="Control2" type="Control" parent="CanvasLayer/BucksContainer/HBoxContainer2/HBoxContainer2/MarginContainer2" unique_id=1537290962]
+[node name="Control2" type="Control" parent="HUD/BucksContainer/HBoxContainer2/HBoxContainer2/MarginContainer2" unique_id=1537290962]
 layout_mode = 2
 
-[node name="Control" type="Control" parent="CanvasLayer/BucksContainer/HBoxContainer2/HBoxContainer2/MarginContainer2/Control2" unique_id=771914102]
+[node name="Control" type="Control" parent="HUD/BucksContainer/HBoxContainer2/HBoxContainer2/MarginContainer2/Control2" unique_id=771914102]
 anchors_preset = 0
 offset_left = 3.0
 offset_top = 4.0
@@ -1879,7 +1758,7 @@ offset_right = 3.0
 offset_bottom = 37.0
 scale = Vector2(1.07, 1.07)
 
-[node name="HeartRect" type="TextureRect" parent="CanvasLayer/BucksContainer/HBoxContainer2/HBoxContainer2/MarginContainer2/Control2/Control" unique_id=1785530711]
+[node name="HeartRect" type="TextureRect" parent="HUD/BucksContainer/HBoxContainer2/HBoxContainer2/MarginContainer2/Control2/Control" unique_id=1785530711]
 texture_filter = 1
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 0
@@ -1893,22 +1772,22 @@ texture = ExtResource("18_8lr2p")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/BucksContainer/HBoxContainer2/HBoxContainer2" unique_id=1022954536]
+[node name="MarginContainer" type="MarginContainer" parent="HUD/BucksContainer/HBoxContainer2/HBoxContainer2" unique_id=1022954536]
 layout_mode = 2
 theme_override_constants/margin_right = 15
 
-[node name="HeartLabel" type="Label" parent="CanvasLayer/BucksContainer/HBoxContainer2/HBoxContainer2/MarginContainer" unique_id=1569596767]
+[node name="HeartLabel" type="Label" parent="HUD/BucksContainer/HBoxContainer2/HBoxContainer2/MarginContainer" unique_id=1569596767]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.85490197, 0.38039216, 0.45882353, 1)
 theme_override_font_sizes/font_size = 36
 text = "100"
 
-[node name="HeartAnimation" type="AnimationPlayer" parent="CanvasLayer/BucksContainer/HBoxContainer2/HBoxContainer2" unique_id=354770100]
+[node name="HeartAnimation" type="AnimationPlayer" parent="HUD/BucksContainer/HBoxContainer2/HBoxContainer2" unique_id=354770100]
 unique_name_in_owner = true
 libraries/ = SubResource("AnimationLibrary_2v2ap")
 
-[node name="WaveDisplay" type="PanelContainer" parent="CanvasLayer" unique_id=1029942851]
+[node name="WaveDisplay" type="PanelContainer" parent="HUD" unique_id=1029942851]
 script = ExtResource("32_2uwox")
 anchors_preset = 7
 anchor_left = 0.5
@@ -1924,19 +1803,19 @@ scale = Vector2(0.8898865, 0.8898865)
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_y6gvw")
 
-[node name="Label" type="Label" parent="CanvasLayer/WaveDisplay" unique_id=1002283238]
+[node name="Label" type="Label" parent="HUD/WaveDisplay" unique_id=1002283238]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "Wave X"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/WaveDisplay" unique_id=1014141249]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="HUD/WaveDisplay" unique_id=1014141249]
 libraries/ = SubResource("AnimationLibrary_funyk")
 
-[node name="WaveButton" parent="CanvasLayer" unique_id=1576210926 instance=ExtResource("37_0ai0x")]
+[node name="WaveButton" parent="HUD" unique_id=1576210926 instance=ExtResource("37_0ai0x")]
 
-[node name="FastModeButton" type="PanelContainer" parent="CanvasLayer" unique_id=801544399]
+[node name="FastModeButton" type="PanelContainer" parent="HUD" unique_id=801544399]
 script = ExtResource("38_etg4x")
 anchors_preset = 7
 anchor_left = 0.5
@@ -1952,186 +1831,31 @@ grow_vertical = 0
 scale = Vector2(0.88756704, 0.88756704)
 theme_override_styles/panel = SubResource("StyleBoxFlat_2uwox")
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/FastModeButton" unique_id=419128122]
+[node name="MarginContainer" type="MarginContainer" parent="HUD/FastModeButton" unique_id=419128122]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/FastModeButton/MarginContainer" unique_id=306272566]
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/FastModeButton/MarginContainer" unique_id=306272566]
 layout_mode = 2
 theme_override_constants/separation = 9
 
-[node name="Label" type="Label" parent="CanvasLayer/FastModeButton/MarginContainer/HBoxContainer" unique_id=756098231]
+[node name="Label" type="Label" parent="HUD/FastModeButton/MarginContainer/HBoxContainer" unique_id=756098231]
 layout_mode = 2
 tooltip_text = "I am an expert labyrinth builder and tower defender and want a challenge."
 mouse_filter = 0
 theme_override_font_sizes/font_size = 14
 text = "Fast mode"
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/FastModeButton/MarginContainer/HBoxContainer" unique_id=1219116102]
+[node name="TextureRect" type="TextureRect" parent="HUD/FastModeButton/MarginContainer/HBoxContainer" unique_id=1219116102]
 texture_filter = 1
 layout_mode = 2
 texture = ExtResource("36_funyk")
 expand_mode = 2
 
-[node name="CanvasLayer2" type="CanvasLayer" parent="." unique_id=2100754651]
-process_mode = 3
-layer = 56
-scale = Vector2(3, 2.8)
-transform = Transform2D(3, 0, 0, 2.8, 0, 0)
+[node name="TitleScreen" parent="." instance=ExtResource("title_screen")]
 
-[node name="StartGameButton" type="PanelContainer" parent="CanvasLayer2" unique_id=1521303804]
-script = ExtResource("20_cp2ay")
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -426.3333
-offset_top = -489.0714
-offset_right = -192.33331
-offset_bottom = -400.21722
-grow_horizontal = 2
-grow_vertical = 0
-scale = Vector2(0.4278672, 0.4278672)
-theme_override_styles/panel = SubResource("StyleBoxFlat_nfbc7")
-
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer2/StartGameButton" unique_id=70933837]
-layout_mode = 2
-theme_override_constants/margin_left = 15
-theme_override_constants/margin_top = 15
-theme_override_constants/margin_right = 15
-theme_override_constants/margin_bottom = 15
-
-[node name="Label" type="Label" parent="CanvasLayer2/StartGameButton/MarginContainer" unique_id=896262799]
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 0.5568628, 0.34509805, 1)
-theme_override_font_sizes/font_size = 35
-text = "Start game "
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Game Title" type="PanelContainer" parent="CanvasLayer2" unique_id=1333611537]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -560.6667
-offset_top = -645.3333
-offset_right = 272.92535
-offset_bottom = -542.4976
-grow_horizontal = 2
-grow_vertical = 0
-scale = Vector2(0.4278672, 0.4278672)
-theme_override_styles/panel = SubResource("StyleBoxFlat_cp2ay")
-
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer2/Game Title" unique_id=1933711758]
-layout_mode = 2
-theme_override_constants/margin_left = 35
-theme_override_constants/margin_top = 25
-theme_override_constants/margin_right = -80
-
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer2/Game Title/MarginContainer" unique_id=1770958147]
-layout_mode = 2
-theme_override_colors/default_color = Color(1, 0.5647059, 0.34509805, 1)
-theme_override_font_sizes/normal_font_size = 36
-bbcode_enabled = true
-text = "[wave amp=13.0 freq=4.0 connected=1]Defence of the Aquatic Biological Ecosystem[/wave]"
-
-[node name="Node2D" type="Node2D" parent="CanvasLayer2" unique_id=123151004]
-modulate = Color(1, 1, 1, 0.52156866)
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer2" unique_id=173880560]
-offset_left = 168.66667
-offset_top = 202.5
-offset_right = 208.66667
-offset_bottom = 242.5
-
-[node name="VolumeCOntainer" type="PanelContainer" parent="CanvasLayer2" unique_id=2106640748]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -566.0
-offset_top = -453.35715
-offset_right = -441.40033
-offset_bottom = -414.07144
-grow_horizontal = 2
-grow_vertical = 0
-scale = Vector2(0.7089372, 0.7089372)
-theme_override_styles/panel = SubResource("StyleBoxFlat_2uwox")
-
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer2/VolumeCOntainer" unique_id=349460548]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer2/VolumeCOntainer/MarginContainer" unique_id=1119884110]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="CanvasLayer2/VolumeCOntainer/MarginContainer/HBoxContainer" unique_id=144420389]
-layout_mode = 2
-theme_override_font_sizes/font_size = 12
-text = "Volume:"
-
-[node name="VolumeSlider" type="HSlider" parent="CanvasLayer2/VolumeCOntainer/MarginContainer/HBoxContainer" unique_id=321884905]
-script = ExtResource("35_2uwox")
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-max_value = 1.0
-step = 0.01
-value = 1.0
-
-[node name="ExpertModeButton" type="PanelContainer" parent="CanvasLayer2" unique_id=870172984]
-script = ExtResource("38_etg4x")
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -567.3643
-offset_top = -484.0714
-offset_right = -423.36432
-offset_bottom = -444.52493
-grow_horizontal = 2
-grow_vertical = 0
-scale = Vector2(0.62313634, 0.62313634)
-theme_override_styles/panel = SubResource("StyleBoxFlat_2uwox")
-
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer2/ExpertModeButton" unique_id=2022160663]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer2/ExpertModeButton/MarginContainer" unique_id=186290009]
-layout_mode = 2
-theme_override_constants/separation = 9
-
-[node name="Label" type="Label" parent="CanvasLayer2/ExpertModeButton/MarginContainer/HBoxContainer" unique_id=1527397327]
-layout_mode = 2
-tooltip_text = "I am an expert labyrinth builder and tower defender and want a challenge."
-mouse_filter = 0
-theme_override_font_sizes/font_size = 14
-text = "Expert mode"
-
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer2/ExpertModeButton/MarginContainer/HBoxContainer" unique_id=1640921027]
-texture_filter = 1
-layout_mode = 2
-texture = ExtResource("36_funyk")
-expand_mode = 2
-
-[connection signal="gui_input" from="CanvasLayer/FastModeButton/MarginContainer/HBoxContainer/TextureRect" to="CanvasLayer/FastModeButton" method="_on_texture_rect_gui_input"]
-[connection signal="gui_input" from="CanvasLayer2/StartGameButton" to="CanvasLayer2/StartGameButton" method="_on_gui_input"]
-[connection signal="value_changed" from="CanvasLayer2/VolumeCOntainer/MarginContainer/HBoxContainer/VolumeSlider" to="CanvasLayer2/VolumeCOntainer/MarginContainer/HBoxContainer/VolumeSlider" method="_on_value_changed"]
-[connection signal="gui_input" from="CanvasLayer2/ExpertModeButton/MarginContainer/HBoxContainer/TextureRect" to="CanvasLayer2/ExpertModeButton" method="_on_texture_rect_gui_input"]
-
-[editable path="CanvasLayer"]
+[connection signal="gui_input" from="HUD/FastModeButton/MarginContainer/HBoxContainer/TextureRect" to="HUD/FastModeButton" method="_on_texture_rect_gui_input"]
+[editable path="HUD"]

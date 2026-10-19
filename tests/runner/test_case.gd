@@ -31,8 +31,9 @@ func physics_frames(n := 1) -> void:
 		await tree.physics_frame
 
 
-## Loads the level with the intro skipped and run state reset; returns the level node.
-func load_level() -> Node:
+## Loads the level with run state reset; returns the level node. By default the intro and
+## tutorial count as seen, so the level starts in play; `first_run` starts at the title.
+func load_level(first_run := false) -> Node:
 	var gm = game_manager()
 	gm.eco_bucks = gm.START_BUCKS
 	gm.health = gm.START_HEALTH
@@ -40,7 +41,8 @@ func load_level() -> Node:
 	Engine.time_scale = 1.0
 	gm.easy_mode = true
 	gm.has_rotated = false
-	gm.skip_intro = true
+	gm.intro_seen = not first_run
+	gm.tutorial_done = not first_run
 	tree.root.process_mode = Node.PROCESS_MODE_PAUSABLE
 	tree.change_scene_to_file(LEVEL)
 	await frames(30)
@@ -77,11 +79,11 @@ func enemy_container() -> EnemyContainer:
 
 
 func tower_card() -> TowerCard:
-	return tree.current_scene.get_node("CanvasLayer/TowerDescriptionContainer/TowerCard")
+	return tree.current_scene.get_node("HUD/TowerDescriptionContainer/TowerCard")
 
 
 func next_wave_button() -> NextWaveButton:
-	return tree.current_scene.get_node("CanvasLayer/WaveButton")
+	return tree.current_scene.get_node("HUD/WaveButton")
 
 
 func shop_items() -> Array:

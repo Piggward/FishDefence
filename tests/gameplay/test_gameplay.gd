@@ -108,7 +108,7 @@ func test_losing_mid_wave_shows_only_the_lose_screen():
 
 
 func _set_fast_mode(on: bool):
-	var button: CheckBoxButton = tree.current_scene.get_node("CanvasLayer/FastModeButton")
+	var button: CheckBoxButton = tree.current_scene.get_node("HUD/FastModeButton")
 	if button.checked != on:
 		var click := InputEventMouseButton.new()
 		click.button_index = MOUSE_BUTTON_LEFT

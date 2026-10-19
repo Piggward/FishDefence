@@ -1,3 +1,4 @@
+class_name Music
 extends AudioStreamPlayer
 const ISLAND_MEET_AND_GREET = preload("uid://gdcfxmg2g8ef")
 var slow = false

@@ -1,64 +1,65 @@
 class_name Level
 extends Node2D
+## The level's flow: title screen → intro → tutorial (first run only) → playing.
+## The intro animation drives the camera, music cues and decorations and calls
+## _on_intro_finished() at its end; this script decides which UI is visible.
 
-@onready var animation_player = $AnimationPlayer
-@onready var game_start_button: GameStartButton = $CanvasLayer2/StartGameButton
-@onready var music = $Music
-@onready var deco_fish = $Decorations/DecoFish
-var started = false
-@export var skip_intro = true
-@onready var canvas_layer = $CanvasLayer
-@onready var wave_button = $CanvasLayer/WaveButton
-@onready var camera_2d = $Camera2D
-@onready var game_title = $"CanvasLayer2/Game Title"
-@onready var volume_c_ontainer = $CanvasLayer2/VolumeCOntainer
-@onready var expert_mode_button: CheckBoxButton = $CanvasLayer2/ExpertModeButton
-@onready var fast_mode_button: CheckBoxButton = $CanvasLayer/FastModeButton
+## Start in play, without title, intro or tutorial (for running the scene while developing).
+@export var debug_skip_intro := false
 
-func _ready():
-	fast_mode_button.toggled.connect(_on_fast_mode_change)
-	expert_mode_button.toggled.connect(_on_expert_mode_change)
-	if skip_intro or GameManager.skip_intro:
+@onready var title_screen: TitleScreen = $TitleScreen
+@onready var hud: CanvasLayer = $HUD
+@onready var wave_button: NextWaveButton = $HUD/WaveButton
+@onready var fast_mode_button: CheckBoxButton = $HUD/FastModeButton
+@onready var intro_player: AnimationPlayer = $AnimationPlayer
+@onready var camera: Camera2D = $Camera2D
+@onready var music: Music = $Music
+@onready var deco_fish: DecoFishSpawner = $Decorations/DecoFish
+
+
+func _ready() -> void:
+	fast_mode_button.toggled.connect(GameManager.set_fast_mode)
+	title_screen.start_pressed.connect(_on_title_start_pressed)
+	if debug_skip_intro:
 		GameManager.tutorial_done = true
-		canvas_layer.visible = true
-		wave_button.visible = true
-		camera_2d.position.x = 192.0
-		game_start_button.visible = false
-		game_title.visible = false
-		volume_c_ontainer.visible = false
-		expert_mode_button.visible = false
-		music.play_main_theme()
-		game_start_button.pressed.emit()
+	if debug_skip_intro or GameManager.intro_seen:
+		_start_playing()
 	else:
-		canvas_layer.visible = false
-		wave_button.visible = false
-		game_start_button.visible = true
-		game_title.visible = true
-		volume_c_ontainer.visible = true
-		expert_mode_button.visible = true
-		game_start_button.pressed.connect(_on_start)
-		music.play_intro()
-		spawn_fish()
-	
-func spawn_fish():
-	deco_fish.spawn_fishes(25)
-	await get_tree().create_timer(4).timeout
-	if not started:
-		spawn_fish()
-		
-func _on_fast_mode_change(value):
-	# Scales every delta, timer, tween, animation and particle at once.
-	Engine.time_scale = 2.0 if value else 1.0
+		_show_title()
 
 
-func _on_expert_mode_change(value):
-	GameManager.easy_mode = not value
-	EventManager.expert_updated.emit()
-	
-func _on_start():
-	animation_player.play("intro")
-	started = true
-		
-func play_tutorial():
-	EventManager.tutorial_requested.emit()
-	get_tree().root.process_mode = Node.PROCESS_MODE_DISABLED
+func _show_title() -> void:
+	hud.hide()
+	title_screen.show()
+	music.play_intro()
+	deco_fish.start_spawning()
+
+
+func _on_title_start_pressed() -> void:
+	title_screen.hide()
+	deco_fish.stop_spawning()
+	intro_player.play("intro")
+
+
+## Called by the intro animation's last key.
+func _on_intro_finished() -> void:
+	GameManager.intro_seen = true
+	_start_playing()
+	if not GameManager.tutorial_done:
+		EventManager.tutorial_requested.emit()
+
+
+func _start_playing() -> void:
+	title_screen.hide()
+	hud.show()
+	wave_button.show()
+	music.play_main_theme()
+	# The camera's resting place is the intro's last keyframe, so skipping can't drift from it.
+	var intro := intro_player.get_animation("intro")
+	camera.position = _last_key(intro, ".:position")
+	camera.zoom = _last_key(intro, ".:zoom")
+
+
+func _last_key(animation: Animation, path: String) -> Variant:
+	var track := animation.find_track(NodePath(path), Animation.TYPE_VALUE)
+	return animation.track_get_key_value(track, animation.track_get_key_count(track) - 1)

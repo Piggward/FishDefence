@@ -46,6 +46,7 @@ var steps := [
 
 func play_tutorial():
 	visible = true
+	GameManager.pause_game()
 	show_step(0)
 
 
@@ -68,6 +69,6 @@ func show_step(index: int):
 
 
 func _finish():
-	get_tree().root.process_mode = Node.PROCESS_MODE_PAUSABLE
+	GameManager.resume_game()
 	visible = false
 	GameManager.tutorial_done = true

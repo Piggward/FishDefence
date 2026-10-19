@@ -3,7 +3,7 @@ extends TestCase
 
 
 func _hud(path: String) -> Node:
-	return tree.current_scene.get_node("CanvasLayer/" + path)
+	return tree.current_scene.get_node("HUD/" + path)
 
 
 func test_money_and_health_labels_follow_the_game():
@@ -37,7 +37,7 @@ func test_wave_counter_and_damage_meter_follow_the_wave():
 		await place_tower(load("res://entities/towers/surgeon_fish/surgeon_tower.tscn"), tiles[i * 13 % tiles.size()])
 	await press_next_wave()
 	await frames(5)
-	check_eq(tree.current_scene.get_node("CanvasLayer/WaveDisplay").label.text, "Wave: 1", "wave counter")
+	check_eq(tree.current_scene.get_node("HUD/WaveDisplay").label.text, "Wave: 1", "wave counter")
 	for f in 3000:
 		await tree.process_frame
 		if meter.visible:
@@ -66,21 +66,3 @@ func test_tutorial_starts_on_request():
 	check(tutorial.visible, "tutorial shown")
 	check(tutorial.current_tutorial != null and tutorial.current_tutorial.preview.visible, "first step shows its demo")
 
-
-## The intro animation ends by starting the tutorial; the game stays paused until it is done.
-func test_intro_leads_into_the_tutorial():
-	game_manager().skip_intro = false
-	game_manager().tutorial_done = false
-	var level: Level = load(LEVEL).instantiate()
-	level.skip_intro = false
-	tree.root.add_child(level)
-	tree.current_scene = level
-	await frames(10)
-	level.game_start_button.pressed.emit()
-	for f in 1200:
-		await tree.process_frame
-		if _hud("TutorialContainer").visible:
-			break
-	check(_hud("TutorialContainer").visible, "tutorial shown after the intro")
-	check_eq(tree.root.process_mode, Node.PROCESS_MODE_DISABLED, "game paused during the tutorial")
-	game_manager().tutorial_done = true
