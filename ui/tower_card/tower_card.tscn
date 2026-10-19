@@ -1,0 +1,112 @@
+[gd_scene load_steps=9 format=3 uid="uid://bxmg00ne8giic"]
+
+[ext_resource type="PackedScene" path="res://components/ui/scene_preview/scene_preview.tscn" id="1_3hfqn"]
+[ext_resource type="Script" uid="uid://dc1cw66rqyyqm" path="res://ui/tower_card/tower_card.gd" id="1_wl4yw"]
+[ext_resource type="Texture2D" uid="uid://cr5xq8b8gccdn" path="res://entities/towers/puffer/pufferfish.png" id="3_n82q0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3hfqn"]
+bg_color = Color(0.12941177, 0.21568628, 0.3372549, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wl4yw"]
+bg_color = Color(0.14901961, 0.4392157, 0.47843137, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fwdi8"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n82q0"]
+bg_color = Color(0.14117648, 0.72156864, 0.627451, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dumxt"]
+bg_color = Color(0.14901961, 0.4392157, 0.47843137, 1)
+
+[node name="TowerCard" type="Control"]
+script = ExtResource("1_wl4yw")
+layout_mode = 3
+anchors_preset = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(1.3783696, 1.3832998)
+theme_override_styles/panel = SubResource("StyleBoxFlat_3hfqn")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="TitleContainer" type="PanelContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_wl4yw")
+
+[node name="NameLabel" type="Label" parent="PanelContainer/VBoxContainer/TitleContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.5568628, 0.34509805, 1)
+text = "Crab"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="BodyContainer" type="PanelContainer" parent="PanelContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_fwdi8")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/MarginContainer/BodyContainer"]
+layout_mode = 2
+
+[node name="TextureContainer" type="PanelContainer" parent="PanelContainer/VBoxContainer/MarginContainer/BodyContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_n82q0")
+
+[node name="IconContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer/MarginContainer/BodyContainer/VBoxContainer/TextureContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 5
+
+[node name="Icon" type="TextureRect" parent="PanelContainer/VBoxContainer/MarginContainer/BodyContainer/VBoxContainer/TextureContainer/IconContainer"]
+unique_name_in_owner = true
+texture_filter = 1
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_n82q0")
+expand_mode = 2
+
+[node name="ScenePreview" parent="PanelContainer/VBoxContainer/MarginContainer/BodyContainer/VBoxContainer/TextureContainer" instance=ExtResource("1_3hfqn")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/VBoxContainer/MarginContainer/BodyContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_dumxt")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer/MarginContainer/BodyContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="DescriptionLabel" type="Label" parent="PanelContainer/VBoxContainer/MarginContainer/BodyContainer/VBoxContainer/PanelContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Attack speed: 400
+Damage: 50
+
+The crab attacks any enemy that comes too close to its sides. Its cheap price makes it perfect to build mazes.
+"
+autowrap_mode = 2

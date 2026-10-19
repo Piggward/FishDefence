@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://ru86gcsabmxc"]
+
+[ext_resource type="PackedScene" uid="uid://cv8o7ubf2m0b1" path="res://entities/towers/tower.tscn" id="1_ekojl"]
+[ext_resource type="Script" uid="uid://bi0agf0j0u25e" path="res://entities/towers/anchovy/anchovy_tower.gd" id="2_ta63j"]
+[ext_resource type="AudioStream" uid="uid://vpepy71c3bot" path="res://entities/towers/anchovy/anchovy_attack.mp3" id="3_ekojl"]
+[ext_resource type="Texture2D" uid="uid://cumx1uv4hu88g" path="res://entities/towers/anchovy/anchovy.png" id="3_t0wob"]
+[ext_resource type="Resource" uid="uid://cifooo8scc4pm" path="res://entities/towers/anchovy/anchovy_stats.tres" id="stats_anchovy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ekojl"]
+size = Vector2(20, 18)
+
+[node name="Tower" instance=ExtResource("1_ekojl")]
+script = ExtResource("2_ta63j")
+stats = ExtResource("stats_anchovy")
+range_cells = Array[Vector2]([Vector2(1, 0), Vector2(2, 0), Vector2(3, 0), Vector2(4, 0)])
+can_rotate = true
+attack_sound = ExtResource("3_ekojl")
+fish_texture = ExtResource("3_t0wob")
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("3_t0wob")
+
+[node name="AttackArea" type="Area2D" parent="Sprite2D" index="0"]
+collision_layer = 0
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/AttackArea" index="0"]
+shape = SubResource("RectangleShape2D_ekojl")
+
+[connection signal="area_entered" from="Sprite2D/AttackArea" to="." method="_on_attack_area_area_entered"]

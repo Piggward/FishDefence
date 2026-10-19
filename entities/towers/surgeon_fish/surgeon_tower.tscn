@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://c4f6gt4tdgpwo"]
+
+[ext_resource type="PackedScene" uid="uid://cv8o7ubf2m0b1" path="res://entities/towers/tower.tscn" id="1_3aa5n"]
+[ext_resource type="Script" uid="uid://gblu3nmvayo4" path="res://entities/towers/surgeon_fish/surgeon_fish.gd" id="2_w1vr1"]
+[ext_resource type="Texture2D" uid="uid://bj6g84nfxwemt" path="res://entities/towers/surgeon_fish/surgeonfish.png" id="3_meo5d"]
+[ext_resource type="AudioStream" uid="uid://cxs38mpv30oj0" path="res://entities/towers/surgeon_fish/surgeon_attack.mp3" id="3_w1vr1"]
+[ext_resource type="Resource" uid="uid://bwdbd42138r5u" path="res://entities/towers/surgeon_fish/surgeon_fish_stats.tres" id="stats_surgeon_fish"]
+
+[node name="Tower" instance=ExtResource("1_3aa5n")]
+script = ExtResource("2_w1vr1")
+stats = ExtResource("stats_surgeon_fish")
+range_cells = Array[Vector2]([Vector2(-2, -2), Vector2(-2, -1), Vector2(-2, 0), Vector2(-2, 1), Vector2(-2, 2), Vector2(-1, -2), Vector2(-1, -1), Vector2(-1, 0), Vector2(-1, 1), Vector2(-1, 2), Vector2(0, -2), Vector2(0, -1), Vector2(0, 1), Vector2(0, 2), Vector2(1, -2), Vector2(1, -1), Vector2(1, 0), Vector2(1, 1), Vector2(1, 2), Vector2(2, -2), Vector2(2, -1), Vector2(2, 0), Vector2(2, 1), Vector2(2, 2)])
+attack_sound = ExtResource("3_w1vr1")
+fish_texture = ExtResource("3_meo5d")
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("3_meo5d")
+
+[node name="CollisionShape2D" parent="." index="1"]
+visible = false

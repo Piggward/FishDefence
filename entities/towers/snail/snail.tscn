@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://b4q4obpovd6jh"]
+
+[ext_resource type="PackedScene" uid="uid://cv8o7ubf2m0b1" path="res://entities/towers/tower.tscn" id="1_f8x7k"]
+[ext_resource type="Script" uid="uid://bdnabxue35ro0" path="res://entities/towers/snail/snail_tower.gd" id="2_6e14t"]
+[ext_resource type="AudioStream" uid="uid://k5lc4y5fs4ry" path="res://entities/towers/snail/snail_play.mp3" id="3_6e14t"]
+[ext_resource type="Texture2D" uid="uid://cul8n78naknoa" path="res://entities/towers/snail/snail.png" id="3_xjskp"]
+[ext_resource type="Resource" uid="uid://lb0osvrll0c" path="res://entities/towers/snail/snail_stats.tres" id="stats_snail"]
+
+[node name="Tower" instance=ExtResource("1_f8x7k")]
+script = ExtResource("2_6e14t")
+stats = ExtResource("stats_snail")
+range_cells = Array[Vector2]([Vector2(-1, 0), Vector2(-1, 1), Vector2(-1, -1)])
+can_rotate = true
+attack_sound = ExtResource("3_6e14t")
+fish_texture = ExtResource("3_xjskp")
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("3_xjskp")

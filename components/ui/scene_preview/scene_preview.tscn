@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://c5vy8lykd0isc"]
+
+[ext_resource type="Script" path="res://components/ui/scene_preview/scene_preview.gd" id="1_preview"]
+
+[node name="ScenePreview" type="SubViewportContainer"]
+custom_minimum_size = Vector2(200, 100)
+mouse_filter = 2
+stretch = true
+script = ExtResource("1_preview")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+disable_3d = true
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(200, 100)

@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://jdasnkkeyv3u"]
+
+[ext_resource type="PackedScene" uid="uid://cv8o7ubf2m0b1" path="res://entities/towers/tower.tscn" id="1_cpmkw"]
+[ext_resource type="Script" uid="uid://da8ufgvgdq145" path="res://entities/towers/puffer/puffer_tower.gd" id="2_ck3tb"]
+[ext_resource type="AudioStream" uid="uid://crpvkphfr3sfs" path="res://entities/towers/puffer/puffer_attack.mp3" id="3_ck3tb"]
+[ext_resource type="Texture2D" uid="uid://cr5xq8b8gccdn" path="res://entities/towers/puffer/pufferfish.png" id="3_oymv6"]
+[ext_resource type="Resource" uid="uid://v1ekd8fgenbq" path="res://entities/towers/puffer/puffer_stats.tres" id="stats_puffer"]
+
+[node name="Tower" instance=ExtResource("1_cpmkw")]
+script = ExtResource("2_ck3tb")
+stats = ExtResource("stats_puffer")
+range_cells = Array[Vector2]([Vector2(-1, -1), Vector2(-1, 0), Vector2(-1, 1), Vector2(0, 1), Vector2(0, -1), Vector2(1, -1), Vector2(1, 0), Vector2(1, 1)])
+attack_sound = ExtResource("3_ck3tb")
+fish_texture = ExtResource("3_oymv6")
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("3_oymv6")
+
+[node name="CollisionShape2D" parent="." index="1"]
+visible = false

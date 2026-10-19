@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://dsipufjotl8y8"]
+
+[ext_resource type="Script" uid="uid://nb3i3nswunki" path="res://entities/towers/range_collision.gd" id="1_gmjde"]
+[ext_resource type="PackedScene" uid="uid://dmmebkt3mshgn" path="res://entities/towers/range_polygon.tscn" id="1_gta8d"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ul66i"]
+size = Vector2(14, 14)
+
+[node name="CollisionShape2D" type="CollisionShape2D"]
+shape = SubResource("RectangleShape2D_ul66i")
+debug_color = Color(0, 0.6, 0.69803923, 1)
+script = ExtResource("1_gmjde")
+
+[node name="RangePolygon" parent="." instance=ExtResource("1_gta8d")]
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-7, -7, 7, -7, 7, 7, -7, 7)

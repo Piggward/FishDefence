@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://38eeivo1kv68"]
+
+[ext_resource type="PackedScene" uid="uid://cv8o7ubf2m0b1" path="res://entities/towers/tower.tscn" id="1_2s5kv"]
+[ext_resource type="Texture2D" uid="uid://bygpmutjsg2hd" path="res://entities/towers/crab/crab.png" id="2_jvo4p"]
+[ext_resource type="Script" uid="uid://c24n7i228vnm4" path="res://entities/towers/crab/crab_tower.gd" id="2_xedrm"]
+[ext_resource type="AudioStream" uid="uid://b4mppvosdxwkj" path="res://entities/towers/crab/click.mp3" id="3_xedrm"]
+[ext_resource type="Resource" uid="uid://i45rbcugki7f" path="res://entities/towers/crab/crab_stats.tres" id="stats_crab"]
+
+[node name="Crab" instance=ExtResource("1_2s5kv")]
+script = ExtResource("2_xedrm")
+stats = ExtResource("stats_crab")
+can_rotate = true
+attack_sound = ExtResource("3_xedrm")
+fish_texture = ExtResource("2_jvo4p")
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_jvo4p")
+
+[node name="CollisionShape2D" parent="." index="1"]
+visible = false
+
+[node name="AttackSound" parent="." index="5"]
+stream = ExtResource("3_xedrm")

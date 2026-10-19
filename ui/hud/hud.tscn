@@ -1,0 +1,300 @@
+[gd_scene load_steps=19 format=3 uid="uid://c6cyknb477bo4"]
+
+[ext_resource type="Script" uid="uid://f2jq2uawrfg" path="res://ui/damage_meter/damage_dealt_container.gd" id="1_8r1wq"]
+[ext_resource type="Script" uid="uid://dgfooxu2uiol4" path="res://ui/shop/shop_button.gd" id="1_xfvoa"]
+[ext_resource type="PackedScene" uid="uid://cju0fht1h5qth" path="res://ui/shop/shop_container.tscn" id="3_8r1wq"]
+[ext_resource type="Script" uid="uid://jyfl1gt7kyc7" path="res://ui/hud/tool_tip.gd" id="5_2fc2m"]
+[ext_resource type="Texture2D" uid="uid://e0wjhxbj1cww" path="res://ui/game_over/blobfish_spritesheet.png" id="6_8r1wq"]
+[ext_resource type="Script" uid="uid://lsybw02k5rch" path="res://ui/game_over/game_over_screen.gd" id="6_ajxib"]
+[ext_resource type="Script" uid="uid://dcmi7kutnsf0b" path="res://tutorial/tutorial_card/tutorial_container.gd" id="7_ajxib"]
+[ext_resource type="PackedScene" uid="uid://bxmg00ne8giic" path="res://ui/tower_card/tower_card.tscn" id="tc_card"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_032fp"]
+bg_color = Color(0.49019608, 0.6431373, 0.5921569, 0.8235294)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lx5au"]
+bg_color = Color(1, 0.5568628, 0.34509805, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+
+[sub_resource type="Animation" id="Animation_032fp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ShopContainer:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1157, 21)]
+}
+
+[sub_resource type="Animation" id="Animation_1l46r"]
+resource_name = "move_in"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ShopContainer:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(830, 9), Vector2(946, 9), Vector2(1159, 9)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2fc2m"]
+_data = {
+&"RESET": SubResource("Animation_032fp"),
+&"move_in": SubResource("Animation_1l46r")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2fc2m"]
+bg_color = Color(0.14901961, 0.4392157, 0.47843137, 0.65882355)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ajxib"]
+atlas = ExtResource("6_8r1wq")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y6sft"]
+atlas = ExtResource("6_8r1wq")
+region = Rect2(160, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m4ofw"]
+atlas = ExtResource("6_8r1wq")
+region = Rect2(160, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_heatd"]
+atlas = ExtResource("6_8r1wq")
+region = Rect2(160, 96, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m4ofw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ajxib")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y6sft")
+}],
+"loop": true,
+"name": &"Lose",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m4ofw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_heatd")
+}],
+"loop": true,
+"name": &"Win",
+"speed": 5.0
+}]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+process_mode = 3
+
+[node name="TutorialContainer" type="Control" parent="."]
+script = ExtResource("7_ajxib")
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -136.0
+offset_top = 36.0
+offset_right = -96.0
+offset_bottom = 76.0
+grow_horizontal = 2
+
+[node name="DamageDealt" type="Control" parent="."]
+script = ExtResource("1_8r1wq")
+visible = false
+layout_mode = 3
+anchor_left = 0.883
+anchor_top = 0.008
+anchor_right = 0.99000007
+anchor_bottom = 0.388
+offset_left = -0.21600342
+offset_top = -0.18400002
+offset_right = 0.51989746
+offset_bottom = -105.42401
+grow_horizontal = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="DamageDealt"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 130.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_032fp")
+
+[node name="MarginContainer" type="MarginContainer" parent="DamageDealt/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="DamageDealt/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = -6
+
+[node name="MarginContainer" type="MarginContainer" parent="DamageDealt/PanelContainer/MarginContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Title" type="Label" parent="DamageDealt/PanelContainer/MarginContainer/VBoxContainer2/MarginContainer"]
+layout_mode = 2
+text = "Damage dealt: "
+
+[node name="DamageRowContainer" type="VBoxContainer" parent="DamageDealt/PanelContainer/MarginContainer/VBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="ShopButton" type="PanelContainer" parent="."]
+script = ExtResource("1_xfvoa")
+anchors_preset = -1
+anchor_left = 0.95000005
+anchor_top = 0.33
+anchor_right = 1.0
+anchor_bottom = 0.54200006
+offset_left = 10.600098
+offset_top = 137.16005
+offset_right = 90.00012
+offset_bottom = 54.784027
+grow_horizontal = 0
+grow_vertical = 0
+rotation = -1.5700699
+theme_override_styles/panel = SubResource("StyleBoxFlat_lx5au")
+
+[node name="MarginContainer" type="MarginContainer" parent="ShopButton"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = -17
+theme_override_constants/margin_right = 20
+
+[node name="Label" type="Label" parent="ShopButton/MarginContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Shop"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ShopContainer" parent="." instance=ExtResource("3_8r1wq")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_2fc2m")
+}
+autoplay = "RESET"
+
+[node name="TowerDescriptionContainer" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 479.0
+offset_top = 97.0
+offset_right = 519.0
+offset_bottom = 137.0
+
+[node name="TowerCard" parent="TowerDescriptionContainer" instance=ExtResource("tc_card")]
+layout_mode = 0
+
+[node name="ToolTip" type="PanelContainer" parent="."]
+script = ExtResource("5_2fc2m")
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -101.5
+offset_top = -21.75
+offset_right = 101.5
+offset_bottom = 21.75
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_2fc2m")
+
+[node name="MarginContainer" type="MarginContainer" parent="ToolTip"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="TooltipText" type="Label" parent="ToolTip/MarginContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Press R to rotate"
+
+[node name="GameOverScreen" type="PanelContainer" parent="."]
+script = ExtResource("6_ajxib")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -295.0
+offset_top = -137.0
+offset_right = 275.0
+offset_bottom = 133.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameOverScreen"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="GameOverScreen/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 90
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 90
+theme_override_constants/margin_bottom = 130
+
+[node name="ResultLabel" type="Label" parent="GameOverScreen/VBoxContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "GAME OVER YOU LOST"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="GameOverScreen/VBoxContainer"]
+texture_filter = 1
+position = Vector2(313, 128)
+scale = Vector2(5.7854347, 5.7854347)
+sprite_frames = SubResource("SpriteFrames_m4ofw")
+animation = &"Win"
+
+[node name="Endless" type="Button" parent="GameOverScreen/VBoxContainer"]
+layout_mode = 2
+text = "Keep playing in Endless Mode"
+
+[node name="PlayAgain" type="Button" parent="GameOverScreen/VBoxContainer"]
+layout_mode = 2
+text = "Play again"
+
+[node name="PlayAgainExpert" type="Button" parent="GameOverScreen/VBoxContainer"]
+layout_mode = 2
+text = "Play again (Expert Mode)"
+
+[node name="Exit" type="Button" parent="GameOverScreen/VBoxContainer"]
+layout_mode = 2
+text = "Exit"
+
+[connection signal="mouse_entered" from="ShopButton" to="ShopButton" method="_on_mouse_entered"]
