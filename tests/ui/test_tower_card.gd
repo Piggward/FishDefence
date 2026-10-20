@@ -16,6 +16,36 @@ func test_hover_card_shows_demo_and_frees_it_on_hide():
 		check_eq(card.preview.viewport.get_child_count(), 0, "preview empty after hiding %s" % item.stats.fish_name)
 
 
+func _on_screen_size(control: Control) -> Vector2:
+	return control.size * (tree.root.get_final_transform() * control.get_global_transform_with_canvas()).get_scale()
+
+
+## The demo renders at the pixels it covers on screen, not its smaller UI size (which got
+## stretched up and blurred), at any window size, while the demo still frames the same area.
+func test_demo_renders_at_screen_resolution():
+	await load_level()
+	var card := tower_card()
+	var item: ShopItem = shop_items()[1]
+	card.show_tower(item.stats, item.fish_texture.texture, item.demo_scene)
+	var preview := card.preview
+	# The window is resized while the card stays open.
+	for window in [Vector2i(1152, 648), Vector2i(1920, 1080)]:
+		tree.root.size = window
+		await frames(5)
+		var on_screen := _on_screen_size(preview)
+		check(on_screen.x > preview.size.x * 1.2, "the card is scaled up on screen (%s vs UI %s)" % [on_screen, preview.size])
+		check((Vector2(preview.viewport.size) - on_screen).abs() < Vector2(1, 1),
+			"renders %s pixels for %s on screen at %s" % [preview.viewport.size, on_screen, window])
+		# Same framing: the tower sits at the same fraction of the preview as at UI size.
+		var tower: Node2D = preview.viewport.find_children("*", "Tower", true, false)[0]
+		var at := tower.get_global_transform_with_canvas().origin
+		var in_pixels := preview.viewport.get_final_transform() * at / Vector2(preview.viewport.size)
+		check((in_pixels - at / preview.size).abs() < Vector2(0.01, 0.01),
+			"tower at %s of the preview, expected %s at %s" % [in_pixels, at / preview.size, window])
+	card.hide_tower()
+	tree.root.size = Vector2i(1152, 648)
+
+
 ## A demo left open must not pile up enemies (they used to spawn forever).
 func test_demo_enemies_stay_bounded():
 	await load_level()

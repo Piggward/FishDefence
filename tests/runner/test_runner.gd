@@ -27,8 +27,9 @@ func _initialize():
 func _run():
 	# The headless window is 64x64; size it like the game's window so anchored UI sits
 	# where it does in play and mouse clicks can reach (and hover) it.
-	root.size = Vector2i(ProjectSettings.get_setting("display/window/size/viewport_width"),
-			ProjectSettings.get_setting("display/window/size/viewport_height"))
+	if DisplayServer.get_name() == "headless":
+		root.size = Vector2i(ProjectSettings.get_setting("display/window/size/viewport_width"),
+				ProjectSettings.get_setting("display/window/size/viewport_height"))
 	var filter := OS.get_cmdline_user_args()[0] if OS.get_cmdline_user_args().size() > 0 else ""
 	var catcher := ErrorCatcher.new()
 	OS.add_logger(catcher)
