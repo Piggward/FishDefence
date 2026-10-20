@@ -40,7 +40,8 @@ func _on_button_mouse_entered():
 
 
 ## The Button fires on mouse-down (action mode Press): the drag to the map starts here
-## and the Placer places the tower on release.
+## and the Placer places the tower on release. Its mouse filter is Pass: a Stop child
+## would make the shop see the mouse leave it, and close, whenever an item is hovered.
 func _on_button_pressed():
 	EventManager.shop_item_clicked.emit(self)
 

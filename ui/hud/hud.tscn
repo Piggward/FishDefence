@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://c6cyknb477bo4"]
+[gd_scene load_steps=16 format=3 uid="uid://c6cyknb477bo4"]
 
 [ext_resource type="Script" uid="uid://f2jq2uawrfg" path="res://ui/damage_meter/damage_dealt_container.gd" id="1_8r1wq"]
 [ext_resource type="Script" uid="uid://dgfooxu2uiol4" path="res://ui/shop/shop_button.gd" id="1_xfvoa"]
@@ -16,43 +16,6 @@ bg_color = Color(0.49019608, 0.6431373, 0.5921569, 0.8235294)
 bg_color = Color(1, 0.5568628, 0.34509805, 1)
 corner_radius_top_left = 15
 corner_radius_top_right = 15
-
-[sub_resource type="Animation" id="Animation_032fp"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ShopContainer:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1157, 21)]
-}
-
-[sub_resource type="Animation" id="Animation_1l46r"]
-resource_name = "move_in"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ShopContainer:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(830, 9), Vector2(946, 9), Vector2(1159, 9)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_2fc2m"]
-_data = {
-&"RESET": SubResource("Animation_032fp"),
-&"move_in": SubResource("Animation_1l46r")
-}
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2fc2m"]
 bg_color = Color(0.14901961, 0.4392157, 0.47843137, 0.65882355)
@@ -165,7 +128,7 @@ text = "Damage dealt: "
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="ShopButton" type="PanelContainer" parent="."]
+[node name="ShopButton" type="PanelContainer" parent="." node_paths=PackedStringArray("shop")]
 script = ExtResource("1_xfvoa")
 anchors_preset = -1
 anchor_left = 0.95000005
@@ -180,6 +143,7 @@ grow_horizontal = 0
 grow_vertical = 0
 rotation = -1.5700699
 theme_override_styles/panel = SubResource("StyleBoxFlat_lx5au")
+shop = NodePath("../ShopContainer")
 
 [node name="MarginContainer" type="MarginContainer" parent="ShopButton"]
 layout_mode = 2
@@ -195,12 +159,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ShopContainer" parent="." instance=ExtResource("3_8r1wq")]
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_2fc2m")
-}
-autoplay = "RESET"
 
 [node name="TowerDescriptionContainer" type="Control" parent="."]
 layout_mode = 3

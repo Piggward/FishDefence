@@ -139,4 +139,3 @@ demo_scene = ExtResource("d_crab")
 visible = false
 layout_mode = 2
 
-[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

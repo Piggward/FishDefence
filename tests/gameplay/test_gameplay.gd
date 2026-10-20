@@ -32,7 +32,7 @@ func test_dragging_from_shop_places_and_charges():
 		mouse_button(to, false, MOUSE_BUTTON_RIGHT)
 		await frames(4)
 		check_eq(placer().state, Placer.State.IDLE, "placer idle after cancelling drag %d" % i)
-	check(placed >= 3, "at least 3 of 4 drags placed a tower (placed %d)" % placed)
+	check_eq(placed, 4, "towers placed by 4 drags")
 
 
 ## A wave is cleared even when towers are moved around while it runs.

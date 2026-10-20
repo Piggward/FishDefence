@@ -1624,9 +1624,6 @@ visible = false
 [node name="ShopContainer" parent="HUD" index="3"]
 offset_bottom = 64.91998
 
-[node name="AnimationPlayer" parent="HUD" index="4"]
-autoplay = &"RESET"
-
 [node name="ShowEnemyPath" type="PanelContainer" parent="HUD" unique_id=216589219 node_paths=PackedStringArray("enemy_path")]
 script = ExtResource("11_twjon")
 enemy_path = NodePath("../../Path")

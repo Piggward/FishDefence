@@ -1,10 +1,8 @@
 extends PanelContainer
-@onready var shop_container = $"../ShopContainer"
+## The "Shop" tab at the screen edge; hovering it opens the shop.
 
-@onready var animation_player = $"../AnimationPlayer"
+@export var shop: Shop
+
 
 func _on_mouse_entered():
-	if animation_player.is_playing():
-		return
-	animation_player.play_backwards("move_in")
-	shop_container.change_open(true)
+	shop.set_open(true)

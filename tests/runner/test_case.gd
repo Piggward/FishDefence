@@ -190,11 +190,15 @@ func press_next_wave() -> void:
 	await click(next_wave_button())
 
 
+func shop() -> Shop:
+	return tree.current_scene.get_node("HUD/ShopContainer")
+
+
 ## Opens the shop by hovering its button, as a player does, and waits for it to slide in.
 func open_shop() -> void:
-	var shop_button: Control = tree.root.find_children("ShopButton", "", true, false)[0]
+	var shop_button: Control = tree.current_scene.get_node("HUD/ShopButton")
 	await mouse_glide(Vector2(10, 10), screen_pos(shop_button, shop_button.size / 2), 3)
-	await frames(30)
+	await frames(40)
 
 
 func mouse_glide(from: Vector2, to: Vector2, steps := 6) -> void:
