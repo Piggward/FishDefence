@@ -35,14 +35,15 @@ func _on_bucks_updated(bucks: int):
 	panel_container_2.self_modulate = Color("24b8a0") if cost <= bucks else Color("da6175")
 
 
-func _on_panel_container_2_mouse_entered():
+func _on_button_mouse_entered():
 	EventManager.shop_item_hovered.emit(self)
 
 
-func _on_panel_container_2_gui_input(event):
-	if event.is_action_pressed("left_click"):
-		EventManager.shop_item_clicked.emit(self)
+## The Button fires on mouse-down (action mode Press): the drag to the map starts here
+## and the Placer places the tower on release.
+func _on_button_pressed():
+	EventManager.shop_item_clicked.emit(self)
 
 
-func _on_panel_container_2_mouse_exited():
+func _on_button_mouse_exited():
 	EventManager.shop_item_unhovered.emit()

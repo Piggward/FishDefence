@@ -48,12 +48,14 @@ func test_wave_counter_and_damage_meter_follow_the_wave():
 
 func test_hovering_a_shop_item_shows_its_card():
 	await load_level()
+	await open_shop()
 	var item: ShopItem = shop_items()[0]
-	EventManager.shop_item_hovered.emit(item)
+	var pos := screen_pos(item, item.size / 2)
+	await mouse_glide(pos + Vector2(0, 20), pos, 3)
 	await frames(5)
 	check(tower_card().visible, "card shown")
 	check_eq(tower_card().tower_name.text, item.stats.fish_name, "card title")
-	EventManager.shop_item_unhovered.emit()
+	await mouse_glide(pos, pos + Vector2(-400, 0), 3)
 	await frames(3)
 	check(not tower_card().visible, "card hidden")
 

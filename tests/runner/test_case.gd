@@ -190,6 +190,13 @@ func press_next_wave() -> void:
 	await click(next_wave_button())
 
 
+## Opens the shop by hovering its button, as a player does, and waits for it to slide in.
+func open_shop() -> void:
+	var shop_button: Control = tree.root.find_children("ShopButton", "", true, false)[0]
+	await mouse_glide(Vector2(10, 10), screen_pos(shop_button, shop_button.size / 2), 3)
+	await frames(30)
+
+
 func mouse_glide(from: Vector2, to: Vector2, steps := 6) -> void:
 	for i in steps + 1:
 		mouse_move(from.lerp(to, float(i) / steps))

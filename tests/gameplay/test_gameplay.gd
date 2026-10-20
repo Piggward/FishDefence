@@ -6,14 +6,12 @@ extends TestCase
 func test_dragging_from_shop_places_and_charges():
 	await load_level()
 	game_manager().eco_bucks = 100000
-	var shop_button: Control = tree.root.find_children("ShopButton", "", true, false)[0]
 	var tiles := placeable_tiles()
 	var items := shop_items()
 	var placed := 0
 	var spent := 0
 	for i in 4:
-		await mouse_glide(Vector2(10, 10), screen_pos(shop_button, shop_button.size / 2), 3)
-		await frames(30)
+		await open_shop()
 		var item: ShopItem = items[i]
 		var panel: Control = item.get_node("MarginContainer/PanelContainer2")
 		var from := screen_pos(panel, panel.size / 2)

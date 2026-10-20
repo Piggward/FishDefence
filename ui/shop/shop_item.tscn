@@ -104,6 +104,12 @@ mouse_filter = 2
 texture = ExtResource("3_6gmg1")
 expand_mode = 2
 
-[connection signal="gui_input" from="MarginContainer/PanelContainer2" to="." method="_on_panel_container_2_gui_input"]
-[connection signal="mouse_entered" from="MarginContainer/PanelContainer2" to="." method="_on_panel_container_2_mouse_entered"]
-[connection signal="mouse_exited" from="MarginContainer/PanelContainer2" to="." method="_on_panel_container_2_mouse_exited"]
+[node name="Button" type="Button" parent="MarginContainer/PanelContainer2"]
+layout_mode = 2
+focus_mode = 0
+action_mode = 0
+flat = true
+
+[connection signal="pressed" from="MarginContainer/PanelContainer2/Button" to="." method="_on_button_pressed"]
+[connection signal="mouse_entered" from="MarginContainer/PanelContainer2/Button" to="." method="_on_button_mouse_entered"]
+[connection signal="mouse_exited" from="MarginContainer/PanelContainer2/Button" to="." method="_on_button_mouse_exited"]
