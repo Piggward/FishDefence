@@ -48,7 +48,7 @@ func _ready() -> void:
 		range_area.add_child(collision)
 		collision.position = cell * CELL_SIZE
 	show_range(false)
-	projectile_container = _find_in_own_viewport("ProjectileContainer")
+	projectile_container = _find_in_own_scene("ProjectileContainer")
 	attack_timer.timeout.connect(_on_attack_timer_timeout)
 	# Deferred: body_entered fires during the physics step, where attacks can't add
 	# projectiles or other collision objects.
@@ -133,10 +133,14 @@ func _try_attack() -> void:
 	attack_timer.start(1.0 / attack_speed)
 
 
-## Groups span the whole tree; demos run in their own viewports and must not pick up
-## another demo's (or the game's) nodes.
-func _find_in_own_viewport(group: String) -> Node:
-	for n in get_tree().get_nodes_in_group(group):
-		if n.get_viewport() == get_viewport():
-			return n
+## The nearest group member among the children of this tower's ancestors: the level's in
+## the game, the demo's own in a preview. A tree-wide group search can return another
+## scene's node, such as one from a demo that is still being freed.
+func _find_in_own_scene(group: String) -> Node:
+	var node := get_parent()
+	while node:
+		for child in node.get_children():
+			if child.is_in_group(group):
+				return child
+		node = node.get_parent()
 	return null

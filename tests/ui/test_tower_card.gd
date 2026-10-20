@@ -79,3 +79,31 @@ func test_demo_towers_attack():
 		check(kills[0] > 0, "%s demo kills its enemies" % name)
 		card.hide_tower()
 		await frames(3)
+
+
+func _item(fish_name: String) -> ShopItem:
+	return shop_items().filter(func(i): return i.stats.fish_name == fish_name)[0]
+
+
+## Moving the mouse straight from one shop item to the next hides one demo and shows the
+## next in the same frame, while the old demo is only queued for deletion. The new towers
+## must use their own demo's projectile container, not the old one, freed a frame later.
+func test_demo_towers_attack_after_switching_items():
+	await load_level()
+	var card := tower_card()
+	var crab := _item("Crab")
+	var surgeon := _item("Surgeon Fish")
+	card.show_tower(crab.stats, crab.fish_texture.texture, crab.demo_scene)
+	await frames(10)
+	card.hide_tower()
+	card.show_tower(surgeon.stats, surgeon.fish_texture.texture, surgeon.demo_scene)
+	var demo: Node = card.preview.viewport.get_child(card.preview.viewport.get_child_count() - 1)
+	var kills := [0]
+	for n in demo.find_children("*", "", true, false):
+		if n is DemoEnemySpawner:
+			n.enemy_spawned.connect(func(e: Enemy): e.died.connect(func(_e, _k): kills[0] += 1))
+	await frames(60 * 6)
+	var tower: Tower = demo.find_children("*", "Tower", true, false)[0]
+	check(is_instance_valid(tower.projectile_container) and demo.is_ancestor_of(tower.projectile_container),
+		"surgeon uses its own demo's projectile container")
+	check(kills[0] > 0, "surgeon fish kills demo enemies (%d)" % kills[0])
