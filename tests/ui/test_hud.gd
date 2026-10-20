@@ -68,3 +68,15 @@ func test_tutorial_starts_on_request():
 	check(tutorial.visible, "tutorial shown")
 	check(tutorial.current_tutorial != null and tutorial.current_tutorial.preview.visible, "first step shows its demo")
 
+
+
+## The HUD's "Show enemy path" toggle shows and hides the level's path line.
+func test_enemy_path_toggle_hides_and_shows_the_path():
+	await load_level()
+	var toggle: CheckButton = tree.current_scene.get_node("HUD/ShowEnemyPath/HBoxContainer/CheckButton")
+	var path: CanvasItem = tree.current_scene.get_node("Path")
+	check(toggle.button_pressed and path.visible, "path shown by default")
+	toggle.button_pressed = false
+	check(not path.visible, "path hidden when toggled off")
+	toggle.button_pressed = true
+	check(path.visible, "path shown again")

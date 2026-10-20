@@ -1,0 +1,229 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" uid="uid://0841yimg6eu8" path="res://ui/player_stats/bucks_container.gd" id="12_ngjjf"]
+[ext_resource type="Texture2D" uid="uid://6ffjaldxnjy4" path="res://ui/player_stats/recycle_icon.png" id="12_pg4dt"]
+[ext_resource type="Texture2D" uid="uid://cvgvqcdvxre3p" path="res://ui/player_stats/lifebar.png" id="18_8lr2p"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ngjjf"]
+bg_color = Color(0.14901961, 0.4392157, 0.47843137, 1)
+corner_radius_top_left = 100
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 100
+
+[sub_resource type="Animation" id="Animation_hojx4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HBoxContainer2/HBoxContainer/MarginContainer2/Control2/Control:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HBoxContainer2/HBoxContainer/MarginContainer2/Control2/Control:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ngjjf"]
+resource_name = "recycle_animation"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HBoxContainer2/HBoxContainer/MarginContainer2/Control2/Control:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.283185307179586]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HBoxContainer2/HBoxContainer/MarginContainer2/Control2/Control:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.16666667, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(2, 2), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1uoi6"]
+_data = {
+&"RESET": SubResource("Animation_hojx4"),
+&"recycle_animation": SubResource("Animation_ngjjf")
+}
+
+[sub_resource type="Animation" id="Animation_6oa22"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MarginContainer2/Control2/Control:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.07, 1.07)]
+}
+
+[sub_resource type="Animation" id="Animation_8lr2p"]
+resource_name = "health_updated"
+length = 0.65
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MarginContainer2/Control2/Control:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3, 0.48, 0.64),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1.07, 1.07), Vector2(1.5, 1.5), Vector2(1.07, 1.07), Vector2(1.5, 1.5), Vector2(1.07, 1.07)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2v2ap"]
+_data = {
+&"RESET": SubResource("Animation_6oa22"),
+&"health_updated": SubResource("Animation_8lr2p")
+}
+
+[node name="BucksContainer" type="PanelContainer"]
+self_modulate = Color(1, 1, 1, 0.6745098)
+anchors_preset = -1
+anchor_left = 0.021000002
+anchor_top = 0.023000002
+anchor_right = 0.109000005
+anchor_bottom = 0.108
+offset_left = 2.8080025
+offset_top = 12.096003
+offset_right = 151.43199
+offset_bottom = 12.015999
+scale = Vector2(0.8898865, 0.8898865)
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ngjjf")
+script = ExtResource("12_ngjjf")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = -6
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = -4
+
+[node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer2/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 22
+theme_override_constants/margin_right = 35
+
+[node name="Control2" type="Control" parent="HBoxContainer2/HBoxContainer/MarginContainer2"]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="HBoxContainer2/HBoxContainer/MarginContainer2/Control2"]
+anchors_preset = 0
+offset_left = 3.0
+offset_top = 4.0
+offset_right = 3.0
+offset_bottom = 37.0
+
+[node name="RecycleRect" type="TextureRect" parent="HBoxContainer2/HBoxContainer/MarginContainer2/Control2/Control"]
+texture_filter = 1
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 0
+offset_left = -28.0
+offset_top = -26.0
+offset_right = 27.0
+offset_bottom = 29.0
+mouse_filter = 2
+texture = ExtResource("12_pg4dt")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer2/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_right = 15
+
+[node name="BucksLabel" type="Label" parent="HBoxContainer2/HBoxContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.29411766, 0.7647059, 0.21176471, 1)
+theme_override_font_sizes/font_size = 36
+text = "25"
+
+[node name="BucksAnimation" type="AnimationPlayer" parent="HBoxContainer2/HBoxContainer"]
+unique_name_in_owner = true
+root_node = NodePath("../../..")
+libraries/ = SubResource("AnimationLibrary_1uoi6")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="HBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = -4
+
+[node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer2/HBoxContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 22
+theme_override_constants/margin_right = 35
+
+[node name="Control2" type="Control" parent="HBoxContainer2/HBoxContainer2/MarginContainer2"]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="HBoxContainer2/HBoxContainer2/MarginContainer2/Control2"]
+anchors_preset = 0
+offset_left = 3.0
+offset_top = 4.0
+offset_right = 3.0
+offset_bottom = 37.0
+scale = Vector2(1.07, 1.07)
+
+[node name="HeartRect" type="TextureRect" parent="HBoxContainer2/HBoxContainer2/MarginContainer2/Control2/Control"]
+texture_filter = 1
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 0
+offset_left = -17.0
+offset_top = -21.000002
+offset_right = 38.0
+offset_bottom = 34.0
+scale = Vector2(0.78544676, 0.78544676)
+mouse_filter = 2
+texture = ExtResource("18_8lr2p")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer2/HBoxContainer2"]
+layout_mode = 2
+theme_override_constants/margin_right = 15
+
+[node name="HeartLabel" type="Label" parent="HBoxContainer2/HBoxContainer2/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85490197, 0.38039216, 0.45882353, 1)
+theme_override_font_sizes/font_size = 36
+text = "100"
+
+[node name="HeartAnimation" type="AnimationPlayer" parent="HBoxContainer2/HBoxContainer2"]
+unique_name_in_owner = true
+libraries/ = SubResource("AnimationLibrary_2v2ap")

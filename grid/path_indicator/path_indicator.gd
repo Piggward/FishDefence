@@ -5,6 +5,7 @@ extends Line2D
 
 func _ready():
 	tile_grid.path_updated.connect(_on_path_updated)
+	EventManager.enemy_path_toggled.connect(set_visible)
 	_on_path_updated()
 
 func _on_path_updated():

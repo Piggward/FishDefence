@@ -1,0 +1,60 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" uid="uid://dwxpta7p43a2f" path="res://ui/hud/show_enemy_path.gd" id="11_twjon"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pg4dt"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_twjon"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pg4dt"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ngjjf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hojx4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1uoi6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vswhx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_awp58"]
+
+[node name="ShowEnemyPath" type="PanelContainer"]
+visible = false
+z_index = -1
+anchors_preset = -1
+anchor_left = 0.795
+anchor_right = 0.97
+anchor_bottom = 0.096
+offset_left = 0.15997314
+offset_right = 0.5599365
+offset_bottom = -0.20800018
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_pg4dt")
+script = ExtResource("11_twjon")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_right = 10
+
+[node name="Label" type="Label" parent="HBoxContainer/MarginContainer"]
+layout_mode = 2
+text = "Show enemy path"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckButton" type="CheckButton" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_twjon")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_pg4dt")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_ngjjf")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_hojx4")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_1uoi6")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_vswhx")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_awp58")
+button_pressed = true

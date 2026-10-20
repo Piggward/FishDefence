@@ -25,4 +25,5 @@ signal shop_opened(open: bool)
 signal placing_started(tower: Tower)
 signal placing_stopped
 signal tower_damage_dealt(tower: Tower, amount: int)
+signal enemy_path_toggled(shown: bool)
 signal error

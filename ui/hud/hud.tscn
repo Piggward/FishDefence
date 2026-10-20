@@ -1,5 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://c6cyknb477bo4"]
-
+[gd_scene format=3 uid="uid://c6cyknb477bo4"]
 [ext_resource type="Script" uid="uid://f2jq2uawrfg" path="res://ui/damage_meter/damage_dealt_container.gd" id="1_8r1wq"]
 [ext_resource type="Script" uid="uid://dgfooxu2uiol4" path="res://ui/shop/shop_button.gd" id="1_xfvoa"]
 [ext_resource type="PackedScene" uid="uid://cju0fht1h5qth" path="res://ui/shop/shop_container.tscn" id="3_8r1wq"]
@@ -9,6 +8,14 @@
 [ext_resource type="Script" uid="uid://dcmi7kutnsf0b" path="res://tutorial/tutorial_card/tutorial_container.gd" id="7_ajxib"]
 [ext_resource type="PackedScene" uid="uid://bxmg00ne8giic" path="res://ui/tower_card/tower_card.tscn" id="tc_card"]
 
+[ext_resource type="PackedScene" path="res://ui/hud/show_enemy_path.tscn" id="scene_ShowEnemyPath"]
+[ext_resource type="PackedScene" path="res://ui/player_stats/bucks_container.tscn" id="scene_BucksContainer"]
+[ext_resource type="PackedScene" path="res://ui/waves/wave_display.tscn" id="scene_WaveDisplay"]
+[ext_resource type="PackedScene" uid="uid://dwrb20ty0gvsi" path="res://ui/waves/wave_button.tscn" id="37_0ai0x"]
+[ext_resource type="PackedScene" path="res://components/ui/check_box_button/check_box_button.tscn" id="check_box_button"]
+
+[ext_resource type="AudioStream" uid="uid://cd6ed2qlsxrry" path="res://ui/hud/error_sound.mp3" id="14_0ai0x"]
+[ext_resource type="Script" uid="uid://bntduu8ibf60y" path="res://ui/hud/error_sound.gd" id="15_etg4x"]
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_032fp"]
 bg_color = Color(0.49019608, 0.6431373, 0.5921569, 0.8235294)
 
@@ -159,6 +166,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ShopContainer" parent="." instance=ExtResource("3_8r1wq")]
+offset_bottom = 64.91998
 
 [node name="TowerDescriptionContainer" type="Control" parent="."]
 layout_mode = 3
@@ -254,5 +262,34 @@ text = "Play again (Expert Mode)"
 [node name="Exit" type="Button" parent="GameOverScreen/VBoxContainer"]
 layout_mode = 2
 text = "Exit"
+
+[node name="ShowEnemyPath" parent="." instance=ExtResource("scene_ShowEnemyPath")]
+
+[node name="BucksContainer" parent="." instance=ExtResource("scene_BucksContainer")]
+
+[node name="WaveDisplay" parent="." instance=ExtResource("scene_WaveDisplay")]
+
+[node name="WaveButton" parent="." instance=ExtResource("37_0ai0x")]
+
+[node name="FastModeButton" parent="." instance=ExtResource("check_box_button")]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -542.0
+offset_top = -558.0
+offset_right = -416.82672
+offset_bottom = -518.4535
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.88756704, 0.88756704)
+tooltip_text = "Run the game at double speed."
+text = "Fast mode"
+
+[node name="ErrorSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_0ai0x")
+pitch_scale = 0.9
+script = ExtResource("15_etg4x")
 
 [connection signal="mouse_entered" from="ShopButton" to="ShopButton" method="_on_mouse_entered"]
