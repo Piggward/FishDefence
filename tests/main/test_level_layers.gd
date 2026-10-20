@@ -16,7 +16,7 @@ func _z(item: CanvasItem) -> int:
 ## The placement grid must draw after it, so the grid stays straight and untinted.
 func test_placement_grid_draws_above_the_underwater_overlay():
 	await load_level()
-	var overlay: CanvasItem = tree.current_scene.get_node("Camera2D/Sprite2D")
+	var overlay: CanvasItem = tree.current_scene.get_node("Camera2D/UnderwaterOverlay")
 	check(overlay.material.shader.code.contains("hint_screen_texture"), "overlay is the screen-reading water shader")
 	var grid: CanvasItem = tile_grid().tile_poly_container
 	check(_z(grid) > _z(overlay), "grid z %d above overlay z %d" % [_z(grid), _z(overlay)])
