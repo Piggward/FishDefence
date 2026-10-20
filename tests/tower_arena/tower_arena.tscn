@@ -1,0 +1,58 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://tests/tower_arena/tower_arena.gd" id="1_arena"]
+[ext_resource type="Script" uid="uid://5p5i4yp6gsaj" path="res://entities/towers/demo_enemy_spawner.gd" id="2_spawner"]
+[ext_resource type="PackedScene" uid="uid://c4f6gt4tdgpwo" path="res://entities/towers/surgeon_fish/surgeon_tower.tscn" id="3_surgeon"]
+
+[node name="TowerArena" type="Node2D"]
+script = ExtResource("1_arena")
+
+[node name="Background" type="ColorRect" parent="."]
+z_index = -10
+offset_left = -192.0
+offset_top = -108.0
+offset_right = 192.0
+offset_bottom = 108.0
+mouse_filter = 2
+color = Color(0.32, 0.72, 0.62, 1)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(3, 3)
+
+[node name="ProjectileContainer" type="Node2D" parent="." groups=["ProjectileContainer"]]
+
+[node name="SurgeonFish" parent="." instance=ExtResource("3_surgeon")]
+
+[node name="LaneTop" type="Node2D" parent="."]
+position = Vector2(-190, -32)
+script = ExtResource("2_spawner")
+direction = Vector2(1, 0)
+interval = 3.0
+max_distance = 380.0
+wave = 1
+
+[node name="LaneBottom" type="Node2D" parent="."]
+position = Vector2(190, 32)
+script = ExtResource("2_spawner")
+direction = Vector2(-1, 0)
+interval = 3.0
+max_distance = 380.0
+wave = 1
+
+[node name="LaneRight" type="Node2D" parent="."]
+position = Vector2(64, -110)
+script = ExtResource("2_spawner")
+direction = Vector2(0, 1)
+interval = 3.0
+max_distance = 220.0
+wave = 1
+
+[node name="Stats" type="CanvasLayer" parent="."]
+
+[node name="StatsLabel" type="Label" parent="Stats"]
+unique_name_in_owner = true
+offset_left = 12.0
+offset_top = 8.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 22
