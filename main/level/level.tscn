@@ -35,10 +35,9 @@
 [ext_resource type="Script" uid="uid://bdsn5kgunbif3" path="res://decorations/deco_fish/deco_fish_spawner.gd" id="31_nfbc7"]
 [ext_resource type="Script" uid="uid://b4rutiiwqbplu" path="res://ui/waves/wave_display.gd" id="32_2uwox"]
 [ext_resource type="Script" uid="uid://b7mrb5ceqaex2" path="res://main/music/music.gd" id="32_nfbc7"]
-[ext_resource type="Texture2D" uid="uid://ccp8hbm6o8sq3" path="res://components/ui/check_box_button/check_square_grey.png" id="36_funyk"]
 [ext_resource type="PackedScene" uid="uid://dwrb20ty0gvsi" path="res://ui/waves/wave_button.tscn" id="37_0ai0x"]
-[ext_resource type="Script" uid="uid://bvo2ln3tvulgc" path="res://components/ui/check_box_button/check_box_button.gd" id="38_etg4x"]
 [ext_resource type="PackedScene" uid="uid://gfkfeurlto21" path="res://ui/title_screen/title_screen.tscn" id="title_screen"]
+[ext_resource type="PackedScene" path="res://components/ui/check_box_button/check_box_button.tscn" id="check_box_button"]
 
 [sub_resource type="Animation" id="Animation_y6gvw"]
 length = 0.001
@@ -845,18 +844,6 @@ _data = {
 &"RESET": SubResource("Animation_funyk"),
 &"show": SubResource("Animation_2uwox")
 }
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2uwox"]
-bg_color = Color(0.16078432, 0.62352943, 0.64705884, 0.5647059)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
 
 [node name="Level" type="Node2D" unique_id=1067750321]
 script = ExtResource("1_y6gvw")
@@ -1815,7 +1802,7 @@ libraries/ = SubResource("AnimationLibrary_funyk")
 
 [node name="WaveButton" parent="HUD" unique_id=1576210926 instance=ExtResource("37_0ai0x")]
 
-[node name="FastModeButton" type="PanelContainer" parent="HUD" unique_id=801544399]
+[node name="FastModeButton" parent="HUD" unique_id=801544399 instance=ExtResource("check_box_button")]
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -1828,46 +1815,9 @@ offset_bottom = -518.4535
 grow_horizontal = 2
 grow_vertical = 0
 scale = Vector2(0.88756704, 0.88756704)
-theme_override_styles/panel = SubResource("StyleBoxFlat_2uwox")
-script = ExtResource("38_etg4x")
-
-[node name="MarginContainer" type="MarginContainer" parent="HUD/FastModeButton" unique_id=419128122]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="HBoxContainer" type="HBoxContainer" parent="HUD/FastModeButton/MarginContainer" unique_id=306272566]
-layout_mode = 2
-theme_override_constants/separation = 9
-
-[node name="Label" type="Label" parent="HUD/FastModeButton/MarginContainer/HBoxContainer" unique_id=756098231]
-layout_mode = 2
-tooltip_text = "I am an expert labyrinth builder and tower defender and want a challenge."
-mouse_filter = 0
-theme_override_font_sizes/font_size = 14
+tooltip_text = "Run the game at double speed."
 text = "Fast mode"
 
-[node name="TextureRect" type="TextureRect" parent="HUD/FastModeButton/MarginContainer/HBoxContainer" unique_id=1219116102]
-texture_filter = 1
-layout_mode = 2
-texture = ExtResource("36_funyk")
-expand_mode = 2
-
-[node name="Button" type="Button" parent="HUD/FastModeButton/MarginContainer/HBoxContainer/TextureRect" unique_id=471130681]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-focus_mode = 0
-toggle_mode = true
-flat = true
-
 [node name="TitleScreen" parent="." unique_id=369099002 instance=ExtResource("title_screen")]
-
-[connection signal="toggled" from="HUD/FastModeButton/MarginContainer/HBoxContainer/TextureRect/Button" to="HUD/FastModeButton" method="_on_button_toggled"]
 
 [editable path="HUD"]

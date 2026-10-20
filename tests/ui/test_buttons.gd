@@ -60,3 +60,14 @@ func test_checkbox_toggles_on_click_only():
 	check(not box.checked, "unchecked after a second click")
 	check_eq(Engine.time_scale, 1.0, "fast mode off")
 	check_eq(box.texture_rect.texture, box.CHECK_SQUARE_GREY, "box shows the empty square")
+
+
+## Each checkbox instance shows its own label and tooltip (the copies used to share one).
+func test_checkboxes_show_their_own_text_and_tooltip():
+	await load_level(true)
+	var fast: CheckBoxButton = tree.current_scene.fast_mode_button
+	var expert: CheckBoxButton = tree.current_scene.title_screen.expert_mode_button
+	check_eq(fast.label.text, "Fast mode", "fast mode label")
+	check(fast.label.tooltip_text.contains("double speed"), "fast mode tooltip: %s" % fast.label.tooltip_text)
+	check_eq(expert.label.text, "Expert mode", "expert mode label")
+	check(expert.label.tooltip_text.contains("expert"), "expert mode tooltip: %s" % expert.label.tooltip_text)

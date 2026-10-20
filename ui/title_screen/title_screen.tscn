@@ -2,8 +2,7 @@
 
 [ext_resource type="Script" uid="uid://lfbejj1c8sg8" path="res://ui/title_screen/title_screen.gd" id="title_script"]
 [ext_resource type="Script" uid="uid://cmq5uo6ri7d2v" path="res://components/audio/volume_slider.gd" id="35_2uwox"]
-[ext_resource type="Texture2D" uid="uid://ccp8hbm6o8sq3" path="res://components/ui/check_box_button/check_square_grey.png" id="36_funyk"]
-[ext_resource type="Script" uid="uid://bvo2ln3tvulgc" path="res://components/ui/check_box_button/check_box_button.gd" id="38_etg4x"]
+[ext_resource type="PackedScene" path="res://components/ui/check_box_button/check_box_button.tscn" id="check_box_button"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2uwox"]
 bg_color = Color(0.16078432, 0.62352943, 0.64705884, 0.5647059)
@@ -158,8 +157,7 @@ max_value = 1.0
 step = 0.01
 value = 1.0
 
-[node name="ExpertModeButton" type="PanelContainer" parent="."]
-script = ExtResource("38_etg4x")
+[node name="ExpertModeButton" parent="." instance=ExtResource("check_box_button")]
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -172,43 +170,7 @@ offset_bottom = -444.52493
 grow_horizontal = 2
 grow_vertical = 0
 scale = Vector2(0.62313634, 0.62313634)
-theme_override_styles/panel = SubResource("StyleBoxFlat_2uwox")
-
-[node name="MarginContainer" type="MarginContainer" parent="ExpertModeButton"]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="HBoxContainer" type="HBoxContainer" parent="ExpertModeButton/MarginContainer"]
-layout_mode = 2
-theme_override_constants/separation = 9
-
-[node name="Label" type="Label" parent="ExpertModeButton/MarginContainer/HBoxContainer"]
-layout_mode = 2
 tooltip_text = "I am an expert labyrinth builder and tower defender and want a challenge."
-mouse_filter = 0
-theme_override_font_sizes/font_size = 14
 text = "Expert mode"
 
-[node name="TextureRect" type="TextureRect" parent="ExpertModeButton/MarginContainer/HBoxContainer"]
-texture_filter = 1
-layout_mode = 2
-texture = ExtResource("36_funyk")
-expand_mode = 2
-
-[node name="Button" type="Button" parent="ExpertModeButton/MarginContainer/HBoxContainer/TextureRect"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-focus_mode = 0
-toggle_mode = true
-flat = true
-
 [connection signal="value_changed" from="VolumeContainer/MarginContainer/HBoxContainer/VolumeSlider" to="VolumeContainer/MarginContainer/HBoxContainer/VolumeSlider" method="_on_value_changed"]
-[connection signal="toggled" from="ExpertModeButton/MarginContainer/HBoxContainer/TextureRect/Button" to="ExpertModeButton" method="_on_button_toggled"]
-
