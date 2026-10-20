@@ -1,17 +1,19 @@
 class_name CheckBoxButton
 extends PanelContainer
-## Labelled checkbox; clicking the box toggles it.
+## Labelled checkbox; clicking the box toggles it. A flat toggle Button over the box
+## takes the clicks.
 
 signal toggled(checked: bool)
 
 const CHECK_SQUARE_GREY = preload("uid://ccp8hbm6o8sq3")
 const CHECK_SQUARE_GREY_CHECKMARK = preload("uid://cxbhbfpyljb53")
-@onready var texture_rect = $MarginContainer/HBoxContainer/TextureRect
-var checked = false
+@onready var texture_rect: TextureRect = $MarginContainer/HBoxContainer/TextureRect
+@onready var button: Button = $MarginContainer/HBoxContainer/TextureRect/Button
+var checked: bool:
+	get:
+		return button.button_pressed
 
 
-func _on_texture_rect_gui_input(event):
-	if event.is_action_pressed("left_click"):
-		checked = !checked
-		texture_rect.texture = CHECK_SQUARE_GREY_CHECKMARK if checked else CHECK_SQUARE_GREY
-		toggled.emit(checked)
+func _on_button_toggled(on: bool) -> void:
+	texture_rect.texture = CHECK_SQUARE_GREY_CHECKMARK if on else CHECK_SQUARE_GREY
+	toggled.emit(on)

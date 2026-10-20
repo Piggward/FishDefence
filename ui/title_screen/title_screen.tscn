@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://gfkfeurlto21"]
 
 [ext_resource type="Script" uid="uid://lfbejj1c8sg8" path="res://ui/title_screen/title_screen.gd" id="title_script"]
-[ext_resource type="Script" uid="uid://c5q0foqoxawdm" path="res://ui/title_screen/start_game_button.gd" id="20_cp2ay"]
 [ext_resource type="Script" uid="uid://cmq5uo6ri7d2v" path="res://components/audio/volume_slider.gd" id="35_2uwox"]
 [ext_resource type="Texture2D" uid="uid://ccp8hbm6o8sq3" path="res://components/ui/check_box_button/check_square_grey.png" id="36_funyk"]
 [ext_resource type="Script" uid="uid://bvo2ln3tvulgc" path="res://components/ui/check_box_button/check_box_button.gd" id="38_etg4x"]
@@ -19,6 +18,10 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nfbc7"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
 bg_color = Color(0.14901961, 0.4392157, 0.47843137, 1)
 border_width_left = 5
 border_width_top = 5
@@ -45,7 +48,6 @@ scale = Vector2(3, 2.8)
 transform = Transform2D(3, 0, 0, 2.8, 0, 0)
 
 [node name="StartGameButton" type="PanelContainer" parent="."]
-script = ExtResource("20_cp2ay")
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -62,10 +64,10 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_nfbc7")
 
 [node name="MarginContainer" type="MarginContainer" parent="StartGameButton"]
 layout_mode = 2
-theme_override_constants/margin_left = 15
-theme_override_constants/margin_top = 15
-theme_override_constants/margin_right = 15
-theme_override_constants/margin_bottom = 15
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
 
 [node name="Label" type="Label" parent="StartGameButton/MarginContainer"]
 layout_mode = 2
@@ -74,6 +76,11 @@ theme_override_font_sizes/font_size = 35
 text = "Start game "
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Button" type="Button" parent="StartGameButton"]
+layout_mode = 2
+focus_mode = 0
+flat = true
 
 [node name="GameTitle" type="PanelContainer" parent="."]
 anchors_preset = 7
@@ -191,7 +198,17 @@ layout_mode = 2
 texture = ExtResource("36_funyk")
 expand_mode = 2
 
-[connection signal="gui_input" from="StartGameButton" to="StartGameButton" method="_on_gui_input"]
+[node name="Button" type="Button" parent="ExpertModeButton/MarginContainer/HBoxContainer/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+toggle_mode = true
+flat = true
+
 [connection signal="value_changed" from="VolumeContainer/MarginContainer/HBoxContainer/VolumeSlider" to="VolumeContainer/MarginContainer/HBoxContainer/VolumeSlider" method="_on_value_changed"]
-[connection signal="gui_input" from="ExpertModeButton/MarginContainer/HBoxContainer/TextureRect" to="ExpertModeButton" method="_on_texture_rect_gui_input"]
+[connection signal="toggled" from="ExpertModeButton/MarginContainer/HBoxContainer/TextureRect/Button" to="ExpertModeButton" method="_on_button_toggled"]
 

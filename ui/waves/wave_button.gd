@@ -13,11 +13,10 @@ func _ready():
 	EventManager.endless_started.connect(show)
 
 
-func _on_gui_input(event: InputEvent):
-	if event.is_action_pressed("left_click"):
-		hide()
-		content.modulate = normal_color
-		EventManager.next_wave_requested.emit()
+func _on_button_pressed():
+	hide()
+	content.modulate = normal_color
+	EventManager.next_wave_requested.emit()
 
 
 func _on_mouse_entered():

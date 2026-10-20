@@ -28,12 +28,7 @@ func _play_state() -> Dictionary:
 
 ## Clicks Start through the GUI and waits until the intro has handed over.
 func _click_start_and_wait_for_intro() -> void:
-	var button := _title().start_button
-	var pos := screen_pos(button, button.size / 2)
-	await mouse_glide(pos + Vector2(0, -40), pos, 3)
-	mouse_button(pos, true)
-	await frames(2)
-	mouse_button(pos, false)
+	await click(_title().start_button)
 	for f in 20 * 60:
 		await tree.process_frame
 		if _hud().visible:

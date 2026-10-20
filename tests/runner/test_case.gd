@@ -176,15 +176,18 @@ func mouse_button(pos: Vector2, pressed: bool, button := MOUSE_BUTTON_LEFT) -> v
 	tree.root.push_input(e)
 
 
-## Clicks the "Next wave" button through the GUI.
-func press_next_wave() -> void:
-	var button := next_wave_button()
-	var pos := screen_pos(button, button.size / 2)
+## Clicks the middle of a Control through the GUI: hover, press, release.
+func click(control: Control) -> void:
+	var pos := screen_pos(control, control.size / 2)
 	await mouse_glide(pos + Vector2(0, -30), pos, 3)
 	mouse_button(pos, true)
 	await frames(2)
 	mouse_button(pos, false)
 	await frames(2)
+
+
+func press_next_wave() -> void:
+	await click(next_wave_button())
 
 
 func mouse_glide(from: Vector2, to: Vector2, steps := 6) -> void:

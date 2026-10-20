@@ -4,7 +4,7 @@ extends CanvasLayer
 
 signal start_pressed
 
-@onready var start_button: GameStartButton = $StartGameButton
+@onready var start_button: Button = $StartGameButton/Button
 @onready var expert_mode_button: CheckBoxButton = $ExpertModeButton
 
 

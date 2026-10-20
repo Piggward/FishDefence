@@ -16,7 +16,11 @@ func test_tutorial_steps_through_and_resumes_the_game():
 		check_eq(card.tutorial_name.text, TITLES[i], "step %d title" % (i + 1))
 		check(card.preview.visible, "step %d shows its demo" % (i + 1))
 		check_eq(card.next_label.text == "Start", i == TITLES.size() - 1, "only the last step says Start (step %d)" % (i + 1))
-		card.next.emit()
+		# The "Next"/"Start" label is part of the button, not only the arrow icon.
+		var label_pos := screen_pos(card.next_label, card.next_label.size / 2)
+		await mouse_glide(label_pos + Vector2(0, -60), label_pos, 3)
+		check_eq(card.next_row.modulate, Color("ff8e58"), "hovering the label highlights Next (step %d)" % (i + 1))
+		await click(card.next_label)
 	await frames(3)
 	check(not tutorial.visible, "tutorial hidden after the last step")
 	check(game_manager().tutorial_done, "tutorial marked done")

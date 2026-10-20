@@ -27,14 +27,13 @@ func _ready():
 		next_label.text = "Start"
 
 
-func _on_next_button_gui_input(event):
-	if event.is_action_pressed("left_click"):
-		next.emit()
+func _on_next_button_pressed():
+	next.emit()
 
 
-func _on_next_row_mouse_entered():
+func _on_next_button_mouse_entered():
 	next_row.modulate = Color("ff8e58")
 
 
-func _on_next_row_mouse_exited():
+func _on_next_button_mouse_exited():
 	next_row.modulate = Color.WHITE

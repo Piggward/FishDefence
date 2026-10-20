@@ -108,12 +108,9 @@ func test_losing_mid_wave_shows_only_the_lose_screen():
 
 
 func _set_fast_mode(on: bool):
-	var button: CheckBoxButton = tree.current_scene.get_node("HUD/FastModeButton")
-	if button.checked != on:
-		var click := InputEventMouseButton.new()
-		click.button_index = MOUSE_BUTTON_LEFT
-		click.pressed = true
-		button._on_texture_rect_gui_input(click)
+	var box: CheckBoxButton = tree.current_scene.get_node("HUD/FastModeButton")
+	if box.checked != on:
+		await click(box.button)
 
 
 ## Fast mode doubles enemy speed and tower attack rate.
@@ -121,7 +118,7 @@ func test_fast_mode_doubles_game_speed():
 	await load_level()
 	var results := {}
 	for fast in [false, true]:
-		_set_fast_mode(fast)
+		await _set_fast_mode(fast)
 		var enemy := await spawn_enemy_at(tile_grid().cell_position(tile_grid().start_tile), 3000)
 		# Distance along the path, summed per frame: the enemy may turn corners.
 		var moved := 0.0
@@ -146,7 +143,7 @@ func test_fast_mode_doubles_game_speed():
 		"enemy moves twice as far in fast mode (%s vs %s)" % [results[true][0], results[false][0]])
 	check(absf(float(results[false][1]) / results[true][1] - 2.0) < 0.15,
 		"tower cooldown is half as long in fast mode (%d vs %d frames)" % [results[false][1], results[true][1]])
-	_set_fast_mode(false)
+	await _set_fast_mode(false)
 
 
 func container_cleanup():
