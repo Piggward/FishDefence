@@ -1,4 +1,5 @@
 [gd_scene format=4 uid="uid://drkhpej01r8vi"]
+
 [ext_resource type="Texture2D" uid="uid://ceg6bpkr167xq" path="res://main/level/art/tileset_spring.png" id="1_kncup"]
 [ext_resource type="Script" uid="uid://bpd7f7v0wwsg0" path="res://main/level/level.gd" id="1_y6gvw"]
 [ext_resource type="Texture2D" uid="uid://bd0q6xd2ytslo" path="res://entities/enemies/wave_animation/wave.png" id="1_yk8q3"]
@@ -37,8 +38,8 @@
 [ext_resource type="Texture2D" uid="uid://ccp8hbm6o8sq3" path="res://components/ui/check_box_button/check_square_grey.png" id="36_funyk"]
 [ext_resource type="PackedScene" uid="uid://dwrb20ty0gvsi" path="res://ui/waves/wave_button.tscn" id="37_0ai0x"]
 [ext_resource type="Script" uid="uid://bvo2ln3tvulgc" path="res://components/ui/check_box_button/check_box_button.gd" id="38_etg4x"]
-
 [ext_resource type="PackedScene" uid="uid://gfkfeurlto21" path="res://ui/title_screen/title_screen.tscn" id="title_screen"]
+
 [sub_resource type="Animation" id="Animation_y6gvw"]
 length = 0.001
 tracks/0/type = "value"
@@ -65,6 +66,7 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector2(3, 2.8)]
 }
+
 [sub_resource type="Animation" id="Animation_cp2ay"]
 resource_name = "intro"
 length = 20.0
@@ -1451,9 +1453,9 @@ position = Vector2(338, 107)
 position = Vector2(754, 115)
 
 [node name="Error" type="AudioStreamPlayer" parent="." unique_id=716318144]
-script = ExtResource("15_etg4x")
 stream = ExtResource("14_0ai0x")
 pitch_scale = 0.9
+script = ExtResource("15_etg4x")
 
 [node name="Ambient" type="AudioStreamPlayer" parent="." unique_id=640520651]
 process_mode = 3
@@ -1462,10 +1464,10 @@ volume_db = -5.0
 autoplay = true
 
 [node name="Music" type="AudioStreamPlayer" parent="." unique_id=924521484]
-script = ExtResource("32_nfbc7")
 process_mode = 3
 stream = ExtResource("15_sjxjp")
 bus = &"Music"
+script = ExtResource("32_nfbc7")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2023210055]
 root_node = NodePath("../Camera2D")
@@ -1529,14 +1531,15 @@ scale = Vector2(3.4765623, 2.3203125)
 texture = ExtResource("9_s14w7")
 
 [node name="TileGrid" type="Node2D" parent="." unique_id=871714841 node_paths=PackedStringArray("goal", "start", "enemy_container", "navigation_area", "obstacle_area", "placeable_area")]
+z_index = 16
 script = ExtResource("7_s14w7")
+grid_size = Vector2(36, 24)
+goal = NodePath("../Goal")
+start = NodePath("../Start")
 enemy_container = NodePath("../EnemyContainer")
 navigation_area = NodePath("../NavigationArea")
 obstacle_area = NodePath("../ObstacleArea")
 placeable_area = NodePath("../PlaceableArea")
-grid_size = Vector2(36, 24)
-goal = NodePath("../Goal")
-start = NodePath("../Start")
 
 [node name="TileArea" type="Area2D" parent="TileGrid" unique_id=12909201]
 
@@ -1550,8 +1553,8 @@ visible = false
 modulate = Color(1, 1, 1, 0.52156866)
 
 [node name="Path" parent="." unique_id=815370914 node_paths=PackedStringArray("tile_grid") instance=ExtResource("9_tnbrr")]
-tile_grid = NodePath("../TileGrid")
 points = PackedVector2Array()
+tile_grid = NodePath("../TileGrid")
 
 [node name="PlaceableArea" type="Area2D" parent="." unique_id=492154963]
 collision_layer = 8
@@ -1591,9 +1594,9 @@ shape = SubResource("RectangleShape2D_c7qsp")
 
 [node name="EnemyContainer" type="Node2D" parent="." unique_id=1668579446 node_paths=PackedStringArray("start", "tile_grid", "wave_animation")]
 script = ExtResource("7_ncq2f")
+start = NodePath("../Start")
 tile_grid = NodePath("../TileGrid")
 wave_animation = NodePath("../WaveAnimation")
-start = NodePath("../Start")
 
 [node name="EnemySpawnArea" type="Area2D" parent="EnemyContainer" unique_id=1716086209]
 
@@ -1608,9 +1611,9 @@ pitch_scale = 2.0
 
 [node name="ProjectileContainer" type="Node2D" parent="." unique_id=167765078 groups=["ProjectileContainer"]]
 
-[node name="Towers" type="Node2D" parent="."]
+[node name="Towers" type="Node2D" parent="." unique_id=1773862837]
 
-[node name="PlacerLayer" type="CanvasLayer" parent="."]
+[node name="PlacerLayer" type="CanvasLayer" parent="." unique_id=2043652066]
 layer = 2
 follow_viewport_enabled = true
 
@@ -1625,8 +1628,6 @@ visible = false
 offset_bottom = 64.91998
 
 [node name="ShowEnemyPath" type="PanelContainer" parent="HUD" unique_id=216589219 node_paths=PackedStringArray("enemy_path")]
-script = ExtResource("11_twjon")
-enemy_path = NodePath("../../Path")
 visible = false
 z_index = -1
 anchors_preset = -1
@@ -1639,6 +1640,8 @@ offset_bottom = -0.20800018
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_pg4dt")
+script = ExtResource("11_twjon")
+enemy_path = NodePath("../../Path")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HUD/ShowEnemyPath" unique_id=1255414006]
 layout_mode = 2
@@ -1666,7 +1669,6 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_awp58")
 button_pressed = true
 
 [node name="BucksContainer" type="PanelContainer" parent="HUD" unique_id=1635358822]
-script = ExtResource("12_ngjjf")
 self_modulate = Color(1, 1, 1, 0.6745098)
 anchors_preset = -1
 anchor_left = 0.021000002
@@ -1680,6 +1682,7 @@ offset_bottom = 12.015999
 scale = Vector2(0.8898865, 0.8898865)
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ngjjf")
+script = ExtResource("12_ngjjf")
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="HUD/BucksContainer" unique_id=331680416]
 layout_mode = 2
@@ -1785,7 +1788,6 @@ unique_name_in_owner = true
 libraries/ = SubResource("AnimationLibrary_2v2ap")
 
 [node name="WaveDisplay" type="PanelContainer" parent="HUD" unique_id=1029942851]
-script = ExtResource("32_2uwox")
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -1799,6 +1801,7 @@ grow_vertical = 0
 scale = Vector2(0.8898865, 0.8898865)
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_y6gvw")
+script = ExtResource("32_2uwox")
 
 [node name="Label" type="Label" parent="HUD/WaveDisplay" unique_id=1002283238]
 layout_mode = 2
@@ -1813,7 +1816,6 @@ libraries/ = SubResource("AnimationLibrary_funyk")
 [node name="WaveButton" parent="HUD" unique_id=1576210926 instance=ExtResource("37_0ai0x")]
 
 [node name="FastModeButton" type="PanelContainer" parent="HUD" unique_id=801544399]
-script = ExtResource("38_etg4x")
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -1827,6 +1829,7 @@ grow_horizontal = 2
 grow_vertical = 0
 scale = Vector2(0.88756704, 0.88756704)
 theme_override_styles/panel = SubResource("StyleBoxFlat_2uwox")
+script = ExtResource("38_etg4x")
 
 [node name="MarginContainer" type="MarginContainer" parent="HUD/FastModeButton" unique_id=419128122]
 layout_mode = 2
@@ -1852,7 +1855,7 @@ layout_mode = 2
 texture = ExtResource("36_funyk")
 expand_mode = 2
 
-[node name="Button" type="Button" parent="HUD/FastModeButton/MarginContainer/HBoxContainer/TextureRect"]
+[node name="Button" type="Button" parent="HUD/FastModeButton/MarginContainer/HBoxContainer/TextureRect" unique_id=471130681]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1863,7 +1866,8 @@ focus_mode = 0
 toggle_mode = true
 flat = true
 
-[node name="TitleScreen" parent="." instance=ExtResource("title_screen")]
+[node name="TitleScreen" parent="." unique_id=369099002 instance=ExtResource("title_screen")]
 
 [connection signal="toggled" from="HUD/FastModeButton/MarginContainer/HBoxContainer/TextureRect/Button" to="HUD/FastModeButton" method="_on_button_toggled"]
+
 [editable path="HUD"]
