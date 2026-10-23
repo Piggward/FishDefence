@@ -1,4 +1,5 @@
 [gd_scene format=3 uid="uid://c6cyknb477bo4"]
+
 [ext_resource type="Script" uid="uid://f2jq2uawrfg" path="res://ui/damage_meter/damage_dealt_container.gd" id="1_8r1wq"]
 [ext_resource type="Script" uid="uid://dgfooxu2uiol4" path="res://ui/shop/shop_button.gd" id="1_xfvoa"]
 [ext_resource type="PackedScene" uid="uid://cju0fht1h5qth" path="res://ui/shop/shop_container.tscn" id="3_8r1wq"]
@@ -6,16 +7,14 @@
 [ext_resource type="Texture2D" uid="uid://e0wjhxbj1cww" path="res://ui/game_over/blobfish_spritesheet.png" id="6_8r1wq"]
 [ext_resource type="Script" uid="uid://lsybw02k5rch" path="res://ui/game_over/game_over_screen.gd" id="6_ajxib"]
 [ext_resource type="Script" uid="uid://dcmi7kutnsf0b" path="res://tutorial/tutorial_card/tutorial_container.gd" id="7_ajxib"]
-[ext_resource type="PackedScene" uid="uid://bxmg00ne8giic" path="res://ui/tower_card/tower_card.tscn" id="tc_card"]
-
-[ext_resource type="PackedScene" path="res://ui/hud/show_enemy_path.tscn" id="scene_ShowEnemyPath"]
-[ext_resource type="PackedScene" path="res://ui/player_stats/bucks_container.tscn" id="scene_BucksContainer"]
-[ext_resource type="PackedScene" path="res://ui/waves/wave_display.tscn" id="scene_WaveDisplay"]
-[ext_resource type="PackedScene" uid="uid://dwrb20ty0gvsi" path="res://ui/waves/wave_button.tscn" id="37_0ai0x"]
-[ext_resource type="PackedScene" path="res://components/ui/check_box_button/check_box_button.tscn" id="check_box_button"]
-
 [ext_resource type="AudioStream" uid="uid://cd6ed2qlsxrry" path="res://ui/hud/error_sound.mp3" id="14_0ai0x"]
 [ext_resource type="Script" uid="uid://bntduu8ibf60y" path="res://ui/hud/error_sound.gd" id="15_etg4x"]
+[ext_resource type="PackedScene" uid="uid://dwrb20ty0gvsi" path="res://ui/waves/wave_button.tscn" id="37_0ai0x"]
+[ext_resource type="PackedScene" path="res://components/ui/check_box_button/check_box_button.tscn" id="check_box_button"]
+[ext_resource type="PackedScene" path="res://ui/player_stats/bucks_container.tscn" id="scene_BucksContainer"]
+[ext_resource type="PackedScene" path="res://ui/waves/wave_display.tscn" id="scene_WaveDisplay"]
+[ext_resource type="PackedScene" uid="uid://bxmg00ne8giic" path="res://ui/tower_card/tower_card.tscn" id="tc_card"]
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_032fp"]
 bg_color = Color(0.49019608, 0.6431373, 0.5921569, 0.8235294)
 
@@ -56,7 +55,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_y6sft")
 }],
-"loop": true,
+"loop": 1,
 "name": &"Lose",
 "speed": 5.0
 }, {
@@ -67,16 +66,15 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_heatd")
 }],
-"loop": true,
+"loop": 1,
 "name": &"Win",
 "speed": 5.0
 }]
 
-[node name="CanvasLayer" type="CanvasLayer"]
+[node name="CanvasLayer" type="CanvasLayer" unique_id=1417341917]
 process_mode = 3
 
-[node name="TutorialContainer" type="Control" parent="."]
-script = ExtResource("7_ajxib")
+[node name="TutorialContainer" type="Control" parent="." unique_id=407740911]
 layout_mode = 3
 anchors_preset = 5
 anchor_left = 0.5
@@ -86,9 +84,9 @@ offset_top = 36.0
 offset_right = -96.0
 offset_bottom = 76.0
 grow_horizontal = 2
+script = ExtResource("7_ajxib")
 
-[node name="DamageDealt" type="Control" parent="."]
-script = ExtResource("1_8r1wq")
+[node name="DamageDealt" type="Control" parent="." unique_id=1521607886]
 visible = false
 layout_mode = 3
 anchor_left = 0.883
@@ -100,8 +98,9 @@ offset_top = -0.18400002
 offset_right = 0.51989746
 offset_bottom = -105.42401
 grow_horizontal = 0
+script = ExtResource("1_8r1wq")
 
-[node name="PanelContainer" type="PanelContainer" parent="DamageDealt"]
+[node name="PanelContainer" type="PanelContainer" parent="DamageDealt" unique_id=784997327]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -109,34 +108,33 @@ offset_bottom = 130.0
 grow_horizontal = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_032fp")
 
-[node name="MarginContainer" type="MarginContainer" parent="DamageDealt/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="DamageDealt/PanelContainer" unique_id=1707683225]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="DamageDealt/PanelContainer/MarginContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="DamageDealt/PanelContainer/MarginContainer" unique_id=1537142838]
 layout_mode = 2
 theme_override_constants/separation = -6
 
-[node name="MarginContainer" type="MarginContainer" parent="DamageDealt/PanelContainer/MarginContainer/VBoxContainer2"]
+[node name="MarginContainer" type="MarginContainer" parent="DamageDealt/PanelContainer/MarginContainer/VBoxContainer2" unique_id=2074792518]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="Title" type="Label" parent="DamageDealt/PanelContainer/MarginContainer/VBoxContainer2/MarginContainer"]
+[node name="Title" type="Label" parent="DamageDealt/PanelContainer/MarginContainer/VBoxContainer2/MarginContainer" unique_id=1459507520]
 layout_mode = 2
 text = "Damage dealt: "
 
-[node name="DamageRowContainer" type="VBoxContainer" parent="DamageDealt/PanelContainer/MarginContainer/VBoxContainer2"]
+[node name="DamageRowContainer" type="VBoxContainer" parent="DamageDealt/PanelContainer/MarginContainer/VBoxContainer2" unique_id=1347870811]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="ShopButton" type="PanelContainer" parent="." node_paths=PackedStringArray("shop")]
-script = ExtResource("1_xfvoa")
+[node name="ShopButton" type="PanelContainer" parent="." unique_id=207315853 node_paths=PackedStringArray("shop")]
 anchors_preset = -1
 anchor_left = 0.95000005
 anchor_top = 0.33
@@ -150,25 +148,26 @@ grow_horizontal = 0
 grow_vertical = 0
 rotation = -1.5700699
 theme_override_styles/panel = SubResource("StyleBoxFlat_lx5au")
+script = ExtResource("1_xfvoa")
 shop = NodePath("../ShopContainer")
 
-[node name="MarginContainer" type="MarginContainer" parent="ShopButton"]
+[node name="MarginContainer" type="MarginContainer" parent="ShopButton" unique_id=800865497]
 layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = -17
 theme_override_constants/margin_right = 20
 
-[node name="Label" type="Label" parent="ShopButton/MarginContainer"]
+[node name="Label" type="Label" parent="ShopButton/MarginContainer" unique_id=18735680]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "Shop"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ShopContainer" parent="." instance=ExtResource("3_8r1wq")]
+[node name="ShopContainer" parent="." unique_id=439174318 instance=ExtResource("3_8r1wq")]
 offset_bottom = 64.91998
 
-[node name="TowerDescriptionContainer" type="Control" parent="."]
+[node name="TowerDescriptionContainer" type="Control" parent="." unique_id=1587744125]
 layout_mode = 3
 anchors_preset = 0
 offset_left = 479.0
@@ -176,11 +175,11 @@ offset_top = 97.0
 offset_right = 519.0
 offset_bottom = 137.0
 
-[node name="TowerCard" parent="TowerDescriptionContainer" instance=ExtResource("tc_card")]
+[node name="TowerCard" parent="TowerDescriptionContainer" unique_id=2050653827 instance=ExtResource("tc_card")]
+visible = false
 layout_mode = 0
 
-[node name="ToolTip" type="PanelContainer" parent="."]
-script = ExtResource("5_2fc2m")
+[node name="ToolTip" type="PanelContainer" parent="." unique_id=1419231487]
 visible = false
 anchors_preset = 8
 anchor_left = 0.5
@@ -195,21 +194,22 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_2fc2m")
+script = ExtResource("5_2fc2m")
 
-[node name="MarginContainer" type="MarginContainer" parent="ToolTip"]
+[node name="MarginContainer" type="MarginContainer" parent="ToolTip" unique_id=316909486]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="TooltipText" type="Label" parent="ToolTip/MarginContainer"]
+[node name="TooltipText" type="Label" parent="ToolTip/MarginContainer" unique_id=1497801632]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "Press R to rotate"
 
-[node name="GameOverScreen" type="PanelContainer" parent="."]
-script = ExtResource("6_ajxib")
+[node name="GameOverScreen" type="PanelContainer" parent="." unique_id=1414952250]
+visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -221,18 +221,19 @@ offset_right = 275.0
 offset_bottom = 133.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("6_ajxib")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="GameOverScreen"]
+[node name="VBoxContainer" type="VBoxContainer" parent="GameOverScreen" unique_id=1652409962]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="GameOverScreen/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="GameOverScreen/VBoxContainer" unique_id=1011535055]
 layout_mode = 2
 theme_override_constants/margin_left = 90
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 90
 theme_override_constants/margin_bottom = 130
 
-[node name="ResultLabel" type="Label" parent="GameOverScreen/VBoxContainer/MarginContainer"]
+[node name="ResultLabel" type="Label" parent="GameOverScreen/VBoxContainer/MarginContainer" unique_id=656912311]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 36
@@ -240,38 +241,36 @@ text = "GAME OVER YOU LOST"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="GameOverScreen/VBoxContainer"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="GameOverScreen/VBoxContainer" unique_id=525558907]
 texture_filter = 1
 position = Vector2(313, 128)
 scale = Vector2(5.7854347, 5.7854347)
 sprite_frames = SubResource("SpriteFrames_m4ofw")
 animation = &"Win"
 
-[node name="Endless" type="Button" parent="GameOverScreen/VBoxContainer"]
+[node name="Endless" type="Button" parent="GameOverScreen/VBoxContainer" unique_id=1878094051]
 layout_mode = 2
 text = "Keep playing in Endless Mode"
 
-[node name="PlayAgain" type="Button" parent="GameOverScreen/VBoxContainer"]
+[node name="PlayAgain" type="Button" parent="GameOverScreen/VBoxContainer" unique_id=74785061]
 layout_mode = 2
 text = "Play again"
 
-[node name="PlayAgainExpert" type="Button" parent="GameOverScreen/VBoxContainer"]
+[node name="PlayAgainExpert" type="Button" parent="GameOverScreen/VBoxContainer" unique_id=397600859]
 layout_mode = 2
 text = "Play again (Expert Mode)"
 
-[node name="Exit" type="Button" parent="GameOverScreen/VBoxContainer"]
+[node name="Exit" type="Button" parent="GameOverScreen/VBoxContainer" unique_id=1931293282]
 layout_mode = 2
 text = "Exit"
 
-[node name="ShowEnemyPath" parent="." instance=ExtResource("scene_ShowEnemyPath")]
+[node name="BucksContainer" parent="." unique_id=803079662 instance=ExtResource("scene_BucksContainer")]
 
-[node name="BucksContainer" parent="." instance=ExtResource("scene_BucksContainer")]
+[node name="WaveDisplay" parent="." unique_id=1937497300 instance=ExtResource("scene_WaveDisplay")]
 
-[node name="WaveDisplay" parent="." instance=ExtResource("scene_WaveDisplay")]
+[node name="WaveButton" parent="." unique_id=1456415837 instance=ExtResource("37_0ai0x")]
 
-[node name="WaveButton" parent="." instance=ExtResource("37_0ai0x")]
-
-[node name="FastModeButton" parent="." instance=ExtResource("check_box_button")]
+[node name="FastModeButton" parent="." unique_id=333996101 instance=ExtResource("check_box_button")]
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -287,7 +286,7 @@ scale = Vector2(0.88756704, 0.88756704)
 tooltip_text = "Run the game at double speed."
 text = "Fast mode"
 
-[node name="ErrorSound" type="AudioStreamPlayer" parent="."]
+[node name="ErrorSound" type="AudioStreamPlayer" parent="." unique_id=1260199282]
 stream = ExtResource("14_0ai0x")
 pitch_scale = 0.9
 script = ExtResource("15_etg4x")

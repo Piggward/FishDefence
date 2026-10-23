@@ -1,21 +1,21 @@
-[gd_scene load_steps=5 format=3 uid="uid://cju0fht1h5qth"]
+[gd_scene format=3 uid="uid://cju0fht1h5qth"]
 
 [ext_resource type="Script" uid="uid://dql3mm8l0ka0d" path="res://ui/shop/shop_container.gd" id="1_xl3bq"]
 [ext_resource type="PackedScene" uid="uid://mw2fv76w4sxj" path="res://ui/shop/shop_item.tscn" id="2_ppe6i"]
-[ext_resource type="PackedScene" uid="uid://38eeivo1kv68" path="res://entities/towers/crab/crab_tower.tscn" id="t_crab"]
+[ext_resource type="PackedScene" uid="uid://b2iwto0ov5ms3" path="res://entities/towers/anchovy/anchovy_demo.tscn" id="d_anchovy"]
+[ext_resource type="PackedScene" uid="uid://cmb264p7wubih" path="res://entities/towers/clown_fish/clown_demo.tscn" id="d_clown_fish"]
 [ext_resource type="PackedScene" uid="uid://be2r40gq4pi5y" path="res://entities/towers/crab/crab_demo.tscn" id="d_crab"]
-[ext_resource type="PackedScene" uid="uid://c4f6gt4tdgpwo" path="res://entities/towers/surgeon_fish/surgeon_tower.tscn" id="t_surgeon_fish"]
+[ext_resource type="PackedScene" uid="uid://bcfnx28sn8rok" path="res://entities/towers/discus/discus_demo.tscn" id="d_discus"]
+[ext_resource type="PackedScene" uid="uid://pd7xpsbcprrs" path="res://entities/towers/puffer/puffer_demo.tscn" id="d_puffer"]
+[ext_resource type="PackedScene" uid="uid://cqiql3ofhwmaj" path="res://entities/towers/snail/snail_demo.tscn" id="d_snail"]
 [ext_resource type="PackedScene" uid="uid://dagtsle1vogl3" path="res://entities/towers/surgeon_fish/surgeon_demo.tscn" id="d_surgeon_fish"]
 [ext_resource type="PackedScene" uid="uid://ru86gcsabmxc" path="res://entities/towers/anchovy/anchovy_tower.tscn" id="t_anchovy"]
-[ext_resource type="PackedScene" uid="uid://b2iwto0ov5ms3" path="res://entities/towers/anchovy/anchovy_demo.tscn" id="d_anchovy"]
-[ext_resource type="PackedScene" uid="uid://jdasnkkeyv3u" path="res://entities/towers/puffer/puffer_tower.tscn" id="t_puffer"]
-[ext_resource type="PackedScene" uid="uid://pd7xpsbcprrs" path="res://entities/towers/puffer/puffer_demo.tscn" id="d_puffer"]
 [ext_resource type="PackedScene" uid="uid://pv46cph2glos" path="res://entities/towers/clown_fish/clown_tower.tscn" id="t_clown_fish"]
-[ext_resource type="PackedScene" uid="uid://cmb264p7wubih" path="res://entities/towers/clown_fish/clown_demo.tscn" id="d_clown_fish"]
-[ext_resource type="PackedScene" uid="uid://b4q4obpovd6jh" path="res://entities/towers/snail/snail.tscn" id="t_snail"]
-[ext_resource type="PackedScene" uid="uid://cqiql3ofhwmaj" path="res://entities/towers/snail/snail_demo.tscn" id="d_snail"]
+[ext_resource type="PackedScene" uid="uid://38eeivo1kv68" path="res://entities/towers/crab/crab_tower.tscn" id="t_crab"]
 [ext_resource type="PackedScene" uid="uid://drtd5a4mjfa2j" path="res://entities/towers/discus/discus_tower.tscn" id="t_discus"]
-[ext_resource type="PackedScene" uid="uid://bcfnx28sn8rok" path="res://entities/towers/discus/discus_demo.tscn" id="d_discus"]
+[ext_resource type="PackedScene" uid="uid://jdasnkkeyv3u" path="res://entities/towers/puffer/puffer_tower.tscn" id="t_puffer"]
+[ext_resource type="PackedScene" uid="uid://b4q4obpovd6jh" path="res://entities/towers/snail/snail.tscn" id="t_snail"]
+[ext_resource type="PackedScene" uid="uid://c4f6gt4tdgpwo" path="res://entities/towers/surgeon_fish/surgeon_tower.tscn" id="t_surgeon_fish"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lx5au"]
 bg_color = Color(1, 0.5568628, 0.34509805, 1)
@@ -25,7 +25,7 @@ corner_radius_top_right = 15
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xfvoa"]
 bg_color = Color(0.12941177, 0.21568628, 0.3372549, 1)
 
-[node name="ShopContainer" type="VBoxContainer"]
+[node name="ShopContainer" type="VBoxContainer" unique_id=1152921411]
 anchors_preset = -1
 anchor_left = 0.79600006
 anchor_top = 0.014
@@ -39,103 +39,102 @@ mouse_filter = 0
 theme_override_constants/separation = -5
 script = ExtResource("1_xl3bq")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=2048004529]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_bottom = 5
 
-[node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer" unique_id=126123214]
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_lx5au")
 
-[node name="Label" type="Label" parent="MarginContainer/PanelContainer"]
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer" unique_id=822168264]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "Shop"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=536484203]
 texture_filter = 1
 custom_minimum_size = Vector2(0, 600)
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_xfvoa")
 
-[node name="MarginContainer2" type="MarginContainer" parent="PanelContainer"]
+[node name="MarginContainer2" type="MarginContainer" parent="PanelContainer" unique_id=344628005]
 layout_mode = 2
 theme_override_constants/margin_left = 0
 theme_override_constants/margin_top = 12
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer2"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer2" unique_id=2060530646]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 9
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer2/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer2/VBoxContainer" unique_id=1848860476]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = -12
 alignment = 1
 
-[node name="MarginContainer2" parent="PanelContainer/MarginContainer2/VBoxContainer/HBoxContainer" instance=ExtResource("2_ppe6i")]
+[node name="MarginContainer2" parent="PanelContainer/MarginContainer2/VBoxContainer/HBoxContainer" unique_id=1402056929 instance=ExtResource("2_ppe6i")]
+layout_mode = 2
 tower_scene = ExtResource("t_surgeon_fish")
 demo_scene = ExtResource("d_surgeon_fish")
-layout_mode = 2
 
-[node name="MarginContainer4" parent="PanelContainer/MarginContainer2/VBoxContainer/HBoxContainer" instance=ExtResource("2_ppe6i")]
+[node name="MarginContainer4" parent="PanelContainer/MarginContainer2/VBoxContainer/HBoxContainer" unique_id=2006547796 instance=ExtResource("2_ppe6i")]
+layout_mode = 2
 tower_scene = ExtResource("t_crab")
 demo_scene = ExtResource("d_crab")
-layout_mode = 2
 
-[node name="MarginContainer3" parent="PanelContainer/MarginContainer2/VBoxContainer/HBoxContainer" instance=ExtResource("2_ppe6i")]
+[node name="MarginContainer3" parent="PanelContainer/MarginContainer2/VBoxContainer/HBoxContainer" unique_id=476507473 instance=ExtResource("2_ppe6i")]
+layout_mode = 2
 tower_scene = ExtResource("t_puffer")
 demo_scene = ExtResource("d_puffer")
-layout_mode = 2
 
-[node name="HBoxContainer4" type="HBoxContainer" parent="PanelContainer/MarginContainer2/VBoxContainer"]
+[node name="HBoxContainer4" type="HBoxContainer" parent="PanelContainer/MarginContainer2/VBoxContainer" unique_id=317015788]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = -12
 alignment = 1
 
-[node name="MarginContainer2" parent="PanelContainer/MarginContainer2/VBoxContainer/HBoxContainer4" instance=ExtResource("2_ppe6i")]
+[node name="MarginContainer2" parent="PanelContainer/MarginContainer2/VBoxContainer/HBoxContainer4" unique_id=1160263702 instance=ExtResource("2_ppe6i")]
+layout_mode = 2
 tower_scene = ExtResource("t_snail")
 demo_scene = ExtResource("d_snail")
-layout_mode = 2
 
-[node name="MarginContainer4" parent="PanelContainer/MarginContainer2/VBoxContainer/HBoxContainer4" instance=ExtResource("2_ppe6i")]
+[node name="MarginContainer4" parent="PanelContainer/MarginContainer2/VBoxContainer/HBoxContainer4" unique_id=1964786476 instance=ExtResource("2_ppe6i")]
+layout_mode = 2
 tower_scene = ExtResource("t_clown_fish")
 demo_scene = ExtResource("d_clown_fish")
-layout_mode = 2
 
-[node name="MarginContainer3" parent="PanelContainer/MarginContainer2/VBoxContainer/HBoxContainer4" instance=ExtResource("2_ppe6i")]
+[node name="MarginContainer3" parent="PanelContainer/MarginContainer2/VBoxContainer/HBoxContainer4" unique_id=1211929783 instance=ExtResource("2_ppe6i")]
+layout_mode = 2
 tower_scene = ExtResource("t_anchovy")
 demo_scene = ExtResource("d_anchovy")
-layout_mode = 2
 
-[node name="HBoxContainer5" type="HBoxContainer" parent="PanelContainer/MarginContainer2/VBoxContainer"]
+[node name="HBoxContainer5" type="HBoxContainer" parent="PanelContainer/MarginContainer2/VBoxContainer" unique_id=125063530]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = -12
 alignment = 1
 
-[node name="MarginContainer2" parent="PanelContainer/MarginContainer2/VBoxContainer/HBoxContainer5" instance=ExtResource("2_ppe6i")]
+[node name="MarginContainer2" parent="PanelContainer/MarginContainer2/VBoxContainer/HBoxContainer5" unique_id=1521076891 instance=ExtResource("2_ppe6i")]
+layout_mode = 2
 tower_scene = ExtResource("t_discus")
 demo_scene = ExtResource("d_discus")
-layout_mode = 2
 
-[node name="MarginContainer4" parent="PanelContainer/MarginContainer2/VBoxContainer/HBoxContainer5" instance=ExtResource("2_ppe6i")]
-tower_scene = ExtResource("t_crab")
-demo_scene = ExtResource("d_crab")
+[node name="MarginContainer4" parent="PanelContainer/MarginContainer2/VBoxContainer/HBoxContainer5" unique_id=1440941961 instance=ExtResource("2_ppe6i")]
 visible = false
 layout_mode = 2
-
-[node name="MarginContainer3" parent="PanelContainer/MarginContainer2/VBoxContainer/HBoxContainer5" instance=ExtResource("2_ppe6i")]
 tower_scene = ExtResource("t_crab")
 demo_scene = ExtResource("d_crab")
+
+[node name="MarginContainer3" parent="PanelContainer/MarginContainer2/VBoxContainer/HBoxContainer5" unique_id=1437042970 instance=ExtResource("2_ppe6i")]
 visible = false
 layout_mode = 2
-
+tower_scene = ExtResource("t_crab")
+demo_scene = ExtResource("d_crab")
