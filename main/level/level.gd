@@ -19,7 +19,8 @@ extends Node2D
 
 func _ready() -> void:
 	fast_mode_button.toggled.connect(GameManager.set_fast_mode)
-	title_screen.start_pressed.connect(_on_title_start_pressed)
+	if title_screen != null:
+		title_screen.start_pressed.connect(_on_title_start_pressed)
 	if debug_skip_intro:
 		GameManager.tutorial_done = true
 	if debug_skip_intro or GameManager.intro_seen:
@@ -50,14 +51,15 @@ func _on_intro_finished() -> void:
 
 
 func _start_playing() -> void:
-	title_screen.hide()
+	if title_screen:
+		title_screen.hide()
 	hud.show()
 	wave_button.show()
 	music.play_main_theme()
 	# The camera's resting place is the intro's last keyframe, so skipping can't drift from it.
-	var intro := intro_player.get_animation("intro")
-	camera.position = _last_key(intro, ".:position")
-	camera.zoom = _last_key(intro, ".:zoom")
+	#var intro := intro_player.get_animation("intro")
+	#camera.position = _last_key(intro, ".:position")
+	#camera.zoom = _last_key(intro, ".:zoom")
 
 
 func _last_key(animation: Animation, path: String) -> Variant:
